@@ -79,14 +79,21 @@ jobs:
             -print -quit)
 
           if [ -z "$SERVER" ]; then
-            echo "ERROR: Linux server executable was not found."
-            find "$GITHUB_WORKSPACE/lac" -maxdepth 3 -type f
+            echo "ERROR: L.A. Crimes Linux executable was not found."
+
+            echo
+            echo "Downloaded files:"
+            find "$GITHUB_WORKSPACE/lac" \
+              -maxdepth 3 \
+              -type f \
+              -print
+
             exit 1
           fi
 
           chmod +x "$SERVER"
 
-          echo "Server found:"
+          echo "L.A. Crimes server found:"
           echo "$SERVER"
 
       # ==========================================
@@ -113,7 +120,7 @@ jobs:
           cat "$GITHUB_WORKSPACE/ServerConfig.txt"
 
       # ==========================================
-      # FORCE PORT 7777
+      # CONFIGURE PORT 7777
       # ==========================================
 
       - name: Configure server port
@@ -196,8 +203,7 @@ jobs:
 
           PID=$!
 
-          echo "$PID" \
-            > "$GITHUB_WORKSPACE/lac.pid"
+          echo "$PID" > "$GITHUB_WORKSPACE/lac.pid"
 
           echo "Server PID: $PID"
 
@@ -214,7 +220,7 @@ jobs:
           ss -lunp | grep ':7777' || true
 
       # ==========================================
-      # SHOW L.A. CRIMES LOG
+      # SHOW SERVER LOG
       # ==========================================
 
       - name: Show L.A. Crimes log
@@ -249,24 +255,35 @@ jobs:
           chmod +x mvnw
 
           echo
-          echo "===== POM FILES ====="
+          echo "===== PORT BUDDY MODULES ====="
 
           find . \
+            -maxdepth 2 \
             -name "pom.xml" \
             -print
 
       # ==========================================
-      # BUILD PORT BUDDY
+      # BUILD ONLY PORT BUDDY CLI
+      # ==========================================
+      #
+      # IMPORTANT:
+      # Do NOT run "mvn package" for the whole project.
+      # That also builds port-buddy-web, whose Vite build
+      # was causing the "URI malformed" error.
+      #
+      # -pl port-buddy-cli = build the CLI
+      # -am               = also build required modules
+      #
       # ==========================================
 
-      - name: Build Port Buddy
+      - name: Build Port Buddy CLI
         run: |
           set -e
 
           cd "$GITHUB_WORKSPACE/port-buddy"
 
           echo "======================================"
-          echo "BUILDING PORT BUDDY"
+          echo "BUILDING PORT BUDDY CLI"
           echo "======================================"
 
           echo
@@ -280,20 +297,21 @@ jobs:
           ./mvnw -version
 
           echo
-          echo "===== BUILD ====="
+          echo "===== CLI BUILD ====="
 
           ./mvnw \
+            -pl port-buddy-cli \
+            -am \
             -DskipTests \
-            clean \
             package
 
           echo
           echo "======================================"
-          echo "PORT BUDDY BUILD COMPLETE"
+          echo "PORT BUDDY CLI BUILD COMPLETE"
           echo "======================================"
 
       # ==========================================
-      # FIND PORT BUDDY JAR
+      # FIND CLI JAR
       # ==========================================
 
       - name: Find Port Buddy CLI
@@ -303,32 +321,33 @@ jobs:
           cd "$GITHUB_WORKSPACE/port-buddy"
 
           echo "======================================"
-          echo "FINDING PORT BUDDY CLI"
+          echo "FINDING PORT BUDDY CLI JAR"
           echo "======================================"
 
-          JAR=$(find . \
+          JAR=$(find port-buddy-cli/target \
+            -maxdepth 1 \
             -type f \
             -name "*.jar" \
             ! -name "*sources.jar" \
             ! -name "*javadoc.jar" \
-            -print | head -n 1)
+            -print -quit)
 
           if [ -z "$JAR" ]; then
 
-            echo "ERROR: No Port Buddy JAR was produced."
+            echo "ERROR: Port Buddy CLI JAR was not produced."
 
             echo
-            echo "Available JAR files:"
+            echo "CLI target contents:"
 
-            find . \
+            find port-buddy-cli/target \
+              -maxdepth 2 \
               -type f \
-              -name "*.jar" \
-              -print
+              -print || true
 
             exit 1
           fi
 
-          echo "Found:"
+          echo "Found CLI JAR:"
           echo "$JAR"
 
           cp "$JAR" \
@@ -376,10 +395,15 @@ jobs:
 
             echo
             echo "Create this GitHub Actions secret:"
+            echo
             echo "PORTBUDDY_TOKEN"
+            echo
+            echo "Repository Settings"
+            echo "-> Secrets and variables"
+            echo "-> Actions"
+            echo "-> New repository secret"
 
             exit 1
-
           fi
 
           echo "======================================"
@@ -389,7 +413,7 @@ jobs:
           portbuddy init "$PORTBUDDY_TOKEN"
 
           echo
-          echo "Authentication complete."
+          echo "Port Buddy authentication complete."
 
       # ==========================================
       # START UDP TUNNEL
@@ -400,10 +424,11 @@ jobs:
           set -e
 
           echo "======================================"
-          echo "STARTING PORT BUDDY"
+          echo "STARTING PORT BUDDY UDP TUNNEL"
           echo "======================================"
 
-          echo "Local:"
+          echo
+          echo "LOCAL SERVER:"
           echo "UDP 7777"
 
           echo
@@ -455,6 +480,14 @@ jobs:
             echo "L.A. Crimes: RUNNING"
           else
             echo "L.A. Crimes: STOPPED"
+
+            echo
+            echo "===== SERVER LOG ====="
+
+            tail -250 \
+              "$GITHUB_WORKSPACE/lac-server.log" \
+              || true
+
             exit 1
           fi
 
@@ -462,6 +495,14 @@ jobs:
             echo "Port Buddy: RUNNING"
           else
             echo "Port Buddy: STOPPED"
+
+            echo
+            echo "===== PORT BUDDY LOG ====="
+
+            cat \
+              "$GITHUB_WORKSPACE/portbuddy.log" \
+              || true
+
             exit 1
           fi
 
@@ -477,7 +518,7 @@ jobs:
             "$GITHUB_WORKSPACE/portbuddy.log"
 
       # ==========================================
-      # KEEP ALIVE
+      # KEEP SERVER ALIVE
       # ==========================================
 
       - name: Keep server alive
@@ -489,8 +530,8 @@ jobs:
           echo
           echo "Local UDP: 7777"
           echo
-          echo "PUBLIC ENDPOINT:"
-          echo "See Port Buddy output above."
+          echo "The PUBLIC HOST and PORT are"
+          echo "shown in the Port Buddy output above."
           echo
           echo "======================================"
 
@@ -533,7 +574,7 @@ jobs:
             fi
 
             echo
-            echo "[$(date '+%H:%M:%S')] Server + tunnel running."
+            echo "[$(date '+%H:%M:%S')] L.A. Crimes + Port Buddy running."
 
             sleep 30
 
