@@ -85,7 +85,7 @@ jobs:
 
           chmod +x "$SERVER"
 
-          echo "Server found:"
+          echo "L.A. Crimes found:"
           echo "$SERVER"
 
       # ==========================================
@@ -237,7 +237,7 @@ jobs:
           chmod +x mvnw
 
           echo
-          echo "===== PORT BUDDY MODULES ====="
+          echo "===== MODULES ====="
 
           find . \
             -name pom.xml \
@@ -246,25 +246,37 @@ jobs:
       # ==========================================
       # BUILD PORT BUDDY
       # ==========================================
+      #
+      # IMPORTANT:
+      # Build ONLY the CLI reactor.
+      # The web module is deliberately excluded.
+      #
+      # First install the modules into the local
+      # Maven repository. This makes common:jar
+      # available to cli.
+      #
+      # ==========================================
 
-      - name: Build Port Buddy CLI
+      - name: Build and install Port Buddy CLI
         run: |
           set -e
 
           cd "$GITHUB_WORKSPACE/port-buddy"
 
           echo "======================================"
-          echo "BUILDING PORT BUDDY CLI"
+          echo "BUILDING PORT BUDDY"
           echo "======================================"
 
           ./mvnw \
             -pl cli \
             -am \
             -DskipTests \
-            package
+            clean install
 
           echo
-          echo "PORT BUDDY BUILD COMPLETE"
+          echo "======================================"
+          echo "PORT BUDDY BUILD SUCCESSFUL"
+          echo "======================================"
 
       # ==========================================
       # PREPARE RUNTIME
@@ -280,10 +292,15 @@ jobs:
           echo "PREPARING PORT BUDDY RUNTIME"
           echo "======================================"
 
-          mkdir -p "$GITHUB_WORKSPACE/portbuddy-runtime"
+          mkdir -p \
+            "$GITHUB_WORKSPACE/portbuddy-runtime"
+
+          # --------------------------------------
+          # CLI CLASSES
+          # --------------------------------------
 
           if [ ! -d "cli/target/classes" ]; then
-            echo "ERROR: cli/target/classes does not exist."
+            echo "ERROR: cli/target/classes not found."
             exit 1
           fi
 
@@ -291,26 +308,37 @@ jobs:
             cli/target/classes \
             "$GITHUB_WORKSPACE/portbuddy-runtime/cli-classes"
 
-          if [ -d "common/target/classes" ]; then
-            cp -r \
-              common/target/classes \
-              "$GITHUB_WORKSPACE/portbuddy-runtime/common-classes"
+          # --------------------------------------
+          # COMMON CLASSES
+          # --------------------------------------
+
+          if [ ! -d "common/target/classes" ]; then
+            echo "ERROR: common/target/classes not found."
+            exit 1
           fi
+
+          cp -r \
+            common/target/classes \
+            "$GITHUB_WORKSPACE/portbuddy-runtime/common-classes"
+
+          # --------------------------------------
+          # BUILD RUNTIME CLASSPATH
+          # --------------------------------------
 
           ./mvnw \
             -pl cli \
-            -am \
             dependency:build-classpath \
             -Dmdep.outputFile="$GITHUB_WORKSPACE/portbuddy-classpath.txt" \
             -DincludeScope=runtime
 
           echo
-          echo "===== CLASSPATH ====="
+          echo "===== RUNTIME CLASSPATH ====="
 
-          cat "$GITHUB_WORKSPACE/portbuddy-classpath.txt"
+          cat \
+            "$GITHUB_WORKSPACE/portbuddy-classpath.txt"
 
       # ==========================================
-      # CREATE PORT BUDDY LAUNCHER
+      # CREATE LAUNCHER
       # ==========================================
 
       - name: Create Port Buddy launcher
@@ -325,10 +353,7 @@ jobs:
           ROOT="$GITHUB_WORKSPACE"
 
           CP="$ROOT/portbuddy-runtime/cli-classes"
-
-          if [ -d "$ROOT/portbuddy-runtime/common-classes" ]; then
-            CP="$CP:$ROOT/portbuddy-runtime/common-classes"
-          fi
+          CP="$CP:$ROOT/portbuddy-runtime/common-classes"
 
           if [ -f "$ROOT/portbuddy-classpath.txt" ]; then
             CP="$CP:$(cat "$ROOT/portbuddy-classpath.txt")"
@@ -340,13 +365,16 @@ jobs:
             "$@"
           EOF
 
-          chmod +x "$GITHUB_WORKSPACE/portbuddy"
+          chmod +x \
+            "$GITHUB_WORKSPACE/portbuddy"
 
           sudo cp \
             "$GITHUB_WORKSPACE/portbuddy" \
             /usr/local/bin/portbuddy
 
-          echo "Port Buddy launcher installed."
+          echo "======================================"
+          echo "PORT BUDDY LAUNCHER READY"
+          echo "======================================"
 
       # ==========================================
       # TEST PORT BUDDY
@@ -383,6 +411,7 @@ jobs:
 
           portbuddy init "$PORTBUDDY_TOKEN"
 
+          echo
           echo "Port Buddy authentication complete."
 
       # ==========================================
@@ -404,7 +433,8 @@ jobs:
             7777 \
             > "$GITHUB_WORKSPACE/portbuddy.log" 2>&1 &
 
-          echo $! > "$GITHUB_WORKSPACE/portbuddy.pid"
+          echo $! \
+            > "$GITHUB_WORKSPACE/portbuddy.pid"
 
           sleep 15
 
@@ -413,7 +443,8 @@ jobs:
           echo "PORT BUDDY OUTPUT"
           echo "======================================"
 
-          cat "$GITHUB_WORKSPACE/portbuddy.log"
+          cat \
+            "$GITHUB_WORKSPACE/portbuddy.log"
 
       # ==========================================
       # FINAL CHECK
@@ -427,11 +458,22 @@ jobs:
           echo "FINAL SERVER CHECK"
           echo "======================================"
 
-          LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
-          PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
+          LAC_PID=$(cat \
+            "$GITHUB_WORKSPACE/lac.pid")
+
+          PB_PID=$(cat \
+            "$GITHUB_WORKSPACE/portbuddy.pid")
+
+          echo "L.A. Crimes PID: $LAC_PID"
+          echo "Port Buddy PID: $PB_PID"
+
+          echo
 
           if ! kill -0 "$LAC_PID" 2>/dev/null; then
             echo "L.A. Crimes stopped."
+
+            echo
+            echo "===== L.A. CRIMES LOG ====="
 
             tail -250 \
               "$GITHUB_WORKSPACE/lac-server.log" \
@@ -442,6 +484,9 @@ jobs:
 
           if ! kill -0 "$PB_PID" 2>/dev/null; then
             echo "Port Buddy stopped."
+
+            echo
+            echo "===== PORT BUDDY LOG ====="
 
             cat \
               "$GITHUB_WORKSPACE/portbuddy.log" \
@@ -474,7 +519,8 @@ jobs:
           echo "L.A. CRIMES SERVER IS RUNNING"
           echo "======================================"
 
-          echo "Local UDP: 7777"
+          echo
+          echo "LOCAL UDP: 7777"
           echo
           echo "PUBLIC ADDRESS:"
           echo "See Port Buddy output above."
@@ -483,8 +529,11 @@ jobs:
 
           while true; do
 
-            LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
-            PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
+            LAC_PID=$(cat \
+              "$GITHUB_WORKSPACE/lac.pid")
+
+            PB_PID=$(cat \
+              "$GITHUB_WORKSPACE/portbuddy.pid")
 
             if ! kill -0 "$LAC_PID" 2>/dev/null; then
               echo "L.A. Crimes stopped."
@@ -492,7 +541,11 @@ jobs:
             fi
 
             if ! kill -0 "$PB_PID" 2>/dev/null; then
+
               echo "Port Buddy stopped."
+
+              echo
+              echo "===== PORT BUDDY LOG ====="
 
               cat \
                 "$GITHUB_WORKSPACE/portbuddy.log" \
@@ -501,7 +554,9 @@ jobs:
               exit 1
             fi
 
-            echo "[$(date '+%H:%M:%S')] Server + tunnel running."
+            echo
+            echo "[$(date '+%H:%M:%S')]"
+            echo "L.A. Crimes + Port Buddy running."
 
             sleep 30
 
