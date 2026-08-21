@@ -26,7 +26,6 @@ jobs:
         with:
           distribution: temurin
           java-version: "25"
-          cache: maven
 
       # ==========================================
       # DEPENDENCIES
@@ -86,7 +85,7 @@ jobs:
 
           chmod +x "$SERVER"
 
-          echo "Server:"
+          echo "Server found:"
           echo "$SERVER"
 
       # ==========================================
@@ -133,7 +132,7 @@ jobs:
           cat "$GITHUB_WORKSPACE/ServerConfig.txt"
 
       # ==========================================
-      # INSTALL SERVER CONFIG
+      # INSTALL CONFIG
       # ==========================================
 
       - name: Install ServerConfig.txt
@@ -178,7 +177,9 @@ jobs:
           echo "======================================"
           echo "STARTING L.A. CRIMES"
           echo "======================================"
-          echo "UDP: 7777"
+
+          echo "UDP PORT: 7777"
+
           echo "======================================"
 
           ./LAC_Linux_v1.9.6.x86_64 \
@@ -222,6 +223,10 @@ jobs:
         run: |
           set -e
 
+          echo "======================================"
+          echo "CLONING PORT BUDDY"
+          echo "======================================"
+
           git clone \
             --depth 1 \
             https://github.com/amak-tech/port-buddy.git \
@@ -231,16 +236,15 @@ jobs:
 
           chmod +x mvnw
 
-          echo "======================================"
-          echo "PORT BUDDY PROJECT"
-          echo "======================================"
+          echo
+          echo "===== PORT BUDDY MODULES ====="
 
           find . \
             -name pom.xml \
             -print
 
       # ==========================================
-      # BUILD CLI + DEPENDENCIES
+      # BUILD PORT BUDDY
       # ==========================================
 
       - name: Build Port Buddy CLI
@@ -260,7 +264,7 @@ jobs:
             package
 
           echo
-          echo "CLI build completed."
+          echo "PORT BUDDY BUILD COMPLETE"
 
       # ==========================================
       # PREPARE RUNTIME
@@ -278,11 +282,10 @@ jobs:
 
           mkdir -p "$GITHUB_WORKSPACE/portbuddy-runtime"
 
-          # Copy compiled project classes/resources.
-          find . \
-            -path "*/target/classes" \
-            -type d \
-            -print
+          if [ ! -d "cli/target/classes" ]; then
+            echo "ERROR: cli/target/classes does not exist."
+            exit 1
+          fi
 
           cp -r \
             cli/target/classes \
@@ -294,7 +297,6 @@ jobs:
               "$GITHUB_WORKSPACE/portbuddy-runtime/common-classes"
           fi
 
-          # Build Maven runtime classpath.
           ./mvnw \
             -pl cli \
             -am \
@@ -303,17 +305,9 @@ jobs:
             -DincludeScope=runtime
 
           echo
-          echo "===== MAVEN CLASSPATH ====="
+          echo "===== CLASSPATH ====="
 
           cat "$GITHUB_WORKSPACE/portbuddy-classpath.txt"
-
-          echo
-          echo "===== RUNTIME FILES ====="
-
-          find "$GITHUB_WORKSPACE/portbuddy-runtime" \
-            -maxdepth 2 \
-            -type f \
-            -print
 
       # ==========================================
       # CREATE PORT BUDDY LAUNCHER
@@ -352,9 +346,7 @@ jobs:
             "$GITHUB_WORKSPACE/portbuddy" \
             /usr/local/bin/portbuddy
 
-          echo "======================================"
-          echo "PORT BUDDY LAUNCHER CREATED"
-          echo "======================================"
+          echo "Port Buddy launcher installed."
 
       # ==========================================
       # TEST PORT BUDDY
@@ -391,6 +383,8 @@ jobs:
 
           portbuddy init "$PORTBUDDY_TOKEN"
 
+          echo "Port Buddy authentication complete."
+
       # ==========================================
       # START UDP TUNNEL
       # ==========================================
@@ -403,7 +397,7 @@ jobs:
           echo "STARTING PORT BUDDY"
           echo "======================================"
 
-          echo "Local UDP: 7777"
+          echo "LOCAL UDP: 7777"
 
           portbuddy \
             udp \
@@ -425,12 +419,12 @@ jobs:
       # FINAL CHECK
       # ==========================================
 
-      - name: Final check
+      - name: Final server check
         run: |
           set -e
 
           echo "======================================"
-          echo "L.A. CRIMES SERVER"
+          echo "FINAL SERVER CHECK"
           echo "======================================"
 
           LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
