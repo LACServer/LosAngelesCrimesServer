@@ -1,0 +1,509 @@
+name: L.A. Crimes Public Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    steps:
+
+      # ==========================================
+      # CHECKOUT
+      # ==========================================
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ==========================================
+      # JAVA 25
+      # ==========================================
+
+      - name: Setup Java 25
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+
+      # ==========================================
+      # DEPENDENCIES
+      # ==========================================
+
+      - name: Install dependencies
+        run: |
+          set -e
+
+          sudo apt-get update
+
+          sudo apt-get install -y \
+            unzip \
+            wget \
+            curl \
+            git
+
+          echo "===== JAVA ====="
+          java -version
+
+      # ==========================================
+      # FIND CONFIG
+      # ==========================================
+
+      - name: Find ServerConfig.txt
+        run: |
+          set -e
+
+          echo "======================================"
+          echo "Searching for ServerConfig.txt"
+          echo "======================================"
+
+          CONFIG_FILE=$(find "$GITHUB_WORKSPACE" \
+            -type f \
+            -iname "ServerConfig.txt" \
+            -print -quit)
+
+          if [ -z "$CONFIG_FILE" ]; then
+            echo "ERROR: ServerConfig.txt was not found."
+            exit 1
+          fi
+
+          echo "Found:"
+          echo "$CONFIG_FILE"
+
+          cp "$CONFIG_FILE" \
+            "$GITHUB_WORKSPACE/ServerConfig.txt"
+
+          echo
+          echo "===== SERVER CONFIG ====="
+          cat "$GITHUB_WORKSPACE/ServerConfig.txt"
+
+      # ==========================================
+      # DOWNLOAD L.A. CRIMES
+      # ==========================================
+
+      - name: Download L.A. Crimes
+        run: |
+          set -e
+
+          echo "======================================"
+          echo "Downloading L.A. Crimes"
+          echo "======================================"
+
+          wget \
+            --timeout=60 \
+            --tries=5 \
+            -O LAC_Linux_v1.9.6.zip \
+            "https://www.lacrimesonline.com/builds/LAC_Linux_v1.9.6.zip"
+
+          mkdir -p "$GITHUB_WORKSPACE/lac"
+
+          unzip -q \
+            LAC_Linux_v1.9.6.zip \
+            -d "$GITHUB_WORKSPACE/lac"
+
+          chmod +x \
+            "$GITHUB_WORKSPACE/lac/LAC_Linux_v1.9.6.x86_64"
+
+      # ==========================================
+      # INSTALL CONFIG
+      # ==========================================
+
+      - name: Install L.A. Crimes configuration
+        run: |
+          set -e
+
+          CONFIG_DIR="/root/.config/unity3d/MA/LAC"
+
+          sudo mkdir -p "$CONFIG_DIR"
+
+          sudo cp \
+            "$GITHUB_WORKSPACE/ServerConfig.txt" \
+            "$CONFIG_DIR/ServerConfig.txt"
+
+          sudo chmod 644 \
+            "$CONFIG_DIR/ServerConfig.txt"
+
+          echo "======================================"
+          echo "ServerConfig.txt installed"
+          echo "======================================"
+
+          sudo cat \
+            "$CONFIG_DIR/ServerConfig.txt"
+
+      # ==========================================
+      # VERIFY CONFIG
+      # ==========================================
+
+      - name: Verify port configuration
+        run: |
+          set -e
+
+          CONFIG="/root/.config/unity3d/MA/LAC/ServerConfig.txt"
+
+          if ! sudo grep -q \
+            '^starting port=7777$' \
+            "$CONFIG"; then
+
+            echo "ERROR:"
+            echo "ServerConfig.txt does not contain:"
+            echo "starting port=7777"
+
+            exit 1
+          fi
+
+          echo
+          echo "SUCCESS:"
+          echo "L.A. Crimes is configured for UDP 7777."
+
+      # ==========================================
+      # START L.A. CRIMES
+      # ==========================================
+
+      - name: Start L.A. Crimes server
+        run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE/lac"
+
+          echo "======================================"
+          echo "STARTING L.A. CRIMES"
+          echo "======================================"
+          echo "UDP PORT: 7777"
+          echo "======================================"
+
+          ./LAC_Linux_v1.9.6.x86_64 \
+            -batchmode \
+            -nographics \
+            > "$GITHUB_WORKSPACE/lac-server.log" 2>&1 &
+
+          PID=$!
+
+          echo "$PID" \
+            > "$GITHUB_WORKSPACE/lac.pid"
+
+          echo "Server PID: $PID"
+
+          sleep 30
+
+          echo
+          echo "===== L.A. CRIMES PROCESS ====="
+
+          ps aux | grep '[L]AC_Linux' || true
+
+          echo
+          echo "===== UDP 7777 ====="
+
+          ss -lunp | grep ':7777' || true
+
+      # ==========================================
+      # CLONE PORT BUDDY
+      # ==========================================
+
+      - name: Clone Port Buddy
+        run: |
+          set -e
+
+          echo "======================================"
+          echo "Downloading Port Buddy source"
+          echo "======================================"
+
+          git clone \
+            --depth 1 \
+            https://github.com/amak-tech/port-buddy.git \
+            "$GITHUB_WORKSPACE/port-buddy"
+
+          cd "$GITHUB_WORKSPACE/port-buddy"
+
+          chmod +x mvnw
+
+          echo
+          echo "===== PORT BUDDY VERSION ====="
+
+          git log -1 --oneline
+
+      # ==========================================
+      # BUILD PORT BUDDY
+      # ==========================================
+
+      - name: Build Port Buddy CLI
+        run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE/port-buddy"
+
+          echo "======================================"
+          echo "BUILDING PORT BUDDY CLI"
+          echo "======================================"
+
+          echo
+          echo "===== JAVA ====="
+          java -version
+
+          echo
+          echo "===== MAVEN ====="
+          ./mvnw -version
+
+          echo
+          echo "===== BUILD ====="
+
+          ./mvnw \
+            -pl cli \
+            -am \
+            -DskipTests \
+            package
+
+          echo
+          echo "======================================"
+          echo "PORT BUDDY BUILD FINISHED"
+          echo "======================================"
+
+          echo
+          echo "===== TARGET FILES ====="
+
+          find cli/target \
+            -maxdepth 2 \
+            -type f \
+            -printf '%p\n' \
+            || true
+
+      # ==========================================
+      # INSTALL PORT BUDDY
+      # ==========================================
+
+      - name: Install Port Buddy CLI
+        run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE/port-buddy"
+
+          echo "======================================"
+          echo "Installing Port Buddy"
+          echo "======================================"
+
+          # Look for a native executable first.
+          PORTBUDDY_BIN=$(find cli/target \
+            -maxdepth 2 \
+            -type f \
+            -perm -111 \
+            ! -name '*.sh' \
+            ! -name '*.class' \
+            -print -quit)
+
+          if [ -n "$PORTBUDDY_BIN" ]; then
+
+            echo "Native executable found:"
+            echo "$PORTBUDDY_BIN"
+
+            sudo install \
+              -m 755 \
+              "$PORTBUDDY_BIN" \
+              /usr/local/bin/portbuddy
+
+          else
+
+            # Fall back to a runnable JAR.
+            PORTBUDDY_JAR=$(find cli/target \
+              -maxdepth 1 \
+              -type f \
+              -name '*.jar' \
+              ! -name '*sources.jar' \
+              ! -name '*javadoc.jar' \
+              -print -quit)
+
+            if [ -z "$PORTBUDDY_JAR" ]; then
+              echo "ERROR: Could not find Port Buddy executable or JAR."
+              echo
+              echo "Files produced by build:"
+              find cli/target -maxdepth 2 -type f || true
+              exit 1
+            fi
+
+            echo "JAR found:"
+            echo "$PORTBUDDY_JAR"
+
+            cp "$PORTBUDDY_JAR" \
+              "$GITHUB_WORKSPACE/portbuddy.jar"
+
+            cat > "$GITHUB_WORKSPACE/portbuddy" <<'EOF'
+#!/bin/sh
+exec java -jar "$GITHUB_WORKSPACE/portbuddy.jar" "$@"
+EOF
+
+            chmod +x \
+              "$GITHUB_WORKSPACE/portbuddy"
+
+            sudo cp \
+              "$GITHUB_WORKSPACE/portbuddy" \
+              /usr/local/bin/portbuddy
+
+          fi
+
+          echo
+          echo "===== PORT BUDDY ====="
+
+          portbuddy --version
+
+      # ==========================================
+      # AUTHENTICATE PORT BUDDY
+      # ==========================================
+
+      - name: Authenticate Port Buddy
+        env:
+          PORTBUDDY_TOKEN: ${{ secrets.PORTBUDDY_TOKEN }}
+        run: |
+          set -e
+
+          if [ -z "$PORTBUDDY_TOKEN" ]; then
+            echo "ERROR: PORTBUDDY_TOKEN secret is missing."
+            exit 1
+          fi
+
+          echo "======================================"
+          echo "Authenticating Port Buddy"
+          echo "======================================"
+
+          portbuddy init "$PORTBUDDY_TOKEN"
+
+          echo
+          echo "Port Buddy authentication complete."
+
+      # ==========================================
+      # START UDP TUNNEL
+      # ==========================================
+
+      - name: Start Port Buddy UDP tunnel
+        run: |
+          set -e
+
+          echo "======================================"
+          echo "STARTING PORT BUDDY"
+          echo "======================================"
+          echo
+          echo "Local server: UDP 7777"
+          echo "Tunnel: UDP"
+          echo
+          echo "======================================"
+
+          portbuddy \
+            udp \
+            7777 \
+            > "$GITHUB_WORKSPACE/portbuddy.log" 2>&1 &
+
+          PID=$!
+
+          echo "$PID" \
+            > "$GITHUB_WORKSPACE/portbuddy.pid"
+
+          sleep 15
+
+          echo
+          echo "======================================"
+          echo "PORT BUDDY OUTPUT"
+          echo "======================================"
+
+          cat "$GITHUB_WORKSPACE/portbuddy.log"
+
+          echo
+          echo "======================================"
+          echo "PUBLIC ADDRESS"
+          echo "======================================"
+
+          grep -Ei \
+            'exposed to:|portbuddy.dev' \
+            "$GITHUB_WORKSPACE/portbuddy.log" \
+            || true
+
+      # ==========================================
+      # FINAL CHECK
+      # ==========================================
+
+      - name: Check server and tunnel
+        run: |
+          set -e
+
+          echo "======================================"
+          echo "FINAL CHECK"
+          echo "======================================"
+
+          LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
+          PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
+
+          if kill -0 "$LAC_PID" 2>/dev/null; then
+            echo "L.A. Crimes: RUNNING"
+          else
+            echo "L.A. Crimes: STOPPED"
+            tail -200 "$GITHUB_WORKSPACE/lac-server.log" || true
+            exit 1
+          fi
+
+          if kill -0 "$PB_PID" 2>/dev/null; then
+            echo "Port Buddy: RUNNING"
+          else
+            echo "Port Buddy: STOPPED"
+            cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+            exit 1
+          fi
+
+          echo
+          echo "===== LOCAL UDP 7777 ====="
+
+          ss -lunp | grep ':7777' || true
+
+          echo
+          echo "===== PUBLIC ENDPOINT ====="
+
+          cat "$GITHUB_WORKSPACE/portbuddy.log"
+
+      # ==========================================
+      # KEEP ALIVE
+      # ==========================================
+
+      - name: Keep server alive
+        run: |
+          echo "======================================"
+          echo "L.A. CRIMES SERVER IS RUNNING"
+          echo "======================================"
+          echo
+          echo "Game server: UDP 7777"
+          echo "Tunnel: Port Buddy UDP"
+          echo
+          echo "The public host:port is printed above."
+          echo "======================================"
+
+          while true; do
+
+            LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
+            PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
+
+            if ! kill -0 "$LAC_PID" 2>/dev/null; then
+              echo "L.A. Crimes stopped."
+
+              echo
+              echo "===== L.A. CRIMES LOG ====="
+
+              tail -200 \
+                "$GITHUB_WORKSPACE/lac-server.log" || true
+
+              exit 1
+            fi
+
+            if ! kill -0 "$PB_PID" 2>/dev/null; then
+              echo "Port Buddy stopped."
+
+              echo
+              echo "===== PORT BUDDY LOG ====="
+
+              cat \
+                "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+              exit 1
+            fi
+
+            echo
+            echo "[$(date '+%H:%M:%S')] L.A. Crimes + Port Buddy running."
+
+            sleep 30
+
+          done
