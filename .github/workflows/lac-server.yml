@@ -1,0 +1,398 @@
+name: L.A. Crimes Test Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    steps:
+
+      - name: Install dependencies
+        run: |
+          set -e
+
+          sudo apt-get update
+          sudo apt-get install -y unzip wget curl
+
+      - name: Download L.A. Crimes
+        run: |
+          set -e
+
+          wget \
+            --timeout=60 \
+            --tries=5 \
+            -O LAC_Linux_v1.9.6.zip \
+            "https://lacrimesonline.com/builds/LAC_Linux_v1.9.6.zip"
+
+      - name: Extract L.A. Crimes
+        run: |
+          set -e
+
+          mkdir -p "$GITHUB_WORKSPACE/lac"
+
+          unzip -q \
+            LAC_Linux_v1.9.6.zip \
+            -d "$GITHUB_WORKSPACE/lac"
+
+          chmod +x \
+            "$GITHUB_WORKSPACE/lac/LAC_Linux_v1.9.6.x86_64"
+
+      - name: Create ServerConfig.txt
+        run: |
+          set -e
+
+          CONFIG_DIR="$HOME/.config/unity3d/MA/LAC"
+
+          mkdir -p "$CONFIG_DIR"
+
+          printf '%s\n' \
+            '#Maps (City, Garage, RagdollParty, TrainFacility)' \
+            '#Maps (ZombieSurvival, NewTerrainRamps, Island, CarSoccer)' \
+            '#Editor Maps (editor:myMap)' \
+            '' \
+            '#make map rotation with ","' \
+            '#players can get admin by typing "/YOUR-NUM-CODE" in the chat' \
+            '#lock down will avoids changes in: server option, editor obj sync' \
+            '' \
+            '(Moderator)' \
+            'admin code=123456' \
+            'lock down=true' \
+            '' \
+            '(Basic)' \
+            'restart timer=never' \
+            'max players=16' \
+            'map name=TrainFacility' \
+            'starting port=47777' \
+            '' \
+            '(Server List)' \
+            'share to community=true' \
+            'server language=English' \
+            'server password=none' \
+            '' \
+            '(Roleplay)' \
+            'username=HOST' \
+            'password=0000' \
+            > "$CONFIG_DIR/ServerConfig.txt"
+
+          echo "======================================"
+          echo "ServerConfig.txt created"
+          echo "======================================"
+
+          cat "$CONFIG_DIR/ServerConfig.txt"
+
+      - name: Install Homebrew
+        run: |
+          set -e
+
+          NONINTERACTIVE=1 \
+          /bin/bash -c \
+          "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+          echo "/home/linuxbrew/.linuxbrew/bin" >> "$GITHUB_PATH"
+          echo "/home/linuxbrew/.linuxbrew/sbin" >> "$GITHUB_PATH"
+
+      - name: Install Port Buddy
+        run: |
+          set -e
+
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+          brew update
+          brew install amak-tech/tap/portbuddy
+
+          portbuddy --version
+
+      - name: Authenticate Port Buddy
+        env:
+          PORTBUDDY_TOKEN: ${{ secrets.PORTBUDDY_TOKEN }}
+        run: |
+          set -e
+
+          if [ -z "$PORTBUDDY_TOKEN" ]; then
+            echo "ERROR: PORTBUDDY_TOKEN secret is missing."
+            echo "Go to Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          portbuddy init "$PORTBUDDY_TOKEN"
+
+      - name: Start L.A. Crimes server
+        run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE/lac"
+
+          echo "======================================"
+          echo "Starting L.A. Crimes server..."
+          echo "UDP Port: 47777"
+          echo "Map: TrainFacility"
+          echo "Players: 16"
+          echo "======================================"
+
+          ./LAC_Linux_v1.9.6.x86_64 \
+            -batchmode \
+            -nographics \
+            > "$GITHUB_WORKSPACE/server.log" 2>&1 &
+
+          echo $! > "$GITHUB_WORKSPACE/lac.pid"
+
+          sleep 20
+
+          echo
+          echo "===== LAC SERVER LOG ====="
+          cat "$GITHUB_WORKSPACE/server.log" || true
+
+          echo
+          echo "===== SERVER PROCESS ====="
+          ps aux | grep '[L]AC_Linux' || true
+
+          echo
+          echo "===== UDP 47777 ====="
+          ss -lunp | grep 47777 || true
+
+      - name: Start Port Buddy
+        run: |
+          set -e
+
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+          echo "======================================"
+          echo "Starting Port Buddy..."
+          echo "Local UDP: 47777"
+          echo "======================================"
+
+          nohup portbuddy udp 47777 \
+            > "$GITHUB_WORKSPACE/portbuddy.log" 2>&1 &
+
+          echo $! > "$GITHUB_WORKSPACE/portbuddy.pid"
+
+          sleep 15
+
+          echo
+          echo "===== PORT BUDDY ====="
+          cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+          echo
+          echo "===== PORT BUDDY PROCESS ====="
+          ps aux | grep '[p]ortbuddy' || true
+
+      - name: Show connection information
+        run: |
+          echo "======================================"
+          echo "L.A. CRIMES SERVER"
+          echo "======================================"
+
+          echo
+          echo "===== L.A. CRIMES ====="
+          ps aux | grep '[L]AC_Linux' || true
+
+          echo
+          echo "===== LOCAL UDP 47777 ====="
+          ss -lunp | grep 47777 || true
+
+          echo
+          echo "===== PORT BUDDY ====="
+          cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+          echo
+          echo "======================================"
+          echo "PUBLIC CONNECTION INFORMATION"
+          echo "======================================"
+
+      - name: Keep server alive
+        run: |
+          echo "======================================"
+          echo "L.A. CRIMES SERVER IS RUNNING"
+          echo "======================================"
+          echo "Local UDP: 47777"
+          echo "Map: TrainFacility"
+          echo "Players: 16"
+          echo "======================================"
+
+          while true; do
+
+            if [ ! -f "$GITHUB_WORKSPACE/lac.pid" ]; then
+              echo "L.A. Crimes PID file disappeared."
+              exit 1
+            fi
+
+            if ! kill -0 "$(cat "$GITHUB_WORKSPACE/lac.pid")" 2>/dev/null; then
+              echo "L.A. Crimes server stopped."
+
+              echo
+              echo "===== FINAL SERVER LOG ====="
+              cat "$GITHUB_WORKSPACE/server.log" || true
+
+              exit 1
+            fi
+
+            if [ ! -f "$GITHUB_WORKSPACE/portbuddy.pid" ]; then
+              echo "Port Buddy PID file disappeared."
+              exit 1
+            fi
+
+            if ! kill -0 "$(cat "$GITHUB_WORKSPACE/portbuddy.pid")" 2>/dev/null; then
+              echo "Port Buddy stopped."
+
+              echo
+              echo "===== PORT BUDDY LOG ====="
+              cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+              exit 1
+            fi
+
+            sleep 30
+
+          done
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+          brew update
+          brew install amak-tech/tap/portbuddy
+
+          portbuddy --version
+
+      - name: Authenticate Port Buddy
+        env:
+          PORTBUDDY_TOKEN: ${{ secrets.PORTBUDDY_TOKEN }}
+        run: |
+          set -e
+
+          if [ -z "$PORTBUDDY_TOKEN" ]; then
+            echo "ERROR: PORTBUDDY_TOKEN secret is missing."
+            echo "Go to Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+          portbuddy init "$PORTBUDDY_TOKEN"
+
+      - name: Start L.A. Crimes server
+        run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE/lac"
+
+          echo "======================================"
+          echo "Starting L.A. Crimes server..."
+          echo "UDP Port: 47777"
+          echo "Map: TrainFacility"
+          echo "Players: 16"
+          echo "======================================"
+
+          ./LAC_Linux_v1.9.6.x86_64 \
+            -batchmode \
+            -nographics \
+            > "$GITHUB_WORKSPACE/server.log" 2>&1 &
+
+          echo $! > "$GITHUB_WORKSPACE/lac.pid"
+
+          sleep 20
+
+          echo
+          echo "===== LAC SERVER LOG ====="
+          cat "$GITHUB_WORKSPACE/server.log" || true
+
+          echo
+          echo "===== SERVER PROCESS ====="
+          ps aux | grep '[L]AC_Linux' || true
+
+          echo
+          echo "===== UDP 47777 ====="
+          ss -lunp | grep 47777 || true
+
+      - name: Start Port Buddy
+        run: |
+          set -e
+
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+          echo "======================================"
+          echo "Starting Port Buddy..."
+          echo "Local UDP: 47777"
+          echo "======================================"
+
+          nohup portbuddy udp 47777 \
+            > "$GITHUB_WORKSPACE/portbuddy.log" 2>&1 &
+
+          echo $! > "$GITHUB_WORKSPACE/portbuddy.pid"
+
+          sleep 15
+
+          echo
+          echo "===== PORT BUDDY ====="
+          cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+          echo
+          echo "===== PORT BUDDY PROCESS ====="
+          ps aux | grep '[p]ortbuddy' || true
+
+      - name: Show connection information
+        run: |
+          echo "======================================"
+          echo "L.A. CRIMES SERVER"
+          echo "======================================"
+
+          echo
+          echo "===== L.A. CRIMES ====="
+          ps aux | grep '[L]AC_Linux' || true
+
+          echo
+          echo "===== LOCAL UDP 47777 ====="
+          ss -lunp | grep 47777 || true
+
+          echo
+          echo "===== PORT BUDDY ====="
+          cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+          echo
+          echo "======================================"
+          echo "PUBLIC CONNECTION INFORMATION"
+          echo "======================================"
+
+      - name: Keep server alive
+        run: |
+          echo "======================================"
+          echo "L.A. CRIMES SERVER IS RUNNING"
+          echo "======================================"
+          echo "Local UDP: 47777"
+          echo "Map: TrainFacility"
+          echo "Players: 16"
+          echo "======================================"
+
+          while true; do
+
+            if [ ! -f "$GITHUB_WORKSPACE/lac.pid" ]; then
+              echo "L.A. Crimes PID file disappeared."
+              exit 1
+            fi
+
+            if ! kill -0 "$(cat "$GITHUB_WORKSPACE/lac.pid")" 2>/dev/null; then
+              echo "L.A. Crimes server stopped."
+
+              echo
+              echo "===== FINAL SERVER LOG ====="
+              cat "$GITHUB_WORKSPACE/server.log" || true
+
+              exit 1
+            fi
+
+            if [ ! -f "$GITHUB_WORKSPACE/portbuddy.pid" ]; then
+              echo "Port Buddy PID file disappeared."
+              exit 1
+            fi
+
+            if ! kill -0 "$(cat "$GITHUB_WORKSPACE/portbuddy.pid")" 2>/dev/null; then
+              echo "Port Buddy stopped."
+
+              echo
+              echo "===== PORT BUDDY LOG ====="
+              cat "$GITHUB_WORKSPACE/portbuddy.log" || true
+
+              exit 1
+            fi
+
+            sleep 30
+
+          done
