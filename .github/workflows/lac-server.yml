@@ -10,14 +10,26 @@ jobs:
 
     steps:
 
+      # ==========================================
+      # INSTALL DEPENDENCIES
+      # ==========================================
+
       - name: Install dependencies
         run: |
           set -e
 
+          echo "======================================"
+          echo "Installing dependencies"
+          echo "======================================"
+
           sudo apt-get update
           sudo apt-get install -y unzip wget curl
 
-      - name: Download official L.A. Crimes Linux server
+      # ==========================================
+      # DOWNLOAD L.A. CRIMES
+      # ==========================================
+
+      - name: Download L.A. Crimes Linux server
         run: |
           set -e
 
@@ -31,11 +43,21 @@ jobs:
             -O LAC_Linux_v1.9.6.zip \
             "https://www.lacrimesonline.com/builds/LAC_Linux_v1.9.6.zip"
 
+          echo
+          echo "Download complete:"
           ls -lh LAC_Linux_v1.9.6.zip
 
-      - name: Extract server
+      # ==========================================
+      # EXTRACT SERVER
+      # ==========================================
+
+      - name: Extract L.A. Crimes server
         run: |
           set -e
+
+          echo "======================================"
+          echo "Extracting server"
+          echo "======================================"
 
           mkdir -p "$GITHUB_WORKSPACE/lac"
 
@@ -46,63 +68,86 @@ jobs:
           chmod +x \
             "$GITHUB_WORKSPACE/lac/LAC_Linux_v1.9.6.x86_64"
 
-          echo "======================================"
-          echo "Server files extracted"
-          echo "======================================"
-
+          echo
+          echo "Server files:"
           ls -lah "$GITHUB_WORKSPACE/lac"
 
-      - name: Create official L.A. Crimes configuration
+      # ==========================================
+      # CHECK CONFIG FILE FROM REPOSITORY
+      # ==========================================
+
+      - name: Check ServerConfig.txt
         run: |
           set -e
 
-          CONFIG_DIR="/root/.config/unity3d/MA/LAC"
+          echo "======================================"
+          echo "Checking repository configuration"
+          echo "======================================"
+
+          CONFIG="$GITHUB_WORKSPACE/config/ServerConfig.txt"
+
+          if [ ! -f "$CONFIG" ]; then
+            echo "ERROR: config/ServerConfig.txt does not exist."
+            echo
+            echo "Expected:"
+            echo "$CONFIG"
+            echo
+            echo "Repository contents:"
+            find "$GITHUB_WORKSPACE" -maxdepth 3 -type f | sort
+            exit 1
+          fi
+
+          echo "Found:"
+          echo "$CONFIG"
+
+          echo
+          echo "===== ServerConfig.txt ====="
+          cat "$CONFIG"
+
+      # ==========================================
+      # INSTALL CONFIG TO GAME'S LINUX LOCATION
+      # ==========================================
+
+      - name: Install ServerConfig.txt
+        run: |
+          set -e
 
           echo "======================================"
-          echo "Creating L.A. Crimes configuration"
+          echo "Installing L.A. Crimes configuration"
           echo "======================================"
+
+          CONFIG_DIR="/root/.config/unity3d/MA/LAC"
+          CONFIG_FILE="$CONFIG_DIR/ServerConfig.txt"
 
           sudo mkdir -p "$CONFIG_DIR"
 
-          sudo tee "$CONFIG_DIR/ServerConfig.txt" > /dev/null <<'EOF'
-          #place config in /root/.config/unity3d/MA/LAC/ServerConfig.txt
-          #place maps in   /root/.config/unity3d/MA/LAC/editor/myMap.txt
+          sudo cp \
+            "$GITHUB_WORKSPACE/config/ServerConfig.txt" \
+            "$CONFIG_FILE"
 
-          #Maps (City, Garage, RagdollParty, TrainFacility)
-          #Maps (ZombieSurvival, NewTerrainRamps, Island, CarSoccer)
-          #Editor Maps (editor:myMap)
-
-          #make map rotation with ","
-          #players can get admin by typing "/YOUR-NUM-CODE" in the chat
-          #lock down will avoids changes in: server option, editor obj sync
-
-          (Moderator)
-          admin code=123456
-          lock down=true
-
-          (Basic)
-          restart timer=never
-          max players=16
-          map name=TrainFacility
-          starting port=7777
-
-          (Server List)
-          share to community=true
-          server language=English
-          server password=none
-
-          (Roleplay)
-          username=HOST
-          password=0000
-          EOF
+          sudo chmod 644 "$CONFIG_FILE"
 
           echo
-          echo "===== SERVER CONFIG ====="
-          sudo cat "$CONFIG_DIR/ServerConfig.txt"
+          echo "Configuration installed at:"
+          echo "$CONFIG_FILE"
 
           echo
-          echo "===== CONFIG LOCATION ====="
-          sudo ls -l "$CONFIG_DIR/ServerConfig.txt"
+          echo "===== INSTALLED CONFIG ====="
+          sudo cat "$CONFIG_FILE"
+
+          echo
+          echo "===== CONFIG FILE CHECK ====="
+
+          if sudo test -f "$CONFIG_FILE"; then
+            echo "SUCCESS: ServerConfig.txt exists."
+          else
+            echo "ERROR: ServerConfig.txt was not installed."
+            exit 1
+          fi
+
+      # ==========================================
+      # VERIFY PORT
+      # ==========================================
 
       - name: Verify server configuration
         run: |
@@ -110,25 +155,39 @@ jobs:
 
           CONFIG="/root/.config/unity3d/MA/LAC/ServerConfig.txt"
 
-          if [ ! -f "$CONFIG" ]; then
-            echo "ERROR: ServerConfig.txt was not created."
-            exit 1
-          fi
-
-          echo "Configuration found:"
-          sudo cat "$CONFIG"
+          echo "======================================"
+          echo "Verifying server configuration"
+          echo "======================================"
 
           echo
-          echo "Checking port..."
+          echo "Map:"
+          sudo grep '^map name=' "$CONFIG" || true
+
+          echo
+          echo "Port:"
+          sudo grep '^starting port=' "$CONFIG" || true
+
+          echo
+          echo "Players:"
+          sudo grep '^max players=' "$CONFIG" || true
+
+          echo
+          echo "Server list:"
+          sudo grep '^share to community=' "$CONFIG" || true
 
           if sudo grep -q '^starting port=7777$' "$CONFIG"; then
-            echo "OK: starting port is 7777"
+            echo
+            echo "SUCCESS: Server configured for UDP 7777."
           else
-            echo "ERROR: starting port is not 7777"
+            echo
+            echo "ERROR: ServerConfig.txt does not contain:"
+            echo "starting port=7777"
             exit 1
           fi
 
-          echo "Configuration verification passed."
+      # ==========================================
+      # START L.A. CRIMES
+      # ==========================================
 
       - name: Start L.A. Crimes server
         run: |
@@ -139,10 +198,12 @@ jobs:
           echo "======================================"
           echo "Starting L.A. Crimes Linux server"
           echo "======================================"
+          echo
           echo "Version: 1.9.6"
           echo "Map: TrainFacility"
-          echo "UDP: 7777"
-          echo "Max players: 16"
+          echo "UDP Port: 7777"
+          echo "Max Players: 16"
+          echo
           echo "======================================"
 
           ./LAC_Linux_v1.9.6.x86_64 \
@@ -154,50 +215,94 @@ jobs:
 
           echo "$SERVER_PID" > "$GITHUB_WORKSPACE/lac.pid"
 
-          echo "Server PID: $SERVER_PID"
+          echo
+          echo "Server PID:"
+          echo "$SERVER_PID"
+
+          echo
+          echo "Waiting for server startup..."
 
           sleep 30
 
           echo
           echo "===== SERVER PROCESS ====="
+
           ps aux | grep '[L]AC_Linux' || true
 
           echo
           echo "===== UDP 7777 ====="
+
           ss -lunp | grep ':7777' || true
 
           echo
-          echo "===== SERVER LOG ====="
+          echo "===== L.A. CRIMES LOG ====="
+
           cat "$GITHUB_WORKSPACE/lac-server.log" || true
 
-      - name: Verify UDP port
+      # ==========================================
+      # CHECK SERVER
+      # ==========================================
+
+      - name: Check server status
         run: |
+          set -e
+
           echo "======================================"
-          echo "Checking UDP 7777"
+          echo "Checking L.A. Crimes server"
           echo "======================================"
 
+          if [ ! -f "$GITHUB_WORKSPACE/lac.pid" ]; then
+            echo "ERROR: Server PID file does not exist."
+            exit 1
+          fi
+
+          PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
+
+          echo "Server PID: $PID"
+
+          if kill -0 "$PID" 2>/dev/null; then
+            echo "SUCCESS: L.A. Crimes process is running."
+          else
+            echo "ERROR: L.A. Crimes process has stopped."
+
+            echo
+            echo "===== SERVER LOG ====="
+
+            cat "$GITHUB_WORKSPACE/lac-server.log" || true
+
+            exit 1
+          fi
+
+          echo
+          echo "===== UDP PORT 7777 ====="
+
           if ss -lun | grep -q ':7777'; then
-            echo "SUCCESS: L.A. Crimes is listening on UDP 7777."
+            echo "SUCCESS: UDP 7777 is listening."
           else
             echo "WARNING: UDP 7777 is not currently visible."
-            echo
-            echo "Last server log:"
-            tail -100 "$GITHUB_WORKSPACE/lac-server.log" || true
           fi
+
+      # ==========================================
+      # KEEP SERVER ALIVE
+      # ==========================================
 
       - name: Keep server alive
         run: |
           echo "======================================"
           echo "L.A. CRIMES SERVER IS RUNNING"
           echo "======================================"
-          echo "UDP Port: 7777"
+          echo
+          echo "Version: 1.9.6"
           echo "Map: TrainFacility"
-          echo "Players: 16"
+          echo "UDP Port: 7777"
+          echo "Max Players: 16"
+          echo
           echo "======================================"
 
           while true; do
 
             if [ ! -f "$GITHUB_WORKSPACE/lac.pid" ]; then
+              echo
               echo "ERROR: Server PID file disappeared."
               exit 1
             fi
@@ -205,22 +310,26 @@ jobs:
             PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
 
             if ! kill -0 "$PID" 2>/dev/null; then
+              echo
               echo "ERROR: L.A. Crimes server stopped."
 
               echo
               echo "===== FINAL SERVER LOG ====="
+
               cat "$GITHUB_WORKSPACE/lac-server.log" || true
 
               exit 1
             fi
 
             echo
-            echo "Server is alive."
+            echo "[$(date '+%H:%M:%S')] Server is alive."
             echo "PID: $PID"
 
-            echo
-            echo "UDP status:"
-            ss -lun | grep ':7777' || echo "UDP 7777 not currently visible."
+            if ss -lun | grep -q ':7777'; then
+              echo "UDP 7777: LISTENING"
+            else
+              echo "UDP 7777: NOT DETECTED"
+            fi
 
             sleep 30
 
