@@ -10,26 +10,53 @@ jobs:
 
     steps:
 
-      # ==========================================
-      # INSTALL DEPENDENCIES
-      # ==========================================
+      - name: Download repository
+        uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
           set -e
 
-          echo "======================================"
-          echo "Installing dependencies"
-          echo "======================================"
-
           sudo apt-get update
           sudo apt-get install -y unzip wget curl
 
-      # ==========================================
-      # DOWNLOAD L.A. CRIMES
-      # ==========================================
+      - name: Find ServerConfig.txt
+        run: |
+          set -e
 
-      - name: Download L.A. Crimes Linux server
+          echo "======================================"
+          echo "Searching for ServerConfig.txt"
+          echo "======================================"
+
+          echo
+          echo "Repository files:"
+          find "$GITHUB_WORKSPACE" -maxdepth 5 -type f | sort
+
+          echo
+          echo "Searching..."
+
+          CONFIG_FILE=$(find "$GITHUB_WORKSPACE" \
+            -type f \
+            -iname "ServerConfig.txt" \
+            -print -quit)
+
+          if [ -z "$CONFIG_FILE" ]; then
+            echo
+            echo "ERROR: ServerConfig.txt was not found anywhere in the repository."
+            exit 1
+          fi
+
+          echo
+          echo "FOUND:"
+          echo "$CONFIG_FILE"
+
+          echo "$CONFIG_FILE" > "$GITHUB_WORKSPACE/config_path.txt"
+
+          echo
+          echo "===== SERVER CONFIG ====="
+          cat "$CONFIG_FILE"
+
+      - name: Download L.A. Crimes v1.9.6
         run: |
           set -e
 
@@ -43,21 +70,11 @@ jobs:
             -O LAC_Linux_v1.9.6.zip \
             "https://www.lacrimesonline.com/builds/LAC_Linux_v1.9.6.zip"
 
-          echo
-          echo "Download complete:"
           ls -lh LAC_Linux_v1.9.6.zip
 
-      # ==========================================
-      # EXTRACT SERVER
-      # ==========================================
-
-      - name: Extract L.A. Crimes server
+      - name: Extract L.A. Crimes
         run: |
           set -e
-
-          echo "======================================"
-          echo "Extracting server"
-          echo "======================================"
 
           mkdir -p "$GITHUB_WORKSPACE/lac"
 
@@ -68,95 +85,61 @@ jobs:
           chmod +x \
             "$GITHUB_WORKSPACE/lac/LAC_Linux_v1.9.6.x86_64"
 
-          echo
-          echo "Server files:"
+          echo "======================================"
+          echo "Server extracted"
+          echo "======================================"
+
           ls -lah "$GITHUB_WORKSPACE/lac"
-
-      # ==========================================
-      # CHECK CONFIG FILE FROM REPOSITORY
-      # ==========================================
-
-      - name: Check ServerConfig.txt
-        run: |
-          set -e
-
-          echo "======================================"
-          echo "Checking repository configuration"
-          echo "======================================"
-
-          CONFIG="$GITHUB_WORKSPACE/config/ServerConfig.txt"
-
-          if [ ! -f "$CONFIG" ]; then
-            echo "ERROR: config/ServerConfig.txt does not exist."
-            echo
-            echo "Expected:"
-            echo "$CONFIG"
-            echo
-            echo "Repository contents:"
-            find "$GITHUB_WORKSPACE" -maxdepth 3 -type f | sort
-            exit 1
-          fi
-
-          echo "Found:"
-          echo "$CONFIG"
-
-          echo
-          echo "===== ServerConfig.txt ====="
-          cat "$CONFIG"
-
-      # ==========================================
-      # INSTALL CONFIG TO GAME'S LINUX LOCATION
-      # ==========================================
 
       - name: Install ServerConfig.txt
         run: |
           set -e
 
-          echo "======================================"
-          echo "Installing L.A. Crimes configuration"
-          echo "======================================"
+          CONFIG_FILE=$(cat "$GITHUB_WORKSPACE/config_path.txt")
 
           CONFIG_DIR="/root/.config/unity3d/MA/LAC"
-          CONFIG_FILE="$CONFIG_DIR/ServerConfig.txt"
+          CONFIG_DEST="$CONFIG_DIR/ServerConfig.txt"
 
-          sudo mkdir -p "$CONFIG_DIR"
+          echo "======================================"
+          echo "Installing ServerConfig.txt"
+          echo "======================================"
 
-          sudo cp \
-            "$GITHUB_WORKSPACE/config/ServerConfig.txt" \
-            "$CONFIG_FILE"
-
-          sudo chmod 644 "$CONFIG_FILE"
-
-          echo
-          echo "Configuration installed at:"
+          echo "Source:"
           echo "$CONFIG_FILE"
 
           echo
-          echo "===== INSTALLED CONFIG ====="
-          sudo cat "$CONFIG_FILE"
+          echo "Destination:"
+          echo "$CONFIG_DEST"
+
+          sudo mkdir -p "$CONFIG_DIR"
+
+          sudo cp "$CONFIG_FILE" "$CONFIG_DEST"
+
+          sudo chmod 644 "$CONFIG_DEST"
 
           echo
-          echo "===== CONFIG FILE CHECK ====="
+          echo "===== INSTALLED CONFIG ====="
 
-          if sudo test -f "$CONFIG_FILE"; then
-            echo "SUCCESS: ServerConfig.txt exists."
+          sudo cat "$CONFIG_DEST"
+
+          echo
+          echo "Checking file..."
+
+          if sudo test -f "$CONFIG_DEST"; then
+            echo "SUCCESS: ServerConfig.txt installed."
           else
-            echo "ERROR: ServerConfig.txt was not installed."
+            echo "ERROR: ServerConfig.txt installation failed."
             exit 1
           fi
 
-      # ==========================================
-      # VERIFY PORT
-      # ==========================================
-
-      - name: Verify server configuration
+      - name: Verify configuration
         run: |
           set -e
 
           CONFIG="/root/.config/unity3d/MA/LAC/ServerConfig.txt"
 
           echo "======================================"
-          echo "Verifying server configuration"
+          echo "Verifying L.A. Crimes configuration"
           echo "======================================"
 
           echo
@@ -172,22 +155,16 @@ jobs:
           sudo grep '^max players=' "$CONFIG" || true
 
           echo
-          echo "Server list:"
-          sudo grep '^share to community=' "$CONFIG" || true
 
           if sudo grep -q '^starting port=7777$' "$CONFIG"; then
-            echo
             echo "SUCCESS: Server configured for UDP 7777."
           else
+            echo "ERROR: starting port=7777 was not found."
             echo
-            echo "ERROR: ServerConfig.txt does not contain:"
-            echo "starting port=7777"
+            echo "Actual configuration:"
+            sudo cat "$CONFIG"
             exit 1
           fi
-
-      # ==========================================
-      # START L.A. CRIMES
-      # ==========================================
 
       - name: Start L.A. Crimes server
         run: |
@@ -196,14 +173,12 @@ jobs:
           cd "$GITHUB_WORKSPACE/lac"
 
           echo "======================================"
-          echo "Starting L.A. Crimes Linux server"
+          echo "Starting L.A. Crimes server"
           echo "======================================"
-          echo
           echo "Version: 1.9.6"
           echo "Map: TrainFacility"
-          echo "UDP Port: 7777"
-          echo "Max Players: 16"
-          echo
+          echo "UDP: 7777"
+          echo "Players: 16"
           echo "======================================"
 
           ./LAC_Linux_v1.9.6.x86_64 \
@@ -211,16 +186,12 @@ jobs:
             -nographics \
             > "$GITHUB_WORKSPACE/lac-server.log" 2>&1 &
 
-          SERVER_PID=$!
+          PID=$!
 
-          echo "$SERVER_PID" > "$GITHUB_WORKSPACE/lac.pid"
-
-          echo
-          echo "Server PID:"
-          echo "$SERVER_PID"
+          echo "$PID" > "$GITHUB_WORKSPACE/lac.pid"
 
           echo
-          echo "Waiting for server startup..."
+          echo "Server PID: $PID"
 
           sleep 30
 
@@ -239,31 +210,21 @@ jobs:
 
           cat "$GITHUB_WORKSPACE/lac-server.log" || true
 
-      # ==========================================
-      # CHECK SERVER
-      # ==========================================
-
-      - name: Check server status
+      - name: Check server
         run: |
           set -e
 
           echo "======================================"
-          echo "Checking L.A. Crimes server"
+          echo "Checking server"
           echo "======================================"
-
-          if [ ! -f "$GITHUB_WORKSPACE/lac.pid" ]; then
-            echo "ERROR: Server PID file does not exist."
-            exit 1
-          fi
 
           PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
 
-          echo "Server PID: $PID"
-
           if kill -0 "$PID" 2>/dev/null; then
-            echo "SUCCESS: L.A. Crimes process is running."
+            echo "SUCCESS: L.A. Crimes is running."
+            echo "PID: $PID"
           else
-            echo "ERROR: L.A. Crimes process has stopped."
+            echo "ERROR: L.A. Crimes stopped."
 
             echo
             echo "===== SERVER LOG ====="
@@ -274,17 +235,9 @@ jobs:
           fi
 
           echo
-          echo "===== UDP PORT 7777 ====="
+          echo "===== UDP 7777 ====="
 
-          if ss -lun | grep -q ':7777'; then
-            echo "SUCCESS: UDP 7777 is listening."
-          else
-            echo "WARNING: UDP 7777 is not currently visible."
-          fi
-
-      # ==========================================
-      # KEEP SERVER ALIVE
-      # ==========================================
+          ss -lunp | grep ':7777' || true
 
       - name: Keep server alive
         run: |
@@ -301,12 +254,6 @@ jobs:
 
           while true; do
 
-            if [ ! -f "$GITHUB_WORKSPACE/lac.pid" ]; then
-              echo
-              echo "ERROR: Server PID file disappeared."
-              exit 1
-            fi
-
             PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
 
             if ! kill -0 "$PID" 2>/dev/null; then
@@ -322,7 +269,7 @@ jobs:
             fi
 
             echo
-            echo "[$(date '+%H:%M:%S')] Server is alive."
+            echo "[$(date '+%H:%M:%S')] Server alive."
             echo "PID: $PID"
 
             if ss -lun | grep -q ':7777'; then
