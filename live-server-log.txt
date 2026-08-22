@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:27:09 UTC
+TIME: 2026-08-22 09:27:20 UTC
 
 LOCAL UDP: 7777
 
@@ -2390,30 +2390,67 @@ IN 655.47 KB | OUT 923.51 KB
 IN 656.26 KB | OUT 925.76 KB
 IN 656.85 KB | OUT 926.83 KB
 IN 657.24 KB | OUT 927.66 KB
+IN 657.53 KB | OUT 929.36 KB
+IN 657.82 KB | OUT 931.74 KB
+IN 657.86 KB | OUT 932.58 KB
+IN 659.62 KB | OUT 935.00 KB
+IN 660.65 KB | OUT 936.51 KB
+IN 661.62 KB | OUT 937.65 KB
+IN 662.50 KB | OUT 938.62 KB
+IN 663.30 KB | OUT 940.44 KB
+IN 664.08 KB | OUT 941.88 KB
+IN 664.86 KB | OUT 943.28 KB
+IN 665.76 KB | OUT 944.42 KB
+IN 666.72 KB | OUT 945.42 KB
+IN 667.54 KB | OUT 946.42 KB
+IN 668.34 KB | OUT 947.91 KB
+IN 668.84 KB | OUT 948.81 KB
+IN 669.89 KB | OUT 950.06 KB
+IN 670.93 KB | OUT 952.12 KB
+IN 671.66 KB | OUT 953.15 KB
+IN 673.40 KB | OUT 955.07 KB
+IN 674.24 KB | OUT 956.10 KB
+IN 674.77 KB | OUT 957.07 KB
+IN 675.12 KB | OUT 957.96 KB
+IN 675.62 KB | OUT 959.27 KB
+IN 676.19 KB | OUT 960.79 KB
+IN 676.56 KB | OUT 961.87 KB
+IN 677.19 KB | OUT 963.03 KB
+IN 677.59 KB | OUT 964.23 KB
+IN 678.69 KB | OUT 966.65 KB
+IN 681.45 KB | OUT 971.00 KB
+IN 686.18 KB | OUT 976.64 KB
+IN 687.89 KB | OUT 979.64 KB
+IN 690.55 KB | OUT 983.10 KB
+IN 693.03 KB | OUT 986.79 KB
+IN 695.39 KB | OUT 990.63 KB
+IN 696.84 KB | OUT 992.72 KB
+IN 698.11 KB | OUT 994.27 KB
+IN 699.60 KB | OUT 996.41 KB
+IN 701.49 KB | OUT 999.41 KB
+IN 703.36 KB | OUT 1002.21 KB
+IN 705.69 KB | OUT 1005.04 KB
+IN 707.08 KB | OUT 1008.66 KB
+IN 709.52 KB | OUT 1011.65 KB
+IN 711.18 KB | OUT 1014.82 KB
+IN 712.96 KB | OUT 1018.05 KB
+IN 714.94 KB | OUT 1021.30 KB
+IN 716.51 KB | OUT 1023.12 KB
+IN 717.84 KB | OUT 1024.16 KB
+IN 718.94 KB | OUT 1025.09 KB
+IN 720.03 KB | OUT 1027.28 KB
+IN 720.77 KB | OUT 1028.45 KB
+IN 721.51 KB | OUT 1029.91 KB
+IN 722.36 KB | OUT 1031.49 KB
+IN 723.26 KB | OUT 1033.01 KB
+IN 724.11 KB | OUT 1034.21 KB
+IN 724.91 KB | OUT 1035.24 KB
+IN 725.71 KB | OUT 1036.82 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[KCP] Server: RawSend invalid connectionId=1883339072
-kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
-kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
-kcp2k.KcpPeer:Disconnect()
-kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
-kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
-kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[KCP] Server: RawSend invalid connectionId=1883339072
-kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
-kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
-kcp2k.KcpPeer:Disconnect()
-kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
 kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
 kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
 kcp2k.KcpServer:TickIncoming()
@@ -2695,6 +2732,25 @@ kcp2k.KcpServer:TickIncoming()
 Mirror.NetworkServer:NetworkEarlyUpdate()
 Mirror.NetworkLoop:NetworkEarlyUpdate()
 
+[PlayerControl] تاسکی Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+PlayerControl:Respawn()
+Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
+Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
+Mirror.NetworkClient:OnRPCMessage(RpcMessage)
+Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
+Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
+Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
+Mirror.LocalConnectionToServer:Update()
+Mirror.NetworkClient:NetworkLateUpdate()
+
+[PlayerControl] HerculeEdit Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -2704,6 +2760,6 @@ L.A. Crimes PID: 2771
 Port Buddy PID: 3313
 
 UDP 7777:
-UNCONN 960    0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:27:09 UTC
+Last update: 09:27:20 UTC
