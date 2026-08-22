@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:26:35 UTC
+TIME: 2026-08-22 09:26:47 UTC
 
 LOCAL UDP: 7777
 
@@ -2221,39 +2221,68 @@ IN 620.90 KB | OUT 846.92 KB
 IN 620.90 KB | OUT 847.37 KB
 IN 620.90 KB | OUT 847.88 KB
 IN 620.90 KB | OUT 848.59 KB
+IN 620.90 KB | OUT 849.21 KB
+IN 620.90 KB | OUT 849.85 KB
+IN 620.90 KB | OUT 850.48 KB
+IN 620.90 KB | OUT 851.30 KB
+IN 620.90 KB | OUT 851.99 KB
+IN 620.90 KB | OUT 852.62 KB
+IN 620.90 KB | OUT 853.30 KB
+IN 620.90 KB | OUT 853.93 KB
+IN 620.90 KB | OUT 854.81 KB
+IN 620.90 KB | OUT 855.41 KB
+IN 620.90 KB | OUT 856.07 KB
+IN 620.90 KB | OUT 856.94 KB
+IN 620.90 KB | OUT 857.71 KB
+IN 620.90 KB | OUT 858.41 KB
+IN 620.90 KB | OUT 859.02 KB
+IN 620.90 KB | OUT 860.06 KB
+IN 620.90 KB | OUT 860.88 KB
+IN 620.90 KB | OUT 861.51 KB
+IN 620.90 KB | OUT 862.29 KB
+IN 620.90 KB | OUT 862.89 KB
+IN 620.90 KB | OUT 863.73 KB
+IN 620.90 KB | OUT 864.60 KB
+IN 620.90 KB | OUT 865.50 KB
+IN 620.90 KB | OUT 866.40 KB
+IN 620.90 KB | OUT 867.15 KB
+IN 620.90 KB | OUT 867.99 KB
+IN 620.90 KB | OUT 868.90 KB
+IN 620.90 KB | OUT 869.72 KB
+IN 620.90 KB | OUT 870.52 KB
+IN 620.90 KB | OUT 871.22 KB
+IN 620.90 KB | OUT 872.07 KB
+IN 620.90 KB | OUT 873.02 KB
+IN 620.90 KB | OUT 874.08 KB
+IN 620.90 KB | OUT 875.00 KB
+IN 620.90 KB | OUT 875.74 KB
+IN 620.90 KB | OUT 876.68 KB
+IN 620.90 KB | OUT 877.52 KB
+IN 620.90 KB | OUT 878.41 KB
+IN 620.90 KB | OUT 879.13 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (9)/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (9)/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (13)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (13)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (13)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (8)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (8)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (8)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (10)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (10)/Crago crate (12)/DoorR"
 BoxCollider does not support negative scale or size.
 The effective box size has been forced positive and is likely to give unexpected collision geometry.
 If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (10)/Crago crate (12)/DoorL"
@@ -2526,6 +2555,34 @@ UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 <ApplyRot>d__227:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+Server Transport Error for connId=1883339072: Timeout: kcp2k.KcpServerConnection: Connection timed out after not receiving any message for 10000ms. Disconnecting.. This is fine.
+Mirror.NetworkServer:OnTransportError(Int32, TransportError, String)
+kcp2k.KcpPeer:HandleTimeout(UInt32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[NetworkManager] Server error: kcp2k.KcpServerConnection: Connection timed out after not receiving any message for 10000ms. Disconnecting.
+Mirror.NetworkServer:OnTransportError(Int32, TransportError, String)
+kcp2k.KcpPeer:HandleTimeout(UInt32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[NetworkManager] Server disconnected: 127.0.0.1
+Mirror.NetworkServer:OnTransportDisconnected(Int32)
+kcp2k.<>c__DisplayClass20_0:<CreateConnection>g__OnDisconnectedCallback|4()
+kcp2k.KcpPeer:HandleTimeout(UInt32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
 
 ======================================
 SERVER CHECK
@@ -2537,4 +2594,4 @@ Port Buddy PID: 3313
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:26:35 UTC
+Last update: 09:26:47 UTC
