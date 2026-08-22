@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:28:16 UTC
+TIME: 2026-08-22 09:28:28 UTC
 
 LOCAL UDP: 7777
 
@@ -2727,15 +2727,67 @@ IN 1057.80 KB | OUT 1581.28 KB
 IN 1058.93 KB | OUT 1583.33 KB
 IN 1060.03 KB | OUT 1584.78 KB
 IN 1061.29 KB | OUT 1587.21 KB
+IN 1062.70 KB | OUT 1589.20 KB
+IN 1063.93 KB | OUT 1591.11 KB
+IN 1065.02 KB | OUT 1592.35 KB
+IN 1066.89 KB | OUT 1595.49 KB
+IN 1068.61 KB | OUT 1598.31 KB
+IN 1070.88 KB | OUT 1601.48 KB
+IN 1073.10 KB | OUT 1604.46 KB
+IN 1074.09 KB | OUT 1606.37 KB
+IN 1074.65 KB | OUT 1607.19 KB
+IN 1075.35 KB | OUT 1609.85 KB
+IN 1076.73 KB | OUT 1611.78 KB
+IN 1077.54 KB | OUT 1613.75 KB
+IN 1078.46 KB | OUT 1614.87 KB
+IN 1079.18 KB | OUT 1615.63 KB
+IN 1079.83 KB | OUT 1616.60 KB
+IN 1080.48 KB | OUT 1617.55 KB
+IN 1081.33 KB | OUT 1618.75 KB
+IN 1082.08 KB | OUT 1619.60 KB
+IN 1082.96 KB | OUT 1621.39 KB
+IN 1083.49 KB | OUT 1622.34 KB
+IN 1084.04 KB | OUT 1623.27 KB
+IN 1085.08 KB | OUT 1624.87 KB
+IN 1085.45 KB | OUT 1625.61 KB
+IN 1086.40 KB | OUT 1627.12 KB
+IN 1087.14 KB | OUT 1628.60 KB
+IN 1088.16 KB | OUT 1630.02 KB
+IN 1088.83 KB | OUT 1631.59 KB
+IN 1089.75 KB | OUT 1633.04 KB
+IN 1090.70 KB | OUT 1634.43 KB
+IN 1091.67 KB | OUT 1636.20 KB
+IN 1092.65 KB | OUT 1637.84 KB
+IN 1093.29 KB | OUT 1639.16 KB
+IN 1094.01 KB | OUT 1640.58 KB
+IN 1094.88 KB | OUT 1642.06 KB
+IN 1095.80 KB | OUT 1643.68 KB
+IN 1097.08 KB | OUT 1645.56 KB
+IN 1098.51 KB | OUT 1646.85 KB
+IN 1099.72 KB | OUT 1648.85 KB
+IN 1100.97 KB | OUT 1650.15 KB
+IN 1102.38 KB | OUT 1653.24 KB
+IN 1103.16 KB | OUT 1654.45 KB
+IN 1103.69 KB | OUT 1656.67 KB
+IN 1104.35 KB | OUT 1658.42 KB
+IN 1105.72 KB | OUT 1661.14 KB
+IN 1106.49 KB | OUT 1662.13 KB
+IN 1108.24 KB | OUT 1665.69 KB
+IN 1109.07 KB | OUT 1667.16 KB
+IN 1109.44 KB | OUT 1668.70 KB
+IN 1110.01 KB | OUT 1670.35 KB
+IN 1110.58 KB | OUT 1671.52 KB
+IN 1111.17 KB | OUT 1672.73 KB
+IN 1112.05 KB | OUT 1675.89 KB
+IN 1112.69 KB | OUT 1677.59 KB
+IN 1113.14 KB | OUT 1678.87 KB
+IN 1114.03 KB | OUT 1682.47 KB
+IN 1114.65 KB | OUT 1684.22 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
 
 [KCP] Server: RawSend invalid connectionId=1883339072
 kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
@@ -3032,6 +3084,10 @@ Mirror.NetworkClient:NetworkLateUpdate()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
 ERROR: Shader TextMeshPro/Sprite shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+[PlayerControl] HerculeEdit Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -3041,6 +3097,6 @@ L.A. Crimes PID: 2771
 Port Buddy PID: 3313
 
 UDP 7777:
-UNCONN 960    0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:28:16 UTC
+Last update: 09:28:28 UTC
