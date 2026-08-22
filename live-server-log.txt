@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:26:47 UTC
+TIME: 2026-08-22 09:26:58 UTC
 
 LOCAL UDP: 7777
 
@@ -2278,235 +2278,346 @@ IN 620.90 KB | OUT 879.53 KB
 IN 620.90 KB | OUT 879.53 KB
 IN 620.90 KB | OUT 879.53 KB
 IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.90 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.92 KB | OUT 879.53 KB
+IN 620.95 KB | OUT 879.70 KB
+IN 620.98 KB | OUT 879.85 KB
+IN 620.98 KB | OUT 879.99 KB
+IN 621.03 KB | OUT 880.08 KB
+IN 621.28 KB | OUT 880.19 KB
+IN 621.58 KB | OUT 880.38 KB
+IN 621.80 KB | OUT 880.51 KB
+IN 622.08 KB | OUT 880.65 KB
+IN 622.27 KB | OUT 880.80 KB
+IN 622.32 KB | OUT 880.86 KB
+IN 622.32 KB | OUT 880.96 KB
+IN 622.90 KB | OUT 881.09 KB
+IN 623.03 KB | OUT 881.19 KB
+IN 623.26 KB | OUT 882.19 KB
+IN 623.36 KB | OUT 882.55 KB
+IN 623.63 KB | OUT 883.05 KB
+IN 623.65 KB | OUT 883.98 KB
+IN 624.28 KB | OUT 884.53 KB
+IN 624.45 KB | OUT 884.88 KB
+IN 624.56 KB | OUT 885.26 KB
+IN 624.84 KB | OUT 885.79 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (10)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (5)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (5)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (5)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (7)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (7)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (7)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (6)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (6)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (6)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (7)/Crago crate (13)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (7)/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (7)/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (6)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (6)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (6)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (11)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (11)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (11)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (5)/Crago crate (13)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (5)/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (5)/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo/Crago crate (13)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (8)/Crago crate (13)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (8)/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (8)/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (12)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (12)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (12)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (14)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (14)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (14)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (13)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (1)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (1)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (1)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (10)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (10)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (10)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Stick (2)"
-[NetworkManager] Server Started.
-CustomNetworkManager:OnStartServer()
-Mirror.NetworkManager:FinishStartHost()
-Mirror.NetworkManager:FinishLoadSceneHost()
-Mirror.NetworkManager:UpdateScene()
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ServerUser] no banned users to load.
-ServerUserManager:LoadUsers()
-Mirror.NetworkServer:SpawnObjects()
-Mirror.NetworkManager:FinishStartHost()
-Mirror.NetworkManager:FinishLoadSceneHost()
-Mirror.NetworkManager:UpdateScene()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[NetworkManager] Player Connected: localhost
-Mirror.HostMode:InvokeOnConnected()
-Mirror.NetworkManager:FinishStartHost()
-Mirror.NetworkManager:FinishLoadSceneHost()
-Mirror.NetworkManager:UpdateScene()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[NetworkManager] Server scene changed: RagdollParty
-Mirror.NetworkManager:UpdateScene()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[NetworkManager] Client Connected.
-CustomNetworkManager:OnClientConnect()
-Mirror.LocalConnectionToServer:Update()
-Mirror.NetworkClient:NetworkLateUpdate()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-Unloading 330 unused Assets to reduce memory usage. Loaded Objects now: 23794.
-Total: 9.146416 ms (FindLiveObjects: 0.760741 ms CreateObjectMapping: 0.480280 ms MarkObjects: 7.704838 ms  DeleteObjects: 0.200270 ms)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[CustomNetManager] spawning player.
-CustomNetworkManager:OnCreateCharacter(NetworkConnectionToClient, CustomCharacterMessage)
-Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
-Mirror.NetworkServer:UnpackAndInvoke(NetworkConnectionToClient, NetworkReader, Int32)
-Mirror.NetworkServer:OnTransportData(Int32, ArraySegment`1, Int32)
-Mirror.LocalConnectionToClient:Update()
-Mirror.NetworkServer:Broadcast()
-Mirror.NetworkServer:NetworkLateUpdate()
-Mirror.NetworkLoop:NetworkLateUpdate()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ShareServer] sharing server..
-<ShareServer>d__52:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
-PlayerKillFeed:Start()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-ERROR: Shader TextMeshPro/Mobile/Bitmap shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-[ShareServer] auto submitted..
-<ShareServer>d__52:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ShareServer] uploading share server data..
-<ShareServer>d__52:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ShareServer] waiting for approve..
-<ShareServer>d__52:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ServerGameManager] Waiting to spawn..
-<SpawnFreePlayer>d__112:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[PlayerControl] Player3 Respawned.
-<ApplyRot>d__227:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
-PlayerControl:Respawn()
-Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
-Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
-Mirror.NetworkClient:OnRPCMessage(RpcMessage)
-Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
-Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
-Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
-Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
-Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
-Mirror.LocalConnectionToServer:Update()
-Mirror.NetworkClient:NetworkLateUpdate()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ShareServer] server is now public!
-<UpdateSharedServer>d__53:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ShareServer] server is now public!!
-<UpdateSharedServer>d__53:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[ShareServer] server is now public!!!
-<UpdateSharedServer>d__53:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[GameManager][Ad] played long enough to show ads.
-ServerGameManager:SlowUpdate()
-ServerGameManager:Update()
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[KCP] Server: RawSend invalid connectionId=1883339072
+kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
+kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
+kcp2k.KcpPeer:Disconnect()
+kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
+kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
 
 [NetworkManager] Player Connected: 127.0.0.1
 kcp2k.<>c__DisplayClass20_0:<CreateConnection>g__OnConnectedCallback|3(KcpServerConnection)
@@ -2528,61 +2639,6 @@ kcp2k.KcpServer:TickIncoming()
 Mirror.NetworkServer:NetworkEarlyUpdate()
 Mirror.NetworkLoop:NetworkEarlyUpdate()
 
-[PlayerControl] HerculeEdit Respawned.
-<ApplyRot>d__227:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
-PlayerControl:Respawn()
-Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
-Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
-Mirror.NetworkClient:OnRPCMessage(RpcMessage)
-Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
-Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
-Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
-Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
-Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
-Mirror.LocalConnectionToServer:Update()
-Mirror.NetworkClient:NetworkLateUpdate()
-
-[PlayerControl] HerculeEdit Respawned.
-<ApplyRot>d__227:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
-
-[PlayerControl] HerculeEdit Respawned.
-<ApplyRot>d__227:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
-
-[PlayerControl] HerculeEdit Respawned.
-<ApplyRot>d__227:MoveNext()
-UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
-
-Server Transport Error for connId=1883339072: Timeout: kcp2k.KcpServerConnection: Connection timed out after not receiving any message for 10000ms. Disconnecting.. This is fine.
-Mirror.NetworkServer:OnTransportError(Int32, TransportError, String)
-kcp2k.KcpPeer:HandleTimeout(UInt32)
-kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
-kcp2k.KcpPeer:TickIncoming()
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[NetworkManager] Server error: kcp2k.KcpServerConnection: Connection timed out after not receiving any message for 10000ms. Disconnecting.
-Mirror.NetworkServer:OnTransportError(Int32, TransportError, String)
-kcp2k.KcpPeer:HandleTimeout(UInt32)
-kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
-kcp2k.KcpPeer:TickIncoming()
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[NetworkManager] Server disconnected: 127.0.0.1
-Mirror.NetworkServer:OnTransportDisconnected(Int32)
-kcp2k.<>c__DisplayClass20_0:<CreateConnection>g__OnDisconnectedCallback|4()
-kcp2k.KcpPeer:HandleTimeout(UInt32)
-kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
-kcp2k.KcpPeer:TickIncoming()
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
 
 ======================================
 SERVER CHECK
@@ -2592,6 +2648,6 @@ L.A. Crimes PID: 2771
 Port Buddy PID: 3313
 
 UDP 7777:
-UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+UNCONN 1920   0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:26:47 UTC
+Last update: 09:26:58 UTC
