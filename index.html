@@ -4,1414 +4,268 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>L.A. Crimes — Server Control</title>
+<title>L.A. Crimes Server</title>
 
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
     box-sizing: border-box;
-}
-
-html {
-    min-height: 100%;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
-
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    color: #fff;
-
-    overflow-x: hidden;
+    font-family: system-ui, Arial, sans-serif;
+    color: #343447;
 
     background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(80,130,255,.28),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(180,70,255,.24),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 100%,
-            rgba(50,255,150,.12),
-            transparent 38%
-        ),
-        #04050b;
+        linear-gradient(135deg, #ffdce8, #dceeff, #e5dcff);
 
-    perspective: 1400px;
+    padding: 25px;
 }
-
-
-/* =========================================================
-   3D BACKGROUND
-========================================================= */
-
-.scene {
-    position: fixed;
-
-    inset: 0;
-
-    overflow: hidden;
-
-    pointer-events: none;
-
-    z-index: -5;
-}
-
-
-/* Floating glass cubes */
-
-.cube {
-    position: absolute;
-
-    width: 90px;
-    height: 90px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.10);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.08),
-            rgba(255,255,255,.015)
-        );
-
-    backdrop-filter: blur(8px);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.12),
-        0 25px 60px rgba(0,0,0,.25);
-
-    transform-style: preserve-3d;
-
-    animation:
-        cubeFloat
-        var(--speed)
-        ease-in-out
-        infinite
-        alternate;
-}
-
-.cube:nth-child(1) {
-    left: 5%;
-    top: 15%;
-
-    --speed: 8s;
-
-    transform:
-        rotateX(35deg)
-        rotateY(40deg)
-        rotateZ(15deg);
-}
-
-.cube:nth-child(2) {
-    right: 8%;
-    top: 45%;
-
-    width: 130px;
-    height: 130px;
-
-    --speed: 11s;
-
-    transform:
-        rotateX(50deg)
-        rotateY(25deg)
-        rotateZ(25deg);
-}
-
-.cube:nth-child(3) {
-    left: 35%;
-    bottom: -20px;
-
-    width: 75px;
-    height: 75px;
-
-    --speed: 9s;
-
-    transform:
-        rotateX(25deg)
-        rotateY(55deg)
-        rotateZ(10deg);
-}
-
-@keyframes cubeFloat {
-
-    from {
-        translate: 0 0;
-    }
-
-    to {
-        translate: 0 -45px;
-    }
-}
-
-
-/* =========================================================
-   GLOWING ORBS
-========================================================= */
-
-.orb {
-    position: absolute;
-
-    border-radius: 50%;
-
-    filter: blur(70px);
-
-    opacity: .3;
-
-    animation:
-        orbFloat 12s
-        ease-in-out
-        infinite
-        alternate;
-}
-
-.orb.one {
-    width: 350px;
-    height: 350px;
-
-    left: -150px;
-    top: 25%;
-
-    background:
-        #2864ff;
-}
-
-.orb.two {
-    width: 300px;
-    height: 300px;
-
-    right: -100px;
-    bottom: 10%;
-
-    background:
-        #a62cff;
-
-    animation-delay: -4s;
-}
-
-@keyframes orbFloat {
-
-    from {
-        transform:
-            translate3d(0,0,0)
-            scale(1);
-    }
-
-    to {
-        transform:
-            translate3d(30px,-50px,0)
-            scale(1.18);
-    }
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
 
 .container {
-
-    width:
-        min(
-            1100px,
-            calc(100% - 30px)
-        );
-
-    margin:
-        35px auto
-        70px;
-
-    transform-style: preserve-3d;
+    width: min(900px, 100%);
+    margin: auto;
 }
 
-
-/* =========================================================
-   GLASS CARD
-========================================================= */
-
-.glass {
-
-    position: relative;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.105),
-            rgba(255,255,255,.035)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    border-radius:
-        28px;
-
-    backdrop-filter:
-        blur(25px)
-        saturate(145%);
-
-    -webkit-backdrop-filter:
-        blur(25px)
-        saturate(145%);
-
-    box-shadow:
-        0 35px 80px
-        rgba(0,0,0,.42),
-
-        0 10px 25px
-        rgba(0,0,0,.25),
-
-        inset 0 1px 0
-        rgba(255,255,255,.14),
-
-        inset 0 -1px 0
-        rgba(255,255,255,.025);
-
-    overflow: hidden;
-
-    transform-style:
-        preserve-3d;
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease;
-}
-
-
-/* Glass reflection */
-
-.glass::before {
-
-    content: "";
-
-    position: absolute;
-
-    top: -80%;
-
-    left: -30%;
-
-    width: 160%;
-    height: 120%;
-
-    background:
-        linear-gradient(
-            115deg,
-            transparent 35%,
-            rgba(255,255,255,.08) 50%,
-            transparent 65%
-        );
-
-    transform:
-        rotate(-8deg)
-        translateZ(20px);
-
-    pointer-events: none;
-}
-
-
-/* Edge highlight */
-
-.glass::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    border-radius: inherit;
-
-    box-shadow:
-        inset 0 0 35px
-        rgba(255,255,255,.018);
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.header {
-
-    padding:
-        38px;
-
-    margin-bottom:
-        20px;
-
-    transform:
-        perspective(1200px)
-        rotateX(2deg)
-        translateZ(10px);
-}
-
-.header:hover {
-
-    transform:
-        perspective(1200px)
-        rotateX(0deg)
-        translateY(-4px)
-        translateZ(20px);
-
-    box-shadow:
-        0 45px 100px
-        rgba(0,0,0,.5),
-
-        inset 0 1px 0
-        rgba(255,255,255,.18);
-}
-
-.logo {
-
-    position: relative;
-
-    display: inline-flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    width: 64px;
-    height: 64px;
-
+.card {
+    background: rgba(255,255,255,.55);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 24px;
+    padding: 24px;
     margin-bottom: 18px;
 
-    border-radius: 19px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.17),
-            rgba(255,255,255,.04)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
     box-shadow:
-        0 12px 0 rgba(0,0,0,.18),
-        0 20px 30px rgba(0,0,0,.28),
-        inset 0 2px 0 rgba(255,255,255,.14);
-
-    transform:
-        perspective(500px)
-        rotateX(8deg)
-        rotateY(-8deg)
-        translateZ(20px);
-
-    font-size: 28px;
+        0 15px 40px rgba(70,70,110,.12),
+        inset 0 1px rgba(255,255,255,.8);
 }
 
-.header h1 {
-
-    position: relative;
-
-    margin:
-        0 0 10px;
-
-    font-size:
-        clamp(
-            28px,
-            6vw,
-            42px
-        );
-
-    line-height: 1;
-
-    letter-spacing:
-        -1.5px;
-
-    text-shadow:
-        0 5px 25px
-        rgba(0,0,0,.3);
+h1 {
+    margin: 0 0 8px;
+    font-size: 32px;
 }
 
-.header p {
-
-    position: relative;
-
-    margin: 0;
-
-    color:
-        rgba(255,255,255,.55);
-
-    font-size: 15px;
-}
-
-
-/* =========================================================
-   CONTROL PANEL
-========================================================= */
-
-.controls {
-
-    padding:
-        26px;
-
-    margin-bottom:
-        20px;
-
-    transform:
-        perspective(1200px)
-        rotateX(1deg)
-        translateZ(5px);
-}
-
-.controls:hover {
-
-    transform:
-        perspective(1200px)
-        rotateX(0deg)
-        translateY(-2px)
-        translateZ(12px);
+.subtitle {
+    color: #77778c;
 }
 
 label {
-
-    position: relative;
-
     display: block;
-
-    margin-bottom: 9px;
-
-    font-size: 13px;
-
     font-weight: 700;
-
-    color:
-        rgba(255,255,255,.65);
+    margin-bottom: 8px;
 }
 
 input {
-
-    position: relative;
-
     width: 100%;
+    height: 48px;
+    border: 1px solid rgba(120,120,160,.2);
+    border-radius: 14px;
+    padding: 0 15px;
 
-    height: 54px;
-
-    padding:
-        0 17px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.13);
-
-    border-radius:
-        17px;
+    background: rgba(255,255,255,.65);
+    color: #333;
 
     outline: none;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,0,0,.35),
-            rgba(255,255,255,.025)
-        );
-
-    box-shadow:
-        inset 0 6px 20px
-        rgba(0,0,0,.22),
-
-        inset 0 1px 0
-        rgba(255,255,255,.05);
-
-    transition:
-        .2s ease;
 }
 
 input:focus {
-
-    border-color:
-        rgba(100,160,255,.65);
-
-    box-shadow:
-        0 0 0 4px
-        rgba(90,140,255,.08),
-
-        inset 0 6px 20px
-        rgba(0,0,0,.25);
+    border-color: #9c8cff;
+    box-shadow: 0 0 0 3px rgba(156,140,255,.15);
 }
-
-.small {
-
-    margin-top:
-        7px;
-
-    color:
-        rgba(255,255,255,.40);
-
-    font-size:
-        12px;
-}
-
-
-/* =========================================================
-   BUTTON AREA
-========================================================= */
 
 .buttons {
-
     display: flex;
-
-    gap: 18px;
-
-    margin-top:
-        22px;
-
-    flex-wrap: wrap;
-
-    perspective:
-        1000px;
+    gap: 12px;
+    margin-top: 18px;
 }
-
-
-/* =========================================================
-   FULL 3D BUTTON
-========================================================= */
 
 button {
+    border: 0;
+    border-radius: 15px;
+    padding: 14px 22px;
 
-    position: relative;
+    font-weight: 800;
+    font-size: 14px;
 
-    min-width:
-        175px;
-
-    min-height:
-        62px;
-
-    padding:
-        16px 27px;
-
-    border:
-        1px solid
-        rgba(255,255,255,.20);
-
-    border-radius:
-        19px;
-
-    color: white;
-
-    font-size:
-        14px;
-
-    font-weight:
-        850;
-
-    cursor:
-        pointer;
-
-    overflow:
-        visible;
-
-    transform-style:
-        preserve-3d;
-
-    transform:
-        perspective(800px)
-        rotateX(7deg)
-        translateZ(0);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.17),
-            rgba(255,255,255,.045)
-        );
-
-    backdrop-filter:
-        blur(18px);
-
-    -webkit-backdrop-filter:
-        blur(18px);
-
-    box-shadow:
-
-        /* bottom extrusion */
-        0 13px 0
-        rgba(0,0,0,.32),
-
-        /* large shadow */
-        0 24px 35px
-        rgba(0,0,0,.38),
-
-        /* top edge */
-        inset 0 2px 0
-        rgba(255,255,255,.14),
-
-        /* lower edge */
-        inset 0 -4px 0
-        rgba(0,0,0,.12);
+    cursor: pointer;
 
     transition:
-        transform .16s ease,
-        box-shadow .16s ease,
-        filter .16s ease;
+        transform .15s,
+        opacity .15s,
+        box-shadow .15s;
 }
-
-
-/* 3D lower extrusion */
-
-button::after {
-
-    content: "";
-
-    position: absolute;
-
-    left: 2px;
-    right: 2px;
-
-    bottom:
-        -13px;
-
-    height:
-        16px;
-
-    border-radius:
-        0 0 16px 16px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,.30),
-            rgba(0,0,0,.58)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.06);
-
-    transform:
-        translateZ(-2px);
-
-    pointer-events:
-        none;
-}
-
-
-/* Button glass reflection */
-
-button::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 7%;
-
-    top: 4px;
-
-    width: 86%;
-
-    height: 43%;
-
-    border-radius:
-        14px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,.19),
-            rgba(255,255,255,.015)
-        );
-
-    transform:
-        translateZ(15px);
-
-    pointer-events:
-        none;
-}
-
-
-/* Text gets actual 3D depth */
-
-button span {
-
-    position: relative;
-
-    z-index: 3;
-
-    display: inline-block;
-
-    transform:
-        translateZ(20px);
-
-    text-shadow:
-        0 2px 5px
-        rgba(0,0,0,.35);
-}
-
-
-/* Hover */
 
 button:hover:not(:disabled) {
-
-    transform:
-        perspective(800px)
-        rotateX(2deg)
-        translateY(-6px)
-        translateZ(18px)
-        scale(1.025);
-
-    box-shadow:
-
-        0 18px 0
-        rgba(0,0,0,.32),
-
-        0 32px 50px
-        rgba(0,0,0,.46),
-
-        inset 0 2px 0
-        rgba(255,255,255,.18),
-
-        inset 0 -4px 0
-        rgba(0,0,0,.10);
-
-    filter:
-        brightness(1.12);
+    transform: translateY(-2px);
 }
-
-
-/* Physical press */
 
 button:active:not(:disabled) {
-
-    transform:
-        perspective(800px)
-        rotateX(-4deg)
-        translateY(9px)
-        translateZ(0)
-        scale(.985);
-
-    box-shadow:
-
-        0 3px 0
-        rgba(0,0,0,.35),
-
-        0 8px 14px
-        rgba(0,0,0,.25),
-
-        inset 0 2px 0
-        rgba(255,255,255,.08);
+    transform: translateY(1px);
 }
-
-
-/* Disabled */
 
 button:disabled {
-
-    opacity:
-        .32;
-
-    cursor:
-        not-allowed;
-
-    transform:
-        perspective(800px)
-        rotateX(5deg);
-
-    box-shadow:
-
-        0 5px 0
-        rgba(0,0,0,.20),
-
-        0 10px 18px
-        rgba(0,0,0,.18);
+    opacity: .45;
+    cursor: not-allowed;
 }
-
-
-/* =========================================================
-   START BUTTON
-========================================================= */
 
 .start {
-
-    border-color:
-        rgba(70,255,145,.32);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(65,255,135,.30),
-            rgba(15,115,60,.09)
-        );
-
-    box-shadow:
-
-        0 13px 0
-        rgba(8,75,38,.58),
-
-        0 24px 35px
-        rgba(0,0,0,.38),
-
-        inset 0 2px 0
-        rgba(255,255,255,.13),
-
-        0 -4px 0
-        rgba(0,0,0,.10);
+    background: #b9f3d0;
+    color: #24583b;
+    box-shadow: 0 7px 0 #8ed5aa;
 }
-
-.start:hover:not(:disabled) {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(75,255,150,.42),
-            rgba(20,140,70,.15)
-        );
-
-    box-shadow:
-
-        0 18px 0
-        rgba(8,75,38,.58),
-
-        0 32px 50px
-        rgba(0,0,0,.46),
-
-        inset 0 2px 0
-        rgba(255,255,255,.18);
-}
-
-
-/* =========================================================
-   STOP BUTTON
-========================================================= */
 
 .stop {
-
-    border-color:
-        rgba(255,80,80,.32);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,70,70,.30),
-            rgba(120,20,20,.09)
-        );
-
-    box-shadow:
-
-        0 13px 0
-        rgba(80,12,12,.60),
-
-        0 24px 35px
-        rgba(0,0,0,.38),
-
-        inset 0 2px 0
-        rgba(255,255,255,.13),
-
-        0 -4px 0
-        rgba(0,0,0,.10);
+    background: #ffc4ce;
+    color: #71323d;
+    box-shadow: 0 7px 0 #e99aa8;
 }
-
-.stop:hover:not(:disabled) {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,80,80,.43),
-            rgba(145,25,25,.16)
-        );
-
-    box-shadow:
-
-        0 18px 0
-        rgba(80,12,12,.60),
-
-        0 32px 50px
-        rgba(0,0,0,.46),
-
-        inset 0 2px 0
-        rgba(255,255,255,.18);
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
 
 .status {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        15px;
-
-    padding:
-        21px 25px;
-
-    margin-bottom:
-        20px;
-
-    transform:
-        perspective(1200px)
-        translateZ(8px);
-}
-
-.status:hover {
-
-    transform:
-        perspective(1200px)
-        translateY(-3px)
-        translateZ(18px);
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .dot {
-
-    width:
-        14px;
-
-    height:
-        14px;
-
-    flex-shrink:
-        0;
-
-    border-radius:
-        50%;
-
-    background:
-        #666;
-
-    box-shadow:
-        none;
-
-    transition:
-        .3s ease;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #aaa;
 }
 
-.status-text {
-
-    font-weight:
-        850;
-
-    font-size:
-        15px;
+.dot.online {
+    background: #55d98a;
+    box-shadow: 0 0 15px rgba(85,217,138,.7);
 }
 
-.online {
-    color:
-        #67ff9c;
+.dot.warning {
+    background: #f1c75b;
 }
 
-.error {
-    color:
-        #ff6666;
+.dot.error {
+    background: #ed687b;
 }
 
-.warning {
-    color:
-        #ffd66b;
+.status-title {
+    font-weight: 850;
 }
 
-
-/* =========================================================
-   SERVER CARD
-========================================================= */
-
-.server-card {
-
-    display:
-        none;
-
-    padding:
-        27px;
-
-    margin-bottom:
-        20px;
-
-    transform:
-        perspective(1200px)
-        rotateX(-2deg)
-        translateZ(15px);
+.small {
+    color: #77778c;
+    font-size: 12px;
+    margin-top: 4px;
 }
 
-.server-card.show {
-
-    display:
-        block;
-
-    animation:
-        cardAppear .5s ease;
+.server {
+    display: none;
 }
 
-@keyframes cardAppear {
-
-    from {
-        opacity: 0;
-
-        transform:
-            perspective(1200px)
-            rotateX(-12deg)
-            translateY(20px)
-            translateZ(0);
-    }
-
-    to {
-        opacity: 1;
-
-        transform:
-            perspective(1200px)
-            rotateX(-2deg)
-            translateY(0)
-            translateZ(15px);
-    }
+.server.show {
+    display: block;
 }
 
-.server-card:hover {
+.address {
+    margin-top: 8px;
+    padding: 15px;
 
-    transform:
-        perspective(1200px)
-        rotateX(0deg)
-        translateY(-4px)
-        translateZ(25px);
-}
+    border-radius: 15px;
 
-.server-address {
+    background: rgba(255,255,255,.55);
 
-    margin-top:
-        9px;
+    font-family: monospace;
+    font-size: 20px;
+    font-weight: 800;
 
-    font-size:
-        clamp(
-            21px,
-            5vw,
-            31px
-        );
+    color: #4f6bc4;
 
-    font-weight:
-        900;
-
-    letter-spacing:
-        -.7px;
-
-    word-break:
-        break-all;
-
-    color:
-        #7dffa9;
-
-    text-shadow:
-        0 0 25px
-        rgba(80,255,150,.25);
-}
-
-
-/* =========================================================
-   LOG
-========================================================= */
-
-.log-card {
-
-    padding:
-        26px;
-
-    transform:
-        perspective(1200px)
-        rotateX(1deg)
-        translateZ(5px);
-}
-
-.log-card:hover {
-
-    transform:
-        perspective(1200px)
-        rotateX(0deg)
-        translateY(-3px)
-        translateZ(15px);
-}
-
-.log-title {
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    justify-content:
-        space-between;
-
-    gap:
-        10px;
-}
-
-.log-title strong {
-
-    font-size:
-        15px;
-}
-
-.live-badge {
-
-    padding:
-        6px 10px;
-
-    border-radius:
-        999px;
-
-    font-size:
-        10px;
-
-    font-weight:
-        800;
-
-    color:
-        #7dffa9;
-
-    background:
-        rgba(70,255,145,.08);
-
-    border:
-        1px solid
-        rgba(70,255,145,.18);
+    word-break: break-all;
 }
 
 .log {
+    height: 430px;
+    overflow: auto;
 
-    height:
-        500px;
+    margin-top: 12px;
+    padding: 16px;
 
-    margin-top:
-        16px;
+    border-radius: 16px;
 
-    padding:
-        18px;
-
-    overflow-y:
-        auto;
-
-    border:
-        1px solid
-        rgba(255,255,255,.075);
-
-    border-radius:
-        20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0,0,0,.48),
-            rgba(255,255,255,.018)
-        );
-
-    box-shadow:
-
-        inset 0 8px 30px
-        rgba(0,0,0,.22),
-
-        inset 0 1px 0
-        rgba(255,255,255,.035);
+    background: rgba(35,35,55,.88);
+    color: #e9e9f5;
 
     font-family:
-        "Cascadia Code",
         Consolas,
         "Courier New",
         monospace;
 
-    font-size:
-        12px;
+    font-size: 12px;
+    line-height: 1.55;
 
-    line-height:
-        1.6;
-
-    color:
-        rgba(255,255,255,.80);
-
-    white-space:
-        pre-wrap;
-
-    word-break:
-        break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
-.log::-webkit-scrollbar {
-    width:
-        8px;
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.log::-webkit-scrollbar-track {
-    background:
-        transparent;
+.badge {
+    background: #d9cdfc;
+    color: #57469b;
+
+    border-radius: 999px;
+    padding: 5px 10px;
+
+    font-size: 11px;
+    font-weight: 800;
 }
-
-.log::-webkit-scrollbar-thumb {
-
-    border-radius:
-        20px;
-
-    background:
-        rgba(255,255,255,.13);
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
 
 .footer {
-
-    text-align:
-        center;
-
-    margin-top:
-        20px;
-
-    color:
-        rgba(255,255,255,.30);
-
-    font-size:
-        11px;
+    text-align: center;
+    color: rgba(50,50,70,.5);
+    font-size: 11px;
+    margin-top: 25px;
 }
 
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 650px) {
-
-    .container {
-
-        width:
-            calc(100% - 18px);
-
-        margin:
-            12px auto 35px;
-    }
-
-    .header {
-
-        padding:
-            28px 23px;
-    }
-
-    .controls,
-    .log-card,
-    .server-card {
-
-        padding:
-            20px;
+@media (max-width: 600px) {
+    body {
+        padding: 12px;
     }
 
     .buttons {
-
-        gap:
-            15px;
+        flex-direction: column;
     }
 
     button {
-
-        min-width:
-            0;
-
-        flex:
-            1;
+        width: 100%;
     }
 
-    .log {
-
-        height:
-            420px;
-
-        padding:
-            13px;
-
-        font-size:
-            11px;
-    }
-
-    .cube {
-
-        opacity:
-            .35;
+    h1 {
+        font-size: 27px;
     }
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     3D BACKGROUND
-===================================================== -->
-
-<div class="scene">
-
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-
-    <div class="cube"></div>
-    <div class="cube"></div>
-    <div class="cube"></div>
-
-</div>
-
-
 
 <div class="container">
 
+    <div class="card">
+        <h1>🎮 L.A. Crimes Server</h1>
 
-    <!-- =================================================
-         HEADER
-    ================================================== -->
-
-    <section class="glass header">
-
-        <div class="logo">
-            🎮
+        <div class="subtitle">
+            GitHub Actions server control panel
         </div>
-
-        <h1>
-            L.A. Crimes Server
-        </h1>
-
-        <p>
-            GitHub Actions powered multiplayer server
-        </p>
-
-    </section>
+    </div>
 
 
-
-    <!-- =================================================
-         CONTROL PANEL
-    ================================================== -->
-
-    <section class="glass controls">
+    <div class="card">
 
         <label for="token">
             GitHub Personal Access Token
@@ -1425,9 +279,8 @@ button:disabled {
         >
 
         <div class="small">
-            Your token is only kept in this browser tab.
+            The token stays in this browser session.
         </div>
-
 
         <div class="buttons">
 
@@ -1436,11 +289,8 @@ button:disabled {
                 class="start"
                 onclick="startServer()"
             >
-                <span>
-                    ▶ Start Server
-                </span>
+                ▶ Start Server
             </button>
-
 
             <button
                 id="stop"
@@ -1448,121 +298,98 @@ button:disabled {
                 onclick="stopServer()"
                 disabled
             >
-                <span>
-                    ■ Stop Server
-                </span>
+                ■ Stop Server
             </button>
 
         </div>
 
-    </section>
+    </div>
 
 
-
-    <!-- =================================================
-         STATUS
-    ================================================== -->
-
-    <section class="glass status">
+    <div class="card status">
 
         <div
             id="dot"
             class="dot"
         ></div>
 
-
         <div>
 
             <div
                 id="status"
-                class="status-text"
+                class="status-title"
             >
-                Server offline
+                Checking server...
             </div>
-
 
             <div
                 id="runInfo"
                 class="small"
             >
-                No workflow running
+                Looking for active workflow
             </div>
 
         </div>
 
-    </section>
+    </div>
 
 
-
-    <!-- =================================================
-         SERVER ADDRESS
-    ================================================== -->
-
-    <section
+    <div
         id="serverCard"
-        class="glass server-card"
+        class="card server"
     >
 
-        <div class="small">
-            PUBLIC SERVER ADDRESS
-        </div>
-
+        <strong>
+            🌐 Public Server
+        </strong>
 
         <div
             id="address"
-            class="server-address"
+            class="address"
         >
             Waiting...
         </div>
 
-
         <div class="small">
-            L.A. Crimes · City · UDP
+            Map: City · UDP
         </div>
 
-    </section>
+    </div>
 
 
+    <div class="card">
 
-    <!-- =================================================
-         LOG
-    ================================================== -->
-
-    <section class="glass log-card">
-
-        <div class="log-title">
+        <div class="log-header">
 
             <strong>
-                Live Server Log
+                Server Log
             </strong>
 
-            <div class="live-badge">
+            <span class="badge">
                 LIVE
-            </div>
+            </span>
 
         </div>
-
 
         <div
             id="log"
             class="log"
-        >Waiting for server...</div>
+        >Enter your GitHub token to connect.</div>
 
-    </section>
+    </div>
 
 
     <div class="footer">
-        L.A. Crimes Server Control · GitHub Actions
+        L.A. Crimes Server Control
     </div>
 
 </div>
 
 
-
 <script>
 
 /* =========================================================
-   GITHUB CONFIG
+   CONFIG
 ========================================================= */
 
 const OWNER =
@@ -1571,7 +398,7 @@ const OWNER =
 const REPO =
     "LosAngelesCrimesServer";
 
-const WORKFLOW_FILE =
+const WORKFLOW =
     "main.yml";
 
 const API =
@@ -1582,20 +409,114 @@ const API_VERSION =
 
 
 /* =========================================================
-   SERVER STATE
+   STATE
 ========================================================= */
 
 let workflowRunId =
-    null;
+    sessionStorage.getItem(
+        "lac_workflow_run"
+    );
 
 let jobId =
-    null;
+    sessionStorage.getItem(
+        "lac_job_id"
+    );
 
-let polling =
+let pollTimer =
     null;
 
 let serverOnline =
     false;
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const tokenInput =
+    document.getElementById(
+        "token"
+    );
+
+const startButton =
+    document.getElementById(
+        "start"
+    );
+
+const stopButton =
+    document.getElementById(
+        "stop"
+    );
+
+const statusText =
+    document.getElementById(
+        "status"
+    );
+
+const runInfo =
+    document.getElementById(
+        "runInfo"
+    );
+
+const dot =
+    document.getElementById(
+        "dot"
+    );
+
+const logElement =
+    document.getElementById(
+        "log"
+    );
+
+const serverCard =
+    document.getElementById(
+        "serverCard"
+    );
+
+const addressElement =
+    document.getElementById(
+        "address"
+    );
+
+
+/* =========================================================
+   SESSION TOKEN
+========================================================= */
+
+const savedToken =
+    sessionStorage.getItem(
+        "lac_github_token"
+    );
+
+if (savedToken) {
+
+    tokenInput.value =
+        savedToken;
+}
+
+
+tokenInput.addEventListener(
+    "input",
+    () => {
+
+        const value =
+            tokenInput.value.trim();
+
+        if (value) {
+
+            sessionStorage.setItem(
+                "lac_github_token",
+                value
+            );
+
+        } else {
+
+            sessionStorage.removeItem(
+                "lac_github_token"
+            );
+        }
+    }
+);
 
 
 /* =========================================================
@@ -1605,26 +526,21 @@ let serverOnline =
 function getToken() {
 
     const token =
-        document
-            .getElementById("token")
-            .value
-            .trim();
-
+        tokenInput.value.trim();
 
     if (!token) {
 
         throw new Error(
-            "Please enter your GitHub token."
+            "Enter your GitHub token first."
         );
     }
-
 
     return token;
 }
 
 
 /* =========================================================
-   GITHUB API
+   GITHUB REQUEST
 ========================================================= */
 
 async function github(
@@ -1635,42 +551,27 @@ async function github(
     const token =
         getToken();
 
+    const response =
+        await fetch(
+            API + path,
+            {
+                ...options,
 
-    let response;
+                headers: {
 
+                    "Accept":
+                        "application/vnd.github+json",
 
-    try {
+                    "Authorization":
+                        "Bearer " + token,
 
-        response =
-            await fetch(
-                API + path,
-                {
-                    ...options,
+                    "X-GitHub-Api-Version":
+                        API_VERSION,
 
-                    headers: {
-
-                        "Accept":
-                            "application/vnd.github+json",
-
-                        "Authorization":
-                            "Bearer " + token,
-
-                        "X-GitHub-Api-Version":
-                            API_VERSION,
-
-                        ...(options.headers || {})
-                    }
+                    ...(options.headers || {})
                 }
-            );
-
-    }
-
-    catch (error) {
-
-        throw new Error(
-            "Failed to connect to GitHub API."
+            }
         );
-    }
 
 
     if (!response.ok) {
@@ -1678,23 +579,17 @@ async function github(
         let message =
             response.statusText;
 
-
         try {
 
             const data =
                 await response.json();
 
-
             if (data.message) {
-
                 message =
                     data.message;
             }
 
-        }
-
-        catch (_) {}
-
+        } catch (_) {}
 
         throw new Error(
             `GitHub API ${response.status}: ${message}`
@@ -1706,7 +601,6 @@ async function github(
         response.status ===
         204
     ) {
-
         return null;
     }
 
@@ -1724,60 +618,11 @@ function setStatus(
     type = ""
 ) {
 
-    const status =
-        document
-            .getElementById("status");
-
-    const dot =
-        document
-            .getElementById("dot");
-
-
-    status.textContent =
+    statusText.textContent =
         text;
 
-    status.className =
-        "status-text " + type;
-
-
-    if (type === "online") {
-
-        dot.style.background =
-            "#67ff9c";
-
-        dot.style.boxShadow =
-            "0 0 20px #67ff9c";
-
-    }
-
-    else if (type === "error") {
-
-        dot.style.background =
-            "#ff6666";
-
-        dot.style.boxShadow =
-            "0 0 20px #ff6666";
-
-    }
-
-    else if (type === "warning") {
-
-        dot.style.background =
-            "#ffd66b";
-
-        dot.style.boxShadow =
-            "0 0 20px #ffd66b";
-
-    }
-
-    else {
-
-        dot.style.background =
-            "#666";
-
-        dot.style.boxShadow =
-            "none";
-    }
+    dot.className =
+        "dot " + type;
 }
 
 
@@ -1787,18 +632,11 @@ function setStatus(
 
 function setLog(text) {
 
-    const log =
-        document
-            .getElementById("log");
+    logElement.textContent =
+        text || "No log available.";
 
-
-    log.textContent =
-        text ||
-        "Waiting for log...";
-
-
-    log.scrollTop =
-        log.scrollHeight;
+    logElement.scrollTop =
+        logElement.scrollHeight;
 }
 
 
@@ -1819,62 +657,44 @@ function sleep(ms) {
 
 
 /* =========================================================
-   START SERVER
+   START
 ========================================================= */
 
 async function startServer() {
 
     try {
 
+        startButton.disabled =
+            true;
+
+        stopButton.disabled =
+            true;
+
         serverOnline =
             false;
 
-
-        document
-            .getElementById("start")
-            .disabled = true;
-
-
-        document
-            .getElementById("stop")
-            .disabled = true;
-
-
-        document
-            .getElementById("serverCard")
-            .classList.remove("show");
-
-
         setStatus(
-            "Starting workflow...",
+            "Starting server...",
             "warning"
         );
 
-
         setLog(
 `======================================
-STARTING L.A. CRIMES SERVER
+STARTING L.A. CRIMES
 ======================================
 
 Sending workflow request...`
         );
 
 
-        const startTime =
-            Date.now();
-
-
         await github(
-            `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches`,
+            `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/dispatches`,
             {
-                method:
-                    "POST",
+                method: "POST",
 
-                body:
-                    JSON.stringify({
-                        ref:
-                            "main"
-                    })
+                body: JSON.stringify({
+                    ref: "main"
+                })
             }
         );
 
@@ -1890,45 +710,32 @@ Finding the new workflow run...`
         );
 
 
-        workflowRunId =
-            await findNewRun(
-                startTime
-            );
+        const run =
+            await waitForNewRun();
 
 
-        if (!workflowRunId) {
+        if (!run) {
 
             throw new Error(
-                "Workflow started but its run could not be found."
+                "Could not find the new workflow run."
             );
         }
 
 
-        document
-            .getElementById("runInfo")
-            .textContent =
-            "Run ID: " +
-            workflowRunId;
+        workflowRunId =
+            run.id;
 
-
-        setStatus(
-            "Preparing server...",
-            "warning"
+        sessionStorage.setItem(
+            "lac_workflow_run",
+            workflowRunId
         );
 
 
-        setLog(
-`======================================
-WORKFLOW RUN FOUND
-======================================
-
-Run ID: ${workflowRunId}
-
-Waiting for server job...`
-        );
+        runInfo.textContent =
+            `Run ${workflowRunId} · ${run.status}`;
 
 
-        startPolling();
+        beginPolling();
 
     }
 
@@ -1938,80 +745,58 @@ Waiting for server job...`
             error
         );
 
-
         setStatus(
-            "Failed to start server",
+            "Failed to start",
             "error"
         );
 
-
         setLog(
-`======================================
-ERROR
-======================================
+`ERROR:
 
 ${error.message}`
         );
 
+        startButton.disabled =
+            false;
 
-        document
-            .getElementById("start")
-            .disabled = false;
-
-
-        document
-            .getElementById("stop")
-            .disabled = true;
+        stopButton.disabled =
+            true;
     }
 }
 
 
 /* =========================================================
-   FIND NEW WORKFLOW RUN
+   FIND NEW RUN
 ========================================================= */
 
-async function findNewRun(
-    startTime
-) {
+async function waitForNewRun() {
 
     for (
-        let attempt = 0;
-        attempt < 30;
-        attempt++
+        let i = 0;
+        i < 30;
+        i++
     ) {
 
         const data =
             await github(
-                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/runs?event=workflow_dispatch&per_page=10`
+                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?event=workflow_dispatch&per_page=10`
             );
-
-
-        const runs =
-            data.workflow_runs ||
-            [];
 
 
         const run =
-            runs.find(
-                item => {
-
-                    const created =
-                        new Date(
-                            item.created_at
-                        ).getTime();
-
-
-                    return (
-                        created >=
-                        startTime - 15000
-                    );
-                }
-            );
+            data.workflow_runs
+                ?.find(
+                    r =>
+                        r.status ===
+                            "queued" ||
+                        r.status ===
+                            "in_progress"
+                );
 
 
         if (run) {
 
-            return run.id;
+            return run;
         }
 
 
@@ -2026,15 +811,186 @@ async function findNewRun(
 
 
 /* =========================================================
+   PAGE LOAD RECOVERY
+========================================================= */
+
+async function recoverServer() {
+
+    try {
+
+        /*
+         * If we already know the run ID,
+         * check that first.
+         */
+
+        if (workflowRunId) {
+
+            try {
+
+                const run =
+                    await github(
+                        `/repos/${OWNER}/${REPO}/actions/runs/${workflowRunId}`
+                    );
+
+
+                if (
+                    run.status !==
+                    "completed"
+                ) {
+
+                    setStatus(
+                        "Reconnecting to server...",
+                        "warning"
+                    );
+
+                    runInfo.textContent =
+                        `Run ${run.id} · ${run.status}`;
+
+                    beginPolling();
+
+                    return;
+                }
+
+            }
+
+            catch (_) {
+
+                /*
+                 * Stored run disappeared.
+                 * Search GitHub again.
+                 */
+
+                sessionStorage.removeItem(
+                    "lac_workflow_run"
+                );
+
+                workflowRunId =
+                    null;
+            }
+        }
+
+
+        /*
+         * Search for ANY currently active
+         * workflow.
+         */
+
+        const active =
+            await github(
+                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?status=in_progress&per_page=10`
+            );
+
+
+        let run =
+            active.workflow_runs
+                ?.find(
+                    r =>
+                        r.event ===
+                        "workflow_dispatch"
+                );
+
+
+        /*
+         * Also check queued workflows.
+         */
+
+        if (!run) {
+
+            const queued =
+                await github(
+                    `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?status=queued&per_page=10`
+                );
+
+            run =
+                queued.workflow_runs
+                    ?.find(
+                        r =>
+                            r.event ===
+                            "workflow_dispatch"
+                    );
+        }
+
+
+        if (run) {
+
+            workflowRunId =
+                run.id;
+
+            sessionStorage.setItem(
+                "lac_workflow_run",
+                run.id
+            );
+
+
+            runInfo.textContent =
+                `Run ${run.id} · ${run.status}`;
+
+
+            setStatus(
+                "Existing server found",
+                "warning"
+            );
+
+
+            beginPolling();
+
+            return;
+        }
+
+
+        /*
+         * Nothing running.
+         */
+
+        setStatus(
+            "Server offline"
+        );
+
+        runInfo.textContent =
+            "No active workflow";
+
+
+        startButton.disabled =
+            false;
+
+        stopButton.disabled =
+            true;
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+        setStatus(
+            "GitHub connection error",
+            "error"
+        );
+
+        runInfo.textContent =
+            error.message;
+
+        startButton.disabled =
+            false;
+
+        stopButton.disabled =
+            true;
+    }
+}
+
+
+/* =========================================================
    POLLING
 ========================================================= */
 
-function startPolling() {
+function beginPolling() {
 
-    if (polling) {
+    if (pollTimer) {
 
         clearInterval(
-            polling
+            pollTimer
         );
     }
 
@@ -2042,11 +998,7 @@ function startPolling() {
     pollServer();
 
 
-    /*
-        Check every 10 seconds.
-    */
-
-    polling =
+    pollTimer =
         setInterval(
             pollServer,
             10000
@@ -2055,13 +1007,12 @@ function startPolling() {
 
 
 /* =========================================================
-   POLL SERVER
+   POLL
 ========================================================= */
 
 async function pollServer() {
 
     if (!workflowRunId) {
-
         return;
     }
 
@@ -2074,15 +1025,13 @@ async function pollServer() {
             );
 
 
-        document
-            .getElementById("runInfo")
-            .textContent =
-            `Run ${workflowRunId} · ${run.status}`;
+        runInfo.textContent =
+            `Run ${run.id} · ${run.status}`;
 
 
         /*
-            Workflow finished.
-        */
+         * Workflow ended.
+         */
 
         if (
             run.status ===
@@ -2093,40 +1042,48 @@ async function pollServer() {
                 false;
 
 
-            clearInterval(
-                polling
+            if (pollTimer) {
+
+                clearInterval(
+                    pollTimer
+                );
+
+                pollTimer =
+                    null;
+            }
+
+
+            sessionStorage.removeItem(
+                "lac_workflow_run"
+            );
+
+            sessionStorage.removeItem(
+                "lac_job_id"
             );
 
 
-            if (
-                run.conclusion ===
-                "success"
-            ) {
+            workflowRunId =
+                null;
 
-                setStatus(
-                    "Server stopped",
-                    ""
-                );
-
-            }
-
-            else {
-
-                setStatus(
-                    "Server stopped",
-                    ""
-                );
-            }
+            jobId =
+                null;
 
 
-            document
-                .getElementById("start")
-                .disabled = false;
+            setStatus(
+                "Server offline"
+            );
 
 
-            document
-                .getElementById("stop")
-                .disabled = true;
+            startButton.disabled =
+                false;
+
+            stopButton.disabled =
+                true;
+
+
+            await loadFinalLogs(
+                run
+            );
 
 
             return;
@@ -2134,8 +1091,25 @@ async function pollServer() {
 
 
         /*
-            Get workflow jobs.
-        */
+         * Workflow is alive.
+         */
+
+        setStatus(
+            run.status ===
+                "queued"
+                ? "Server queued..."
+                : "Server preparing...",
+            "warning"
+        );
+
+
+        startButton.disabled =
+            true;
+
+
+        /*
+         * Find server job.
+         */
 
         const jobs =
             await github(
@@ -2143,36 +1117,15 @@ async function pollServer() {
             );
 
 
-        const list =
-            jobs.jobs ||
-            [];
-
-
         const serverJob =
-            list.find(
-                job =>
-                    job.name ===
+            jobs.jobs?.find(
+                j =>
+                    j.name ===
                     "server"
-            ) ||
-            list.find(
-                job =>
-                    job.name
-                        .toLowerCase()
-                        .includes(
-                            "server"
-                        )
             );
 
 
         if (!serverJob) {
-
-            if (!serverOnline) {
-
-                setStatus(
-                    "Waiting for server job...",
-                    "warning"
-                );
-            }
 
             return;
         }
@@ -2182,40 +1135,31 @@ async function pollServer() {
             serverJob.id;
 
 
-        await getJobLog(
+        sessionStorage.setItem(
+            "lac_job_id",
             jobId
         );
 
 
+        runInfo.textContent =
+            `Run ${workflowRunId} · Job ${jobId} · ${serverJob.status}`;
+
+
         /*
-            NEVER disable Stop while
-            the workflow is still running
-            if the server has already been
-            detected.
-        */
+         * Try to retrieve available logs.
+         */
 
-        if (serverOnline) {
+        await loadJobLog(
+            jobId
+        );
 
-            document
-                .getElementById("stop")
-                .disabled = false;
-
-            document
-                .getElementById("start")
-                .disabled = true;
-
-            setStatus(
-                "🟢 Server is ONLINE",
-                "online"
-            );
-        }
 
     }
 
     catch (error) {
 
         console.error(
-            "Polling error:",
+            "Poll error:",
             error
         );
     }
@@ -2223,10 +1167,10 @@ async function pollServer() {
 
 
 /* =========================================================
-   GET JOB LOG
+   LOAD JOB LOG
 ========================================================= */
 
-async function getJobLog(
+async function loadJobLog(
     id
 ) {
 
@@ -2234,12 +1178,14 @@ async function getJobLog(
         getToken();
 
 
-    let response;
-
-
     try {
 
-        response =
+        /*
+         * GitHub returns a redirect
+         * to the actual log file.
+         */
+
+        const response =
             await fetch(
                 `${API}/repos/${OWNER}/${REPO}/actions/jobs/${id}/logs`,
                 {
@@ -2257,58 +1203,146 @@ async function getJobLog(
                 }
             );
 
+
+        if (!response.ok) {
+
+            /*
+             * This can happen while GitHub
+             * hasn't made the downloadable
+             * log available yet.
+             */
+
+            return;
+        }
+
+
+        const text =
+            await response.text();
+
+
+        if (!text.trim()) {
+            return;
+        }
+
+
+        setLog(
+            text
+        );
+
+
+        parseReadyInfo(
+            text
+        );
+
     }
 
-    catch (_) {
+    catch (error) {
 
-        return;
+        console.debug(
+            "Log not available yet:",
+            error
+        );
     }
-
-
-    if (!response.ok) {
-
-        return;
-    }
-
-
-    const text =
-        await response.text();
-
-
-    if (!text.trim()) {
-
-        return;
-    }
-
-
-    setLog(
-        text
-    );
-
-
-    parseServerLog(
-        text
-    );
 }
 
 
 /* =========================================================
-   DETECT SERVER READY
+   FINAL LOG
 ========================================================= */
 
-function parseServerLog(
+async function loadFinalLogs(
+    run
+) {
+
+    try {
+
+        const jobs =
+            await github(
+                `/repos/${OWNER}/${REPO}/actions/runs/${run.id}/jobs?per_page=100`
+            );
+
+
+        const serverJob =
+            jobs.jobs?.find(
+                j =>
+                    j.name ===
+                    "server"
+            );
+
+
+        if (
+            serverJob
+        ) {
+
+            await loadJobLog(
+                serverJob.id
+            );
+        }
+
+    }
+
+    catch (_) {}
+}
+
+
+/* =========================================================
+   PARSE SERVER READY
+========================================================= */
+
+function parseReadyInfo(
     text
 ) {
 
     /*
-        Expected YAML marker:
+     * GitHub may prefix log lines
+     * with "#", timestamps, spaces,
+     * etc.
+     *
+     * Therefore DON'T require the
+     * marker to be at the beginning
+     * of a line.
+     */
 
-        SERVER_READY=true
-    */
+    const ready =
+        /SERVER_READY\s*=\s*true/i
+            .test(text);
+
+
+    const endpointMatch =
+        text.match(
+            /PUBLIC_ENDPOINT\s*=\s*([^\s\r\n]+)/i
+        );
+
+
+    if (endpointMatch) {
+
+        const endpoint =
+            endpointMatch[1]
+                .trim()
+                .replace(
+                    /["'`]/g,
+                    ""
+                );
+
+
+        addressElement.textContent =
+            endpoint;
+
+
+        serverCard.classList.add(
+            "show"
+        );
+    }
+
+
+    /*
+     * Either marker means the server
+     * is ready.
+     */
 
     if (
-        /SERVER_READY\s*=\s*true/i
-            .test(text)
+        ready ||
+        endpointMatch
     ) {
 
         serverOnline =
@@ -2321,66 +1355,12 @@ function parseServerLog(
         );
 
 
-        document
-            .getElementById("start")
-            .disabled = true;
-
-
-        document
-            .getElementById("stop")
-            .disabled = false;
-    }
-
-
-    /*
-        Expected YAML marker:
-
-        PUBLIC_ENDPOINT=nl.portbuddy.tech:40083
-    */
-
-    const endpoint =
-        text.match(
-            /PUBLIC_ENDPOINT\s*=\s*(\S+)/i
-        );
-
-
-    if (endpoint) {
-
-        const address =
-            endpoint[1];
-
-
-        document
-            .getElementById("address")
-            .textContent =
-            address;
-
-
-        document
-            .getElementById("serverCard")
-            .classList.add(
-                "show"
-            );
-
-
-        serverOnline =
+        startButton.disabled =
             true;
 
 
-        document
-            .getElementById("start")
-            .disabled = true;
-
-
-        document
-            .getElementById("stop")
-            .disabled = false;
-
-
-        setStatus(
-            "🟢 Server is ONLINE",
-            "online"
-        );
+        stopButton.disabled =
+            false;
     }
 }
 
@@ -2393,30 +1373,25 @@ async function stopServer() {
 
     if (!workflowRunId) {
 
-        setStatus(
-            "No active server",
-            "warning"
-        );
-
         return;
     }
 
 
-    if (
-        !confirm(
+    const confirmed =
+        confirm(
             "Stop the L.A. Crimes server?"
-        )
-    ) {
+        );
 
+
+    if (!confirmed) {
         return;
     }
 
 
     try {
 
-        document
-            .getElementById("stop")
-            .disabled = true;
+        stopButton.disabled =
+            true;
 
 
         setStatus(
@@ -2426,16 +1401,14 @@ async function stopServer() {
 
 
         setLog(
-            document
-                .getElementById("log")
-                .textContent +
+            logElement.textContent +
 
 `\n
 ======================================
-STOP REQUEST SENT
+STOP REQUEST
 ======================================
 
-GitHub is stopping the workflow...`
+Cancelling GitHub Actions workflow...`
         );
 
 
@@ -2448,8 +1421,18 @@ GitHub is stopping the workflow...`
         );
 
 
-        serverOnline =
-            false;
+        setStatus(
+            "Stopping server...",
+            "warning"
+        );
+
+
+        /*
+         * Keep polling until GitHub
+         * reports the run as completed.
+         */
+
+        beginPolling();
 
     }
 
@@ -2466,46 +1449,55 @@ GitHub is stopping the workflow...`
         );
 
 
-        setLog(
-            document
-                .getElementById("log")
-                .textContent +
+        stopButton.disabled =
+            false;
 
-`\n\n
+
+        setLog(
+            logElement.textContent +
+
+`\n
 STOP ERROR:
 
 ${error.message}`
         );
-
-
-        document
-            .getElementById("stop")
-            .disabled = false;
     }
 }
 
 
 /* =========================================================
-   ENTER TO START
+   INITIALIZE
 ========================================================= */
 
-document
-    .getElementById("token")
-    .addEventListener(
-        "keydown",
-        event => {
+window.addEventListener(
+    "load",
+    () => {
 
-            if (
-                event.key ===
-                "Enter"
-            ) {
+        /*
+         * If there's a token from this
+         * browser session, automatically
+         * reconnect.
+         */
 
-                startServer();
-            }
+        if (
+            tokenInput.value.trim()
+        ) {
+
+            recoverServer();
+
+        } else {
+
+            setStatus(
+                "Enter GitHub token"
+            );
+
+            runInfo.textContent =
+                "Ready";
         }
-    );
+    }
+);
 
 </script>
 
 </body>
-    </html>
+           </html>
