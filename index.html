@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>L.A. Crimes Server Dashboard</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at top,
+            #17212b,
+            #07090c 60%
+        );
+    color: #f0f3f6;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+.container {
+    width: min(
+        1150px,
+        calc(100% - 30px)
+    );
+
+    margin: auto;
+    padding: 30px 0;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 900;
+}
+
+.subtitle {
+    color: #8b949e;
+    margin-top: 5px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid #30363d;
+    background: #11151a;
+    font-weight: 900;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #777;
+}
+
+.dot.online {
+    background: #35d07f;
+    box-shadow:
+        0 0 15px rgba(
+            53,
+            208,
+            127,
+            .8
+        );
+}
+
+.dot.starting {
+    background: #f2cc60;
+    box-shadow:
+        0 0 15px rgba(
+            242,
+            204,
+            96,
+            .7
+        );
+}
+
+.dot.offline {
+    background: #f85149;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(
+        17,
+        21,
+        26,
+        .95
+    );
+
+    border: 1px solid #30363d;
+    border-radius: 18px;
+    padding: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(
+            0,
+            0,
+            0,
+            .25
+        );
+}
+
+.card h2 {
+    margin: 0 0 18px;
+    font-size: 18px;
+}
+
+label {
+    display: block;
+    margin: 14px 0 7px;
+    color: #8b949e;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+
+    border-radius: 10px;
+    border: 1px solid #30363d;
+
+    background: #080a0d;
+    color: white;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #58a6ff;
+}
+
+button {
+    width: 100%;
+
+    border: 0;
+    border-radius: 11px;
+
+    padding: 13px;
+    margin-top: 10px;
+
+    color: white;
+
+    background: #238636;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition:
+        .15s;
+}
+
+button:hover {
+    filter: brightness(1.15);
+    transform: translateY(-1px);
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.stop {
+    background: #da3633;
+}
+
+.secondary {
+    background: #30363d;
+}
+
+.warning {
+    margin-top: 10px;
+
+    color: #f2cc60;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+}
+
+.stat {
+    background: #080a0d;
+
+    border: 1px solid #242a31;
+
+    border-radius: 12px;
+
+    padding: 14px;
+}
+
+.stat-name {
+    color: #8b949e;
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.stat-value {
+    font-weight: 900;
+    word-break: break-word;
+}
+
+.endpoint {
+    margin-top: 18px;
+
+    padding: 16px;
+
+    background: #080a0d;
+
+    border: 1px solid #242a31;
+
+    border-radius: 12px;
+}
+
+.endpoint-title {
+    color: #8b949e;
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.endpoint-value {
+    font-family: Consolas, monospace;
+    font-size: 17px;
+    font-weight: 900;
+}
+
+.log-card {
+    margin-top: 20px;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.log-header h2 {
+    margin: 0;
+}
+
+.log {
+    height: 520px;
+
+    overflow: auto;
+
+    background: #050607;
+
+    border: 1px solid #242a31;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+
+    font-family:
+        Consolas,
+        Monaco,
+        monospace;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+
+    color: #d6dae0;
+}
+
+.message {
+    min-height: 22px;
+
+    margin-top: 12px;
+
+    color: #8b949e;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+
+    <div>
+
+        <div class="title">
+            L.A. Crimes Server
+        </div>
+
+        <div class="subtitle">
+            GitHub Actions server control panel
+        </div>
+
+    </div>
+
+    <div class="status">
+
+        <span
+            id="statusDot"
+            class="dot offline"
+        ></span>
+
+        <span id="statusText">
+            OFFLINE
+        </span>
+
+    </div>
+
+</header>
+
+
+<div class="grid">
+
+<!-- ==========================================
+     CONTROL
+     ========================================== -->
+
+<div class="card">
+
+<h2>Server Control</h2>
+
+<label>
+GitHub Username
+</label>
+
+<input
+    id="owner"
+    placeholder="Your GitHub username"
+>
+
+<label>
+Repository
+</label>
+
+<input
+    id="repo"
+    value="LosAngelesCrimesServer"
+>
+
+<label>
+Workflow File
+</label>
+
+<input
+    id="workflow"
+    value="main.yml"
+>
+
+<label>
+GitHub Token
+</label>
+
+<input
+    id="token"
+    type="password"
+    placeholder="Paste GitHub token"
+    autocomplete="off"
+>
+
+<div class="warning">
+Your token is kept only in this page's
+browser memory. Never put your real token
+inside the HTML source.
+</div>
+
+<button
+    id="startButton"
+    onclick="startServer()"
+>
+🟢 START SERVER
+</button>
+
+<button
+    id="stopButton"
+    class="stop"
+    onclick="stopServer()"
+    disabled
+>
+🔴 STOP SERVER
+</button>
+
+<button
+    class="secondary"
+    onclick="manualRefresh()"
+>
+🔄 REFRESH
+</button>
+
+<div
+    id="message"
+    class="message"
+></div>
+
+</div>
+
+
+<!-- ==========================================
+     INFORMATION
+     ========================================== -->
+
+<div class="card">
+
+<h2>
+Server Information
+</h2>
+
+<div class="info">
+
+<div class="stat">
+
+<div class="stat-name">
+GAME
+</div>
+
+<div class="stat-value">
+L.A. Crimes
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+PROTOCOL
+</div>
+
+<div class="stat-value">
+UDP
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+LOCAL PORT
+</div>
+
+<div class="stat-value">
+7777
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+PUBLIC PORT
+</div>
+
+<div class="stat-value">
+40083
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+WORKFLOW RUN ID
+</div>
+
+<div
+    id="runId"
+    class="stat-value"
+>
+None
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+JOB ID
+</div>
+
+<div
+    id="jobId"
+    class="stat-value"
+>
+None
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+WORKFLOW STATUS
+</div>
+
+<div
+    id="runStatus"
+    class="stat-value"
+>
+Offline
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-name">
+JOB STATUS
+</div>
+
+<div
+    id="jobStatus"
+    class="stat-value"
+>
+None
+</div>
+
+</div>
+
+</div>
+
+
+<div class="endpoint">
+
+<div class="endpoint-title">
+PUBLIC SERVER ENDPOINT
+</div>
+
+<div class="endpoint-value">
+nl.portbuddy.tech:40083
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ==========================================
+     LOG
+     ========================================== -->
+
+<div class="card log-card">
+
+<div class="log-header">
+
+<h2>
+📜 Live Server Log
+</h2>
+
+<button
+    class="secondary"
+    style="width:auto;margin:0"
+    onclick="downloadLog()"
+>
+Download
+</button>
+
+</div>
+
+<div
+    id="log"
+    class="log"
+>Waiting for server...</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   STATE
+   ========================================== */
+
+let currentRunId = null;
+let currentJobId = null;
+
+let logTimer = null;
+let statusTimer = null;
+
+let lastLog = "";
+
+
+/* ==========================================
+   ELEMENTS
+   ========================================== */
+
+const ownerInput =
+    document.getElementById("owner");
+
+const repoInput =
+    document.getElementById("repo");
+
+const workflowInput =
+    document.getElementById("workflow");
+
+const tokenInput =
+    document.getElementById("token");
+
+const startButton =
+    document.getElementById("startButton");
+
+const stopButton =
+    document.getElementById("stopButton");
+
+const message =
+    document.getElementById("message");
+
+const logElement =
+    document.getElementById("log");
+
+const statusDot =
+    document.getElementById("statusDot");
+
+const statusText =
+    document.getElementById("statusText");
+
+const runIdElement =
+    document.getElementById("runId");
+
+const jobIdElement =
+    document.getElementById("jobId");
+
+const runStatusElement =
+    document.getElementById("runStatus");
+
+const jobStatusElement =
+    document.getElementById("jobStatus");
+
+
+/* ==========================================
+   CONFIG
+   ========================================== */
+
+function getConfig() {
+
+    return {
+
+        owner:
+            ownerInput.value.trim(),
+
+        repo:
+            repoInput.value.trim(),
+
+        workflow:
+            workflowInput.value.trim(),
+
+        token:
+            tokenInput.value.trim()
+
+    };
+
+}
+
+
+/* ==========================================
+   GITHUB HEADERS
+   ========================================== */
+
+function githubHeaders(token) {
+
+    return {
+
+        "Accept":
+            "application/vnd.github+json",
+
+        "Authorization":
+            "Bearer " + token,
+
+        "X-GitHub-Api-Version":
+            "2026-03-10"
+
+    };
+
+}
+
+
+/* ==========================================
+   API URL
+   ========================================== */
+
+function apiUrl(path) {
+
+    const c =
+        getConfig();
+
+    return (
+        "https://api.github.com/repos/" +
+        encodeURIComponent(c.owner) +
+        "/" +
+        encodeURIComponent(c.repo) +
+        path
+    );
+
+}
+
+
+/* ==========================================
+   MESSAGE
+   ========================================== */
+
+function setMessage(text) {
+
+    message.textContent =
+        text;
+
+}
+
+
+/* ==========================================
+   STATUS
+   ========================================== */
+
+function setStatus(type, text) {
+
+    statusDot.className =
+        "dot " + type;
+
+    statusText.textContent =
+        text;
+
+}
+
+
+/* ==========================================
+   START SERVER
+   ========================================== */
+
+async function startServer() {
+
+    const c =
+        getConfig();
+
+    if (
+        !c.owner ||
+        !c.repo ||
+        !c.workflow ||
+        !c.token
+    ) {
+
+        setMessage(
+            "Enter your GitHub username and token."
+        );
+
+        return;
+
+    }
+
+
+    startButton.disabled =
+        true;
+
+    stopButton.disabled =
+        true;
+
+
+    currentRunId =
+        null;
+
+    currentJobId =
+        null;
+
+    lastLog =
+        "";
+
+
+    runIdElement.textContent =
+        "Searching...";
+
+    jobIdElement.textContent =
+        "Waiting...";
+
+    runStatusElement.textContent =
+        "Starting";
+
+    jobStatusElement.textContent =
+        "Waiting";
+
+
+    logElement.textContent =
+        "Starting GitHub Actions...\n";
+
+
+    setStatus(
+        "starting",
+        "STARTING"
+    );
+
+
+    setMessage(
+        "Checking existing workflow runs..."
+    );
+
+
+    try {
+
+        /*
+         * Remember the newest existing run.
+         */
+
+        const beforeResponse =
+            await fetch(
+                apiUrl(
+                    "/actions/runs?per_page=20"
+                ),
+                {
+                    headers:
+                        githubHeaders(c.token)
+                }
+            );
+
+
+        if (!beforeResponse.ok) {
+
+            throw new Error(
+                "Cannot read workflow runs. " +
+                "Check your GitHub token permissions."
+            );
+
+        }
+
+
+        const beforeData =
+            await beforeResponse.json();
+
+
+        const previousRunId =
+            beforeData.workflow_runs.length > 0
+                ? beforeData.workflow_runs[0].id
+                : 0;
+
+
+        /*
+         * START WORKFLOW
+         */
+
+        setMessage(
+            "Starting workflow..."
+        );
+
+
+        const dispatchResponse =
+            await fetch(
+                apiUrl(
+                    "/actions/workflows/" +
+                    encodeURIComponent(
+                        c.workflow
+                    ) +
+                    "/dispatches"
+                ),
+                {
+                    method:
+                        "POST",
+
+                    headers:
+                        githubHeaders(c.token),
+
+                    body:
+                        JSON.stringify({
+                            ref: "main"
+                        })
+                }
+            );
+
+
+        if (!dispatchResponse.ok) {
+
+            const errorText =
+                await dispatchResponse.text();
+
+            throw new Error(
+                "GitHub API " +
+                dispatchResponse.status +
+                ": " +
+                errorText
+            );
+
+        }
+
+
+        setMessage(
+            "Workflow started. Finding new run..."
+        );
+
+
+        await findNewRun(
+            previousRunId
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setStatus(
+            "offline",
+            "ERROR"
+        );
+
+        setMessage(
+            error.message
+        );
+
+        startButton.disabled =
+            false;
+
+    }
+
+}
+
+
+/* ==========================================
+   FIND NEW WORKFLOW RUN
+   ========================================== */
+
+async function findNewRun(
+    previousRunId
+) {
+
+    const c =
+        getConfig();
+
+
+    for (
+        let attempt = 0;
+        attempt < 40;
+        attempt++
+    ) {
+
+        const response =
+            await fetch(
+                apiUrl(
+                    "/actions/runs?per_page=20"
+                ),
+                {
+                    headers:
+                        githubHeaders(c.token)
+                }
+            );
+
+
+        if (!response.ok) {
+
+            await sleep(3000);
+
+            continue;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const runs =
+            data.workflow_runs.filter(
+                run =>
+                    run.path &&
+                    run.path.endsWith(
+                        "/" + c.workflow
+                    )
+            );
+
+
+        const newRun =
+            runs.find(
+                run =>
+                    run.id !== previousRunId &&
+                    run.event ===
+                    "workflow_dispatch"
+            );
+
+
+        if (newRun) {
+
+            currentRunId =
+                newRun.id;
+
+
+            runIdElement.textContent =
+                currentRunId;
+
+
+            runStatusElement.textContent =
+                newRun.status;
+
+
+            setMessage(
+                "New workflow found. Finding job..."
+            );
+
+
+            await findJob();
+
+            return;
+
+        }
+
+
+        await sleep(3000);
+
+    }
+
+
+    throw new Error(
+        "Timed out waiting for the new workflow."
+    );
+
+}
+
+
+/* ==========================================
+   FIND JOB
+   ========================================== */
+
+async function findJob() {
+
+    const c =
+        getConfig();
+
+
+    for (
+        let attempt = 0;
+        attempt < 40;
+        attempt++
+    ) {
+
+        const response =
+            await fetch(
+                apiUrl(
+                    "/actions/runs/" +
+                    currentRunId +
+                    "/jobs?per_page=100"
+                ),
+                {
+                    headers:
+                        githubHeaders(c.token)
+                }
+            );
+
+
+        if (response.ok) {
+
+            const data =
+                await response.json();
+
+
+            if (
+                data.jobs &&
+                data.jobs.length
+            ) {
+
+                const job =
+                    data.jobs[
+                        data.jobs.length - 1
+                    ];
+
+
+                currentJobId =
+                    job.id;
+
+
+                jobIdElement.textContent =
+                    currentJobId;
+
+
+                jobStatusElement.textContent =
+                    job.status;
+
+
+                stopButton.disabled =
+                    false;
+
+
+                setMessage(
+                    "Server job found. Loading live log..."
+                );
+
+
+                startPolling();
+
+                return;
+
+            }
+
+        }
+
+
+        await sleep(3000);
+
+    }
+
+
+    throw new Error(
+        "Timed out waiting for the server job."
+    );
+
+}
+
+
+/* ==========================================
+   START POLLING
+   ========================================== */
+
+function startPolling() {
+
+    stopPolling();
+
+
+    /*
+     * Server status every 5 seconds.
+     */
+
+    statusTimer =
+        setInterval(
+            refreshStatus,
+            5000
+        );
+
+
+    /*
+     * Live log every 2 seconds.
+     */
+
+    logTimer =
+        setInterval(
+            fetchLiveLog,
+            2000
+        );
+
+
+    refreshStatus();
+    fetchLiveLog();
+
+}
+
+
+/* ==========================================
+   STOP POLLING
+   ========================================== */
+
+function stopPolling() {
+
+    if (statusTimer) {
+
+        clearInterval(
+            statusTimer
+        );
+
+        statusTimer =
+            null;
+
+    }
+
+
+    if (logTimer) {
+
+        clearInterval(
+            logTimer
+        );
+
+        logTimer =
+            null;
+
+    }
+
+}
+
+
+/* ==========================================
+   REFRESH STATUS
+   ========================================== */
+
+async function refreshStatus() {
+
+    if (!currentRunId) {
+
+        return;
+
+    }
+
+
+    const c =
+        getConfig();
+
+
+    try {
+
+        const response =
+            await fetch(
+                apiUrl(
+                    "/actions/runs/" +
+                    currentRunId
+                ),
+                {
+                    headers:
+                        githubHeaders(c.token)
+                }
+            );
+
+
+        if (!response.ok) {
+
+            return;
+
+        }
+
+
+        const run =
+            await response.json();
+
+
+        runStatusElement.textContent =
+            run.status;
+
+
+        if (
+            run.status ===
+            "queued"
+        ) {
+
+            setStatus(
+                "starting",
+                "QUEUED"
+            );
+
+        }
+
+        else if (
+            run.status ===
+            "in_progress"
+        ) {
+
+            setStatus(
+                "online",
+                "RUNNING"
+            );
+
+            stopButton.disabled =
+                false;
+
+        }
+
+        else if (
+            run.status ===
+            "completed"
+        ) {
+
+            if (
+                run.conclusion ===
+                "success"
+            ) {
+
+                setStatus(
+                    "online",
+                    "FINISHED"
+                );
+
+            }
+
+            else if (
+                run.conclusion ===
+                "cancelled"
+            ) {
+
+                setStatus(
+                    "offline",
+                    "STOPPED"
+                );
+
+            }
+
+            else {
+
+                setStatus(
+                    "offline",
+                    "FAILED"
+                );
+
+            }
+
+
+            stopButton.disabled =
+                true;
+
+            startButton.disabled =
+                false;
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* ==========================================
+   FETCH LIVE-SERVER-LOG.TXT
+   ========================================== */
+
+async function fetchLiveLog() {
+
+    const c =
+        getConfig();
+
+
+    if (
+        !c.owner ||
+        !c.repo ||
+        !c.token
+    ) {
+
+        return;
+
+    }
+
+
+    try {
+
+        /*
+         * Use the Contents API instead of
+         * raw.githubusercontent.com so the
+         * token can access private repositories too.
+         */
+
+        const response =
+            await fetch(
+                apiUrl(
+                    "/contents/live-server-log.txt?ref=main"
+                ),
+                {
+                    headers:
+                        githubHeaders(c.token),
+
+                    cache:
+                        "no-store"
+                }
+            );
+
+
+        if (
+            response.status === 404
+        ) {
+
+            logElement.textContent =
+                "Server is starting...\n\n" +
+                "Waiting for live-server-log.txt " +
+                "to be created by GitHub Actions.";
+
+            return;
+
+        }
+
+
+        if (!response.ok) {
+
+            return;
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            !data.content
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+         * GitHub returns Base64 content.
+         */
+
+        const cleanBase64 =
+            data.content.replace(
+                /\s/g,
+                ""
+            );
+
+
+        const binary =
+            atob(cleanBase64);
+
+
+        const bytes =
+            Uint8Array.from(
+                binary,
+                char =>
+                    char.charCodeAt(0)
+            );
+
+
+        const text =
+            new TextDecoder(
+                "utf-8"
+            ).decode(bytes);
+
+
+        if (
+            text !== lastLog
+        ) {
+
+            lastLog =
+                text;
+
+            logElement.textContent =
+                text;
+
+
+            /*
+             * Automatically scroll to bottom
+             * only when the user is already near
+             * the bottom.
+             */
+
+            const nearBottom =
+                logElement.scrollHeight -
+                logElement.scrollTop -
+                logElement.clientHeight <
+                100;
+
+
+            if (nearBottom) {
+
+                logElement.scrollTop =
+                    logElement.scrollHeight;
+
+            }
+
+        }
+
+
+        setMessage(
+            "Live log updated."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Live log error:",
+            error
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   STOP SERVER
+   ========================================== */
+
+async function stopServer() {
+
+    if (!currentRunId) {
+
+        return;
+
+    }
+
+
+    if (
+        !confirm(
+            "Stop the L.A. Crimes server?"
+        )
+    ) {
+
+        return;
+
+    }
+
+
+    const c =
+        getConfig();
+
+
+    stopButton.disabled =
+        true;
+
+
+    setMessage(
+        "Stopping server..."
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                apiUrl(
+                    "/actions/runs/" +
+                    currentRunId +
+                    "/cancel"
+                ),
+                {
+                    method:
+                        "POST",
+
+                    headers:
+                        githubHeaders(c.token)
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const text =
+                await response.text();
+
+            throw new Error(
+                "GitHub API " +
+                response.status +
+                ": " +
+                text
+            );
+
+        }
+
+
+        setStatus(
+            "starting",
+            "STOPPING"
+        );
+
+
+        setMessage(
+            "Cancellation requested."
+        );
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        setMessage(
+            error.message
+        );
+
+        stopButton.disabled =
+            false;
+
+    }
+
+}
+
+
+/* ==========================================
+   MANUAL REFRESH
+   ========================================== */
+
+function manualRefresh() {
+
+    refreshStatus();
+    fetchLiveLog();
+
+}
+
+
+/* ==========================================
+   DOWNLOAD LOG
+   ========================================== */
+
+function downloadLog() {
+
+    if (!lastLog) {
+
+        alert(
+            "No log available yet."
+        );
+
+        return;
+
+    }
+
+
+    const blob =
+        new Blob(
+            [lastLog],
+            {
+                type:
+                    "text/plain"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(
+            blob
+        );
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.href =
+        url;
+
+    link.download =
+        "lac-server-log.txt";
+
+
+    document.body.appendChild(
+        link
+    );
+
+    link.click();
+
+    link.remove();
+
+
+    URL.revokeObjectURL(
+        url
+    );
+
+}
+
+
+/* ==========================================
+   SLEEP
+   ========================================== */
+
+function sleep(ms) {
+
+    return new Promise(
+        resolve =>
+            setTimeout(
+                resolve,
+                ms
+            )
+    );
+
+}
+
+
+/* ==========================================
+   INITIAL STATE
+   ========================================== */
+
+setStatus(
+    "offline",
+    "OFFLINE"
+);
+
+</script>
+
+</body>
+</html>
