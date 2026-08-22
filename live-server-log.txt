@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:33:53 UTC
+TIME: 2026-08-22 09:34:04 UTC
 
 LOCAL UDP: 7777
 
@@ -4406,15 +4406,67 @@ IN 2738.93 KB | OUT 4459.29 KB
 IN 2739.81 KB | OUT 4460.87 KB
 IN 2740.85 KB | OUT 4462.49 KB
 IN 2741.64 KB | OUT 4463.94 KB
+IN 2742.75 KB | OUT 4465.51 KB
+IN 2743.72 KB | OUT 4467.30 KB
+IN 2744.64 KB | OUT 4468.76 KB
+IN 2746.03 KB | OUT 4470.49 KB
+IN 2747.76 KB | OUT 4472.75 KB
+IN 2749.71 KB | OUT 4475.46 KB
+IN 2750.79 KB | OUT 4477.01 KB
+IN 2751.65 KB | OUT 4478.46 KB
+IN 2752.51 KB | OUT 4479.48 KB
+IN 2753.42 KB | OUT 4480.71 KB
+IN 2754.13 KB | OUT 4481.64 KB
+IN 2755.04 KB | OUT 4483.39 KB
+IN 2756.00 KB | OUT 4485.23 KB
+IN 2756.60 KB | OUT 4486.52 KB
+IN 2757.69 KB | OUT 4488.84 KB
+IN 2758.40 KB | OUT 4489.77 KB
+IN 2759.19 KB | OUT 4491.22 KB
+IN 2759.94 KB | OUT 4492.91 KB
+IN 2760.81 KB | OUT 4493.90 KB
+IN 2761.82 KB | OUT 4495.52 KB
+IN 2762.76 KB | OUT 4497.56 KB
+IN 2763.61 KB | OUT 4498.92 KB
+IN 2764.45 KB | OUT 4500.83 KB
+IN 2765.26 KB | OUT 4502.15 KB
+IN 2766.09 KB | OUT 4504.09 KB
+IN 2767.04 KB | OUT 4505.29 KB
+IN 2768.14 KB | OUT 4506.92 KB
+IN 2769.00 KB | OUT 4508.31 KB
+IN 2769.96 KB | OUT 4509.69 KB
+IN 2770.86 KB | OUT 4511.04 KB
+IN 2771.71 KB | OUT 4512.03 KB
+IN 2772.66 KB | OUT 4513.15 KB
+IN 2773.75 KB | OUT 4515.41 KB
+IN 2774.82 KB | OUT 4516.78 KB
+IN 2775.73 KB | OUT 4518.05 KB
+IN 2776.38 KB | OUT 4519.16 KB
+IN 2777.87 KB | OUT 4521.15 KB
+IN 2778.78 KB | OUT 4522.79 KB
+IN 2780.15 KB | OUT 4523.95 KB
+IN 2781.08 KB | OUT 4526.49 KB
+IN 2782.29 KB | OUT 4527.83 KB
+IN 2783.61 KB | OUT 4530.34 KB
+IN 2784.88 KB | OUT 4532.17 KB
+IN 2785.73 KB | OUT 4533.53 KB
+IN 2786.54 KB | OUT 4535.03 KB
+IN 2787.67 KB | OUT 4536.84 KB
+IN 2788.52 KB | OUT 4538.40 KB
+IN 2789.46 KB | OUT 4540.31 KB
+IN 2790.63 KB | OUT 4542.13 KB
+IN 2791.45 KB | OUT 4543.42 KB
+IN 2792.31 KB | OUT 4544.77 KB
+IN 2793.18 KB | OUT 4546.83 KB
+IN 2794.19 KB | OUT 4548.21 KB
+IN 2795.14 KB | OUT 4550.20 KB
+IN 2795.67 KB | OUT 4551.42 KB
+IN 2796.33 KB | OUT 4552.81 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-kcp2k.KcpPeer:Disconnect()
-kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
-kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
-kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
 kcp2k.KcpServer:TickIncoming()
 Mirror.NetworkServer:NetworkEarlyUpdate()
 Mirror.NetworkLoop:NetworkEarlyUpdate()
@@ -4711,6 +4763,10 @@ WARNING: Shader If subshaders removal was intentional, you may have forgotten tu
 <DownloadTrack>d__11:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+[PlayerControl] تاسکی Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -4720,6 +4776,6 @@ L.A. Crimes PID: 2771
 Port Buddy PID: 3313
 
 UDP 7777:
-UNCONN 2880   0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+UNCONN 960    0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:33:53 UTC
+Last update: 09:34:04 UTC
