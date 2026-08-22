@@ -2,7 +2,8 @@
 L.A. CRIMES PUBLIC SERVER
 ======================================
 
-STATUS: STARTING
+STATUS: RUNNING
+TIME: 2026-08-22 08:24:42 UTC
 
 LOCAL UDP: 7777
 
@@ -24,6 +25,12 @@ Press Ctrl+C to exit
 ----------------------------------------------
 
 UDP traffic:
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
@@ -393,3 +400,15 @@ Mirror.NetworkClient:NetworkLateUpdate()
 ServerGameManager:SlowUpdate()
 ServerGameManager:Update()
 
+
+======================================
+SERVER CHECK
+======================================
+
+L.A. Crimes PID: 2850
+Port Buddy PID: 3382
+
+UDP 7777:
+UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2850,fd=21))
+
+Last update: 08:24:42 UTC
