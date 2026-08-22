@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:22:07 UTC
+TIME: 2026-08-22 09:22:18 UTC
 
 LOCAL UDP: 7777
 
@@ -879,20 +879,67 @@ IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.03 KB | OUT 0.14 KB
+IN 0.03 KB | OUT 0.28 KB
+IN 0.03 KB | OUT 0.34 KB
+IN 0.11 KB | OUT 0.52 KB
+IN 0.26 KB | OUT 0.62 KB
+IN 0.26 KB | OUT 0.72 KB
+IN 0.26 KB | OUT 0.78 KB
+IN 0.26 KB | OUT 0.84 KB
+IN 0.26 KB | OUT 0.91 KB
+IN 0.26 KB | OUT 0.97 KB
+IN 0.26 KB | OUT 1.07 KB
+IN 0.26 KB | OUT 1.16 KB
+IN 0.53 KB | OUT 1.27 KB
+IN 0.81 KB | OUT 1.42 KB
+IN 0.81 KB | OUT 1.49 KB
+IN 0.81 KB | OUT 1.58 KB
+IN 0.81 KB | OUT 1.67 KB
+IN 0.81 KB | OUT 1.74 KB
+IN 0.81 KB | OUT 1.80 KB
+IN 0.81 KB | OUT 1.87 KB
+IN 0.88 KB | OUT 1.96 KB
+IN 0.88 KB | OUT 2.05 KB
+IN 0.88 KB | OUT 2.12 KB
+IN 0.88 KB | OUT 2.18 KB
+IN 0.88 KB | OUT 2.25 KB
+IN 0.88 KB | OUT 2.40 KB
+IN 0.88 KB | OUT 2.46 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (10)/Crago crate (13)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (10)/Crago crate (13)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (3)/Main"
 BoxCollider does not support negative scale or size.
 The effective box size has been forced positive and is likely to give unexpected collision geometry.
 If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (3)/DoorR"
@@ -1184,6 +1231,15 @@ UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 ServerGameManager:SlowUpdate()
 ServerGameManager:Update()
 
+[NetworkManager] Player Connected: 127.0.0.1
+kcp2k.<>c__DisplayClass20_0:<CreateConnection>g__OnConnectedCallback|3(KcpServerConnection)
+kcp2k.KcpPeer:TickIncoming_Connected(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
 
 ======================================
 SERVER CHECK
@@ -1195,4 +1251,4 @@ Port Buddy PID: 3313
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:22:07 UTC
+Last update: 09:22:18 UTC
