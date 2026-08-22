@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:23:25 UTC
+TIME: 2026-08-22 09:23:36 UTC
 
 LOCAL UDP: 7777
 
@@ -1269,15 +1269,66 @@ IN 125.38 KB | OUT 199.36 KB
 IN 125.38 KB | OUT 199.81 KB
 IN 125.38 KB | OUT 200.56 KB
 IN 125.38 KB | OUT 201.10 KB
+IN 125.38 KB | OUT 201.52 KB
+IN 125.38 KB | OUT 201.85 KB
+IN 125.38 KB | OUT 202.27 KB
+IN 125.38 KB | OUT 202.79 KB
+IN 125.38 KB | OUT 203.33 KB
+IN 125.38 KB | OUT 203.76 KB
+IN 125.38 KB | OUT 204.21 KB
+IN 125.41 KB | OUT 204.64 KB
+IN 125.55 KB | OUT 205.17 KB
+IN 125.55 KB | OUT 205.72 KB
+IN 125.55 KB | OUT 206.14 KB
+IN 125.55 KB | OUT 206.59 KB
+IN 125.55 KB | OUT 207.01 KB
+IN 125.55 KB | OUT 207.53 KB
+IN 125.55 KB | OUT 208.07 KB
+IN 125.55 KB | OUT 208.49 KB
+IN 125.55 KB | OUT 208.95 KB
+IN 125.55 KB | OUT 209.47 KB
+IN 125.60 KB | OUT 210.10 KB
+IN 125.60 KB | OUT 210.73 KB
+IN 125.60 KB | OUT 211.16 KB
+IN 125.60 KB | OUT 211.61 KB
+IN 125.60 KB | OUT 212.03 KB
+IN 125.60 KB | OUT 212.54 KB
+IN 125.60 KB | OUT 213.09 KB
+IN 125.62 KB | OUT 213.51 KB
+IN 125.62 KB | OUT 213.96 KB
+IN 125.62 KB | OUT 214.39 KB
+IN 126.18 KB | OUT 215.21 KB
+IN 127.21 KB | OUT 215.93 KB
+IN 129.53 KB | OUT 216.77 KB
+IN 132.70 KB | OUT 218.60 KB
+IN 134.09 KB | OUT 220.97 KB
+IN 135.18 KB | OUT 222.07 KB
+IN 135.96 KB | OUT 222.89 KB
+IN 136.15 KB | OUT 223.27 KB
+IN 136.15 KB | OUT 223.60 KB
+IN 136.15 KB | OUT 223.93 KB
+IN 136.33 KB | OUT 224.38 KB
+IN 136.73 KB | OUT 224.90 KB
+IN 137.24 KB | OUT 225.43 KB
+IN 138.32 KB | OUT 226.26 KB
+IN 139.95 KB | OUT 227.60 KB
+IN 140.36 KB | OUT 228.68 KB
+IN 142.39 KB | OUT 230.30 KB
+IN 142.40 KB | OUT 230.67 KB
+IN 142.63 KB | OUT 231.06 KB
+IN 144.80 KB | OUT 234.12 KB
+IN 149.30 KB | OUT 238.21 KB
+IN 151.61 KB | OUT 239.72 KB
+IN 152.49 KB | OUT 240.88 KB
+IN 153.85 KB | OUT 241.50 KB
+IN 154.25 KB | OUT 241.91 KB
+IN 156.49 KB | OUT 243.85 KB
+IN 156.64 KB | OUT 244.26 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (14)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (14)/Crago crate (12)/DoorR"
 BoxCollider does not support negative scale or size.
 The effective box size has been forced positive and is likely to give unexpected collision geometry.
 If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (14)/Crago crate (12)/DoorL"
@@ -1574,6 +1625,10 @@ Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
 Mirror.LocalConnectionToServer:Update()
 Mirror.NetworkClient:NetworkLateUpdate()
 
+[PlayerControl] HerculeEdit Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -1585,4 +1640,4 @@ Port Buddy PID: 3313
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:23:25 UTC
+Last update: 09:23:36 UTC
