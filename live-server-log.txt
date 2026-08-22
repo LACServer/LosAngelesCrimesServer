@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:32:57 UTC
+TIME: 2026-08-22 09:33:08 UTC
 
 LOCAL UDP: 7777
 
@@ -4127,15 +4127,67 @@ IN 2493.00 KB | OUT 4055.28 KB
 IN 2493.77 KB | OUT 4056.36 KB
 IN 2494.83 KB | OUT 4057.87 KB
 IN 2495.67 KB | OUT 4059.56 KB
+IN 2496.66 KB | OUT 4061.01 KB
+IN 2497.44 KB | OUT 4062.44 KB
+IN 2498.12 KB | OUT 4063.24 KB
+IN 2498.97 KB | OUT 4064.62 KB
+IN 2499.52 KB | OUT 4065.39 KB
+IN 2500.34 KB | OUT 4066.31 KB
+IN 2501.06 KB | OUT 4067.48 KB
+IN 2502.05 KB | OUT 4069.77 KB
+IN 2502.81 KB | OUT 4070.99 KB
+IN 2503.53 KB | OUT 4072.15 KB
+IN 2504.38 KB | OUT 4073.45 KB
+IN 2505.13 KB | OUT 4074.67 KB
+IN 2505.76 KB | OUT 4075.80 KB
+IN 2506.56 KB | OUT 4076.72 KB
+IN 2507.09 KB | OUT 4077.74 KB
+IN 2508.33 KB | OUT 4079.75 KB
+IN 2509.27 KB | OUT 4080.98 KB
+IN 2509.39 KB | OUT 4081.81 KB
+IN 2509.71 KB | OUT 4082.70 KB
+IN 2510.69 KB | OUT 4084.17 KB
+IN 2511.07 KB | OUT 4084.94 KB
+IN 2511.45 KB | OUT 4086.17 KB
+IN 2512.47 KB | OUT 4087.55 KB
+IN 2512.78 KB | OUT 4088.24 KB
+IN 2514.12 KB | OUT 4090.27 KB
+IN 2514.71 KB | OUT 4091.15 KB
+IN 2516.00 KB | OUT 4094.15 KB
+IN 2517.19 KB | OUT 4095.21 KB
+IN 2517.78 KB | OUT 4096.63 KB
+IN 2518.02 KB | OUT 4097.56 KB
+IN 2518.11 KB | OUT 4098.91 KB
+IN 2518.58 KB | OUT 4099.64 KB
+IN 2518.88 KB | OUT 4101.32 KB
+IN 2519.22 KB | OUT 4102.07 KB
+IN 2519.55 KB | OUT 4102.81 KB
+IN 2519.80 KB | OUT 4104.17 KB
+IN 2520.31 KB | OUT 4106.95 KB
+IN 2520.67 KB | OUT 4107.92 KB
+IN 2523.41 KB | OUT 4109.14 KB
+IN 2524.06 KB | OUT 4109.91 KB
+IN 2525.15 KB | OUT 4111.99 KB
+IN 2525.94 KB | OUT 4113.62 KB
+IN 2526.31 KB | OUT 4114.65 KB
+IN 2526.80 KB | OUT 4116.39 KB
+IN 2527.00 KB | OUT 4117.44 KB
+IN 2527.57 KB | OUT 4118.59 KB
+IN 2527.87 KB | OUT 4119.59 KB
+IN 2529.38 KB | OUT 4122.27 KB
+IN 2530.64 KB | OUT 4123.66 KB
+IN 2531.67 KB | OUT 4124.85 KB
+IN 2532.42 KB | OUT 4126.06 KB
+IN 2533.34 KB | OUT 4127.37 KB
+IN 2534.21 KB | OUT 4128.75 KB
+IN 2534.88 KB | OUT 4129.57 KB
+IN 2535.44 KB | OUT 4130.57 KB
+IN 2536.30 KB | OUT 4131.66 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-
-[KCP] Server: RawSend invalid connectionId=1883339072
-kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
-kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
 kcp2k.KcpPeer:Disconnect()
 kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
 kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
@@ -4432,6 +4484,10 @@ ERROR: Shader Mobile/Specular-Standard-DoubleSided shader is not supported on th
 WARNING: Shader Unsupported: 'Mobile/Specular-Standard-DoubleSided' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+[RadioPlayerVehicle] client downloaded LXNGVX-Montagem Mysterious Game -musicdel.ir 128.mp3
+<DownloadTrack>d__11:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -4441,6 +4497,6 @@ L.A. Crimes PID: 2771
 Port Buddy PID: 3313
 
 UDP 7777:
-UNCONN 15360  0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:32:57 UTC
+Last update: 09:33:08 UTC
