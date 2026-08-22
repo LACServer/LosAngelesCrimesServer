@@ -2,7 +2,8 @@
 L.A. CRIMES PUBLIC SERVER
 ======================================
 
-STATUS: STARTING
+STATUS: RUNNING
+TIME: 2026-08-22 09:19:30 UTC
 
 LOCAL UDP: 7777
 
@@ -24,6 +25,13 @@ Press Ctrl+C to exit
 ----------------------------------------------
 
 UDP traffic:
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
@@ -393,3 +401,15 @@ UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 ServerGameManager:SlowUpdate()
 ServerGameManager:Update()
 
+
+======================================
+SERVER CHECK
+======================================
+
+L.A. Crimes PID: 2771
+Port Buddy PID: 3313
+
+UDP 7777:
+UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+
+Last update: 09:19:30 UTC
