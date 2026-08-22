@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>L.A. Crimes Server</title>
 
 <style>
+
 * {
     box-sizing: border-box;
 }
 
 :root {
-    --bg: #0d0f18;
-    --card: rgba(28, 31, 48, 0.72);
-    --card-light: rgba(255, 255, 255, 0.055);
+    --bg: #0b0d14;
+    --card: #151925;
+    --card2: #1b1f2d;
 
-    --text: #f1f2f7;
-    --muted: #9296aa;
+    --text: #f2f3f8;
+    --muted: #8e94a8;
 
-    --purple: #b9a7ff;
+    --purple: #b8a5ff;
     --blue: #91c7ff;
     --green: #8ff0b5;
-    --red: #ff9cae;
-    --yellow: #f4d47c;
+    --yellow: #f5d67e;
+    --red: #ff9cad;
 
-    --border: rgba(255,255,255,.10);
-}
-
-html {
-    min-height: 100%;
+    --border: rgba(255,255,255,.09);
 }
 
 body {
@@ -41,7 +44,6 @@ body {
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
-        Arial,
         sans-serif;
 
     color: var(--text);
@@ -49,157 +51,110 @@ body {
     background:
         radial-gradient(
             circle at 10% 10%,
-            rgba(155, 125, 255, .16),
-            transparent 32%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(95, 170, 255, .13),
+            rgba(184,165,255,.14),
             transparent 30%
         ),
         radial-gradient(
-            circle at 50% 100%,
-            rgba(100, 255, 180, .07),
-            transparent 35%
+            circle at 90% 20%,
+            rgba(145,199,255,.11),
+            transparent 30%
         ),
         var(--bg);
 
-    padding: 25px;
+    padding: 20px;
 }
 
-
-/* =====================================================
-   LAYOUT
-===================================================== */
-
 .container {
-    width: min(900px, 100%);
+    width: min(850px, 100%);
     margin: auto;
 }
 
-
-/* =====================================================
-   CARDS
-===================================================== */
-
 .card {
-    position: relative;
-
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.075),
+            rgba(255,255,255,.065),
             rgba(255,255,255,.025)
         );
 
     border:
         1px solid var(--border);
 
-    border-radius: 22px;
+    border-radius: 20px;
 
-    padding: 24px;
+    padding: 22px;
 
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(14px);
 
     box-shadow:
-        0 20px 45px rgba(0,0,0,.25),
-        inset 0 1px rgba(255,255,255,.06);
-
-    transition:
-        transform .2s ease,
-        border-color .2s ease;
+        0 18px 45px rgba(0,0,0,.25);
 }
-
-.card:hover {
-    transform: translateY(-2px);
-
-    border-color:
-        rgba(255,255,255,.15);
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 .header {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 15px;
 }
 
 .logo {
-    width: 55px;
-    height: 55px;
+    width: 54px;
+    height: 54px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
 
-    border-radius: 17px;
+    border-radius: 16px;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(185,167,255,.22),
-            rgba(145,199,255,.08)
-        );
+        rgba(184,165,255,.13);
 
     border:
         1px solid
-        rgba(185,167,255,.18);
+        rgba(184,165,255,.2);
 
-    font-size: 27px;
-
-    box-shadow:
-        0 10px 25px
-        rgba(0,0,0,.25);
+    font-size: 26px;
 }
 
 h1 {
     margin: 0;
 
     font-size:
-        clamp(25px, 5vw, 34px);
+        clamp(25px, 6vw, 34px);
 }
 
 .subtitle {
-    margin-top: 5px;
-
     color: var(--muted);
 
-    font-size: 13px;
+    font-size: 12px;
+
+    margin-top: 4px;
 }
-
-
-/* =====================================================
-   INPUT
-===================================================== */
 
 label {
     display: block;
 
-    margin-bottom: 8px;
-
-    font-weight: 750;
+    font-weight: 800;
 
     font-size: 13px;
+
+    margin-bottom: 8px;
 }
 
 input {
     width: 100%;
-    height: 50px;
 
-    padding: 0 15px;
+    height: 48px;
+
+    padding: 0 14px;
+
+    border-radius: 13px;
 
     border:
         1px solid
-        rgba(255,255,255,.10);
-
-    border-radius: 14px;
+        rgba(255,255,255,.1);
 
     outline: none;
 
@@ -207,62 +162,45 @@ input {
         rgba(0,0,0,.25);
 
     color: var(--text);
-
-    font-size: 14px;
-
-    transition:
-        border .2s,
-        box-shadow .2s;
 }
 
 input:focus {
     border-color:
-        rgba(185,167,255,.55);
-
-    box-shadow:
-        0 0 0 3px
-        rgba(185,167,255,.10);
+        rgba(184,165,255,.55);
 }
 
 .small {
-    margin-top: 6px;
-
     color: var(--muted);
 
     font-size: 11px;
+
+    margin-top: 6px;
 }
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
 
 .buttons {
     display: flex;
 
-    gap: 12px;
+    gap: 10px;
 
-    margin-top: 19px;
+    margin-top: 18px;
 }
 
 button {
+    flex: 1;
+
     border: 0;
 
-    border-radius: 14px;
+    border-radius: 13px;
 
-    padding:
-        14px 22px;
+    padding: 14px;
 
     font-weight: 850;
-
-    font-size: 14px;
 
     cursor: pointer;
 
     transition:
-        transform .15s ease,
-        opacity .15s ease,
-        box-shadow .15s ease;
+        transform .15s,
+        opacity .15s;
 }
 
 button:hover:not(:disabled) {
@@ -282,97 +220,62 @@ button:disabled {
         not-allowed;
 }
 
-
-/* START */
-
 .start {
-    color: #253c30;
+    background: var(--green);
 
-    background:
-        var(--green);
-
-    box-shadow:
-        0 6px 0
-        #55b97d;
+    color: #183a29;
 }
-
-
-/* STOP */
 
 .stop {
-    color: #4e2832;
+    background: var(--red);
 
-    background:
-        var(--red);
-
-    box-shadow:
-        0 6px 0
-        #bd6577;
+    color: #492631;
 }
-
-
-/* =====================================================
-   STATUS
-===================================================== */
 
 .status {
     display: flex;
 
     align-items: center;
 
-    gap: 13px;
+    gap: 12px;
 }
 
 .dot {
     width: 14px;
     height: 14px;
 
-    flex-shrink: 0;
-
     border-radius: 50%;
 
     background: #666;
-
-    transition:
-        background .2s,
-        box-shadow .2s;
 }
 
 .dot.online {
-    background:
-        var(--green);
+    background: var(--green);
 
     box-shadow:
         0 0 18px
-        rgba(143,240,181,.7);
+        rgba(143,240,181,.65);
 }
 
 .dot.warning {
-    background:
-        var(--yellow);
+    background: var(--yellow);
 
     box-shadow:
         0 0 15px
-        rgba(244,212,124,.45);
+        rgba(245,214,126,.5);
 }
 
 .dot.error {
-    background:
-        var(--red);
+    background: var(--red);
 
     box-shadow:
         0 0 15px
-        rgba(255,156,174,.5);
+        rgba(255,156,173,.5);
 }
 
 .status-title {
     font-weight: 850;
 }
-
-
-/* =====================================================
-   SERVER CARD
-===================================================== */
 
 .server {
     display: none;
@@ -380,47 +283,25 @@ button:disabled {
 
 .server.show {
     display: block;
-
-    animation:
-        appear .25s ease;
-}
-
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .address {
-    margin-top: 9px;
+    margin-top: 10px;
 
     padding: 15px;
 
-    border-radius: 15px;
+    border-radius: 13px;
 
     background:
         rgba(0,0,0,.28);
 
-    border:
-        1px solid
-        rgba(255,255,255,.07);
-
-    color:
-        var(--blue);
+    color: var(--blue);
 
     font-family:
         Consolas,
-        "Courier New",
         monospace;
 
-    font-size:
-        clamp(16px, 4vw, 22px);
+    font-size: 19px;
 
     font-weight: 850;
 
@@ -428,95 +309,63 @@ button:disabled {
         break-all;
 }
 
-
-/* =====================================================
-   LOG
-===================================================== */
-
-.log-header {
+.log-title {
     display: flex;
 
-    justify-content: space-between;
+    justify-content:
+        space-between;
 
     align-items: center;
 }
 
 .badge {
-    padding:
-        5px 10px;
+    padding: 5px 9px;
 
-    border-radius:
-        999px;
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 850;
+
+    background:
+        rgba(184,165,255,.1);
 
     color:
         var(--purple);
-
-    background:
-        rgba(185,167,255,.10);
-
-    border:
-        1px solid
-        rgba(185,167,255,.15);
-
-    font-size:
-        10px;
-
-    font-weight:
-        850;
 }
 
 .log {
-    height: 430px;
+    height: 400px;
 
     overflow-y: auto;
 
-    margin-top: 13px;
+    margin-top: 12px;
 
-    padding: 16px;
+    padding: 15px;
 
-    border-radius: 16px;
+    border-radius: 14px;
 
     background:
-        rgba(5,6,12,.80);
+        #080a10;
 
     border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(255,255,255,.06);
 
-    color:
-        #dfe2ee;
+    color: #dfe2ed;
 
     font-family:
         Consolas,
-        "Courier New",
         monospace;
 
     font-size: 12px;
 
-    line-height: 1.55;
+    line-height: 1.5;
 
     white-space: pre-wrap;
 
-    word-break:
-        break-word;
+    word-break: break-word;
 }
-
-.log::-webkit-scrollbar {
-    width: 7px;
-}
-
-.log::-webkit-scrollbar-thumb {
-    background:
-        rgba(255,255,255,.13);
-
-    border-radius:
-        20px;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
 
 .footer {
     text-align: center;
@@ -525,35 +374,21 @@ button:disabled {
         rgba(255,255,255,.25);
 
     font-size: 10px;
-
-    margin-top: 25px;
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media (max-width: 600px) {
 
     body {
-        padding: 12px;
+        padding: 10px;
     }
 
     .buttons {
         flex-direction: column;
     }
-
-    button {
-        width: 100%;
-    }
-
-    .header {
-        align-items: flex-start;
-    }
 }
 
 </style>
+
 </head>
 
 
@@ -562,164 +397,157 @@ button:disabled {
 <div class="container">
 
 
-    <!-- HEADER -->
+<div class="card header">
 
-    <div class="card header">
+    <div class="logo">
+        🎮
+    </div>
 
-        <div class="logo">
-            🎮
-        </div>
+    <div>
 
-        <div>
+        <h1>
+            L.A. Crimes Server
+        </h1>
 
-            <h1>
-                L.A. Crimes Server
-            </h1>
-
-            <div class="subtitle">
-                GitHub Actions server control panel
-            </div>
-
+        <div class="subtitle">
+            GitHub Actions control panel
         </div>
 
     </div>
 
-
-    <!-- CONTROLS -->
-
-    <div class="card">
-
-        <label for="token">
-            GitHub Personal Access Token
-        </label>
-
-        <input
-            id="token"
-            type="password"
-            placeholder="github_pat_..."
-            autocomplete="off"
-        >
-
-        <div class="small">
-            Stored only for this browser session.
-        </div>
+</div>
 
 
-        <div class="buttons">
+<div class="card">
 
-            <button
-                id="start"
-                class="start"
-                onclick="startServer()"
-            >
-                ▶ Start Server
-            </button>
+    <label>
+        GitHub Personal Access Token
+    </label>
 
-            <button
-                id="stop"
-                class="stop"
-                onclick="stopServer()"
-                disabled
-            >
-                ■ Stop Server
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- STATUS -->
-
-    <div class="card status">
-
-        <div
-            id="dot"
-            class="dot"
-        ></div>
-
-        <div>
-
-            <div
-                id="status"
-                class="status-title"
-            >
-                Enter GitHub token
-            </div>
-
-            <div
-                id="runInfo"
-                class="small"
-            >
-                No active workflow detected
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SERVER -->
-
-    <div
-        id="serverCard"
-        class="card server"
+    <input
+        id="token"
+        type="password"
+        placeholder="github_pat_..."
+        autocomplete="off"
     >
 
+    <div class="small">
+        The token stays in this browser session.
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            id="start"
+            class="start"
+            onclick="startServer()"
+        >
+            ▶ Start Server
+        </button>
+
+        <button
+            id="stop"
+            class="stop"
+            onclick="stopServer()"
+            disabled
+        >
+            ■ Stop Server
+        </button>
+
+    </div>
+
+</div>
+
+
+<div class="card status">
+
+    <div
+        id="dot"
+        class="dot"
+    ></div>
+
+    <div>
+
+        <div
+            id="status"
+            class="status-title"
+        >
+            Offline
+        </div>
+
+        <div
+            id="runInfo"
+            class="small"
+        >
+            Checking GitHub...
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    id="serverCard"
+    class="card server"
+>
+
+    <strong>
+        🌐 Public Server
+    </strong>
+
+    <div
+        id="address"
+        class="address"
+    >
+        —
+    </div>
+
+    <div class="small">
+        Map: City · UDP 7777
+    </div>
+
+</div>
+
+
+<div class="card">
+
+    <div class="log-title">
+
         <strong>
-            🌐 Public Server
+            Server Log
         </strong>
 
-        <div
-            id="address"
-            class="address"
-        >
-            Waiting...
-        </div>
-
-        <div class="small">
-            Map: City · UDP
-        </div>
+        <span class="badge">
+            LIVE
+        </span>
 
     </div>
 
-
-    <!-- LOG -->
-
-    <div class="card">
-
-        <div class="log-header">
-
-            <strong>
-                Server Log
-            </strong>
-
-            <span class="badge">
-                LIVE
-            </span>
-
-        </div>
-
-        <div
-            id="log"
-            class="log"
-        >Waiting...</div>
-
+    <div
+        id="log"
+        class="log"
+    >
+Waiting for server...
     </div>
 
+</div>
 
-    <div class="footer">
-        L.A. Crimes Server Control
-    </div>
+
+<div class="footer">
+    L.A. Crimes Server Dashboard
+</div>
+
 
 </div>
 
 
 <script>
 
-/* =========================================================
+/* =====================================================
    CONFIG
-========================================================= */
+===================================================== */
 
 const OWNER =
     "LACServer";
@@ -736,31 +564,26 @@ const API =
 const API_VERSION =
     "2022-11-28";
 
+const STATUS_CONTEXT =
+    "LAC_SERVER";
 
-/* =========================================================
+
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
-let workflowRunId =
+let runId =
     sessionStorage.getItem(
-        "lac_workflow_run"
-    );
-
-let jobId =
-    sessionStorage.getItem(
-        "lac_job_id"
+        "lac_run_id"
     );
 
 let pollTimer =
     null;
 
-let serverOnline =
-    false;
 
-
-/* =========================================================
+/* =====================================================
    ELEMENTS
-========================================================= */
+===================================================== */
 
 const tokenInput =
     document.getElementById(
@@ -777,7 +600,7 @@ const stopButton =
         "stop"
     );
 
-const statusText =
+const statusElement =
     document.getElementById(
         "status"
     );
@@ -808,13 +631,13 @@ const addressElement =
     );
 
 
-/* =========================================================
-   TOKEN SESSION STORAGE
-========================================================= */
+/* =====================================================
+   TOKEN
+===================================================== */
 
 const savedToken =
     sessionStorage.getItem(
-        "lac_github_token"
+        "lac_token"
     );
 
 if (savedToken) {
@@ -827,29 +650,24 @@ tokenInput.addEventListener(
     "input",
     () => {
 
-        const value =
-            tokenInput.value.trim();
-
-        if (value) {
+        if (
+            tokenInput.value.trim()
+        ) {
 
             sessionStorage.setItem(
-                "lac_github_token",
-                value
+                "lac_token",
+                tokenInput.value.trim()
             );
 
         } else {
 
             sessionStorage.removeItem(
-                "lac_github_token"
+                "lac_token"
             );
         }
     }
 );
 
-
-/* =========================================================
-   TOKEN
-========================================================= */
 
 function getToken() {
 
@@ -857,9 +675,8 @@ function getToken() {
         tokenInput.value.trim();
 
     if (!token) {
-
         throw new Error(
-            "Enter your GitHub token first."
+            "Enter your GitHub token."
         );
     }
 
@@ -867,18 +684,14 @@ function getToken() {
 }
 
 
-/* =========================================================
+/* =====================================================
    GITHUB API
-========================================================= */
+===================================================== */
 
 async function github(
     path,
     options = {}
 ) {
-
-    const token =
-        getToken();
-
 
     const response =
         await fetch(
@@ -887,12 +700,11 @@ async function github(
                 ...options,
 
                 headers: {
-
                     "Accept":
                         "application/vnd.github+json",
 
                     "Authorization":
-                        "Bearer " + token,
+                        "Bearer " + getToken(),
 
                     "X-GitHub-Api-Version":
                         API_VERSION,
@@ -935,16 +747,16 @@ async function github(
 }
 
 
-/* =========================================================
-   STATUS
-========================================================= */
+/* =====================================================
+   UI
+===================================================== */
 
 function setStatus(
     text,
     type = ""
 ) {
 
-    statusText.textContent =
+    statusElement.textContent =
         text;
 
     dot.className =
@@ -952,39 +764,19 @@ function setStatus(
 }
 
 
-/* =========================================================
-   LOG
-========================================================= */
-
 function setLog(text) {
 
     logElement.textContent =
-        text || "No log available.";
+        text || "No log.";
 
     logElement.scrollTop =
         logElement.scrollHeight;
 }
 
 
-/* =========================================================
-   SLEEP
-========================================================= */
-
-function sleep(ms) {
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-}
-
-
-/* =========================================================
-   START SERVER
-========================================================= */
+/* =====================================================
+   START
+===================================================== */
 
 async function startServer() {
 
@@ -996,9 +788,6 @@ async function startServer() {
         stopButton.disabled =
             true;
 
-        serverOnline =
-            false;
-
 
         setStatus(
             "Starting server...",
@@ -1008,23 +797,23 @@ async function startServer() {
 
         setLog(
 `======================================
-STARTING L.A. CRIMES SERVER
+L.A. CRIMES SERVER
 ======================================
 
-Sending workflow request...`
+Sending workflow request...
+
+LAC_SERVER_STATE=PREPARING`
         );
 
 
         await github(
             `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/dispatches`,
             {
-                method:
-                    "POST",
+                method: "POST",
 
                 body:
                     JSON.stringify({
-                        ref:
-                            "main"
+                        ref: "main"
                     })
             }
         );
@@ -1035,36 +824,13 @@ Sending workflow request...`
 WORKFLOW STARTED
 ======================================
 
-GitHub accepted the request.
+Waiting for GitHub Actions...
 
-Finding workflow run...`
+LAC_SERVER_STATE=PREPARING`
         );
 
 
-        const run =
-            await waitForNewRun();
-
-
-        if (!run) {
-
-            throw new Error(
-                "Workflow started, but its run could not be found."
-            );
-        }
-
-
-        workflowRunId =
-            run.id;
-
-
-        sessionStorage.setItem(
-            "lac_workflow_run",
-            workflowRunId
-        );
-
-
-        runInfo.textContent =
-            `Run ${workflowRunId} · GitHub: ${run.status}`;
+        await findActiveRun();
 
 
         beginPolling();
@@ -1073,103 +839,104 @@ Finding workflow run...`
 
     catch (error) {
 
-        console.error(
-            error
-        );
-
-
         setStatus(
-            "Failed to start",
+            "Start failed",
             "error"
         );
 
-
         setLog(
-`======================================
-ERROR
-======================================
+`ERROR:
 
 ${error.message}`
         );
 
-
         startButton.disabled =
             false;
-
-        stopButton.disabled =
-            true;
     }
 }
 
 
-/* =========================================================
-   FIND NEW RUN
-========================================================= */
+/* =====================================================
+   FIND ACTIVE RUN
+===================================================== */
 
-async function waitForNewRun() {
+async function findActiveRun() {
 
     for (
-        let i = 0;
-        i < 30;
-        i++
+        let attempt = 0;
+        attempt < 30;
+        attempt++
     ) {
 
         const data =
             await github(
-                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?event=workflow_dispatch&per_page=10`
+                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?per_page=20`
             );
 
 
-        const run =
+        const active =
             data.workflow_runs?.find(
-                item =>
-                    item.status ===
+                run =>
+                    run.event ===
+                    "workflow_dispatch" &&
+                    (
+                        run.status ===
                         "queued" ||
-                    item.status ===
+                        run.status ===
                         "in_progress"
+                    )
             );
 
 
-        if (run) {
-            return run;
+        if (active) {
+
+            runId =
+                active.id;
+
+            sessionStorage.setItem(
+                "lac_run_id",
+                runId
+            );
+
+            return active;
         }
 
 
-        await sleep(
-            2000
+        await new Promise(
+            resolve =>
+                setTimeout(
+                    resolve,
+                    2000
+                )
         );
     }
 
 
-    return null;
+    throw new Error(
+        "The workflow was started but no active run was found."
+    );
 }
 
 
-/* =========================================================
+/* =====================================================
    RECOVER AFTER REFRESH
-========================================================= */
+===================================================== */
 
-async function recoverServer() {
+async function recover() {
 
     try {
 
-        setStatus(
-            "Checking GitHub...",
-            "warning"
-        );
-
-
         /*
-         * First check the run we already know.
+         * First try the remembered run.
          */
 
-        if (workflowRunId) {
+        if (runId) {
 
             try {
 
                 const run =
                     await github(
-                        `/repos/${OWNER}/${REPO}/actions/runs/${workflowRunId}`
+                        `/repos/${OWNER}/${REPO}/actions/runs/${runId}`
                     );
 
 
@@ -1178,85 +945,57 @@ async function recoverServer() {
                     "completed"
                 ) {
 
-                    runInfo.textContent =
-                        `Run ${run.id} · GitHub: ${run.status}`;
-
                     beginPolling();
 
                     return;
                 }
 
-            }
+            } catch (_) {
 
-            catch (_) {
-
-                workflowRunId =
+                runId =
                     null;
 
                 sessionStorage.removeItem(
-                    "lac_workflow_run"
+                    "lac_run_id"
                 );
             }
         }
 
 
         /*
-         * No known run.
-         *
-         * Search for an active
+         * Search GitHub for ANY active
          * workflow.
          */
 
-        const active =
+        const data =
             await github(
-                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?status=in_progress&per_page=10`
+                `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?per_page=20`
             );
 
 
-        let run =
-            active.workflow_runs?.find(
-                item =>
-                    item.event ===
-                    "workflow_dispatch"
+        const active =
+            data.workflow_runs?.find(
+                run =>
+                    run.event ===
+                    "workflow_dispatch" &&
+                    (
+                        run.status ===
+                        "queued" ||
+                        run.status ===
+                        "in_progress"
+                    )
             );
 
 
-        /*
-         * Also check queued.
-         */
+        if (active) {
 
-        if (!run) {
-
-            const queued =
-                await github(
-                    `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW}/runs?status=queued&per_page=10`
-                );
-
-
-            run =
-                queued.workflow_runs?.find(
-                    item =>
-                        item.event ===
-                        "workflow_dispatch"
-                );
-        }
-
-
-        if (run) {
-
-            workflowRunId =
-                run.id;
-
+            runId =
+                active.id;
 
             sessionStorage.setItem(
-                "lac_workflow_run",
-                workflowRunId
+                "lac_run_id",
+                runId
             );
-
-
-            runInfo.textContent =
-                `Run ${run.id} · GitHub: ${run.status}`;
-
 
             beginPolling();
 
@@ -1265,17 +1004,15 @@ async function recoverServer() {
 
 
         /*
-         * Nothing running.
+         * Nothing active.
          */
 
         setStatus(
             "Server offline"
         );
 
-
         runInfo.textContent =
-            "No active workflow";
-
+            "No active server workflow";
 
         startButton.disabled =
             false;
@@ -1287,20 +1024,13 @@ async function recoverServer() {
 
     catch (error) {
 
-        console.error(
-            error
-        );
-
-
         setStatus(
             "GitHub connection error",
             "error"
         );
 
-
         runInfo.textContent =
             error.message;
-
 
         startButton.disabled =
             false;
@@ -1311,9 +1041,9 @@ async function recoverServer() {
 }
 
 
-/* =========================================================
-   START POLLING
-========================================================= */
+/* =====================================================
+   POLLING
+===================================================== */
 
 function beginPolling() {
 
@@ -1328,10 +1058,6 @@ function beginPolling() {
     pollServer();
 
 
-    /*
-     * 10 seconds.
-     */
-
     pollTimer =
         setInterval(
             pollServer,
@@ -1340,13 +1066,13 @@ function beginPolling() {
 }
 
 
-/* =========================================================
-   POLL SERVER
-========================================================= */
+/* =====================================================
+   POLL
+===================================================== */
 
 async function pollServer() {
 
-    if (!workflowRunId) {
+    if (!runId) {
         return;
     }
 
@@ -1355,7 +1081,7 @@ async function pollServer() {
 
         const run =
             await github(
-                `/repos/${OWNER}/${REPO}/actions/runs/${workflowRunId}`
+                `/repos/${OWNER}/${REPO}/actions/runs/${runId}`
             );
 
 
@@ -1364,16 +1090,9 @@ async function pollServer() {
 
 
         /*
-         * ================================================
-         * IMPORTANT:
-         *
-         * completed = workflow really ended.
-         * in_progress does NOT mean server is preparing.
-         *
-         * Keep server alive deliberately keeps
-         * GitHub in_progress while the actual
-         * game server is ONLINE.
-         * ================================================
+         * =============================================
+         * WORKFLOW COMPLETED
+         * =============================================
          */
 
         if (
@@ -1381,8 +1100,22 @@ async function pollServer() {
             "completed"
         ) {
 
-            serverOnline =
+            setStatus(
+                "Server offline"
+            );
+
+            dot.className =
+                "dot";
+
+            startButton.disabled =
                 false;
+
+            stopButton.disabled =
+                true;
+
+            serverCard.classList.remove(
+                "show"
+            );
 
 
             if (pollTimer) {
@@ -1396,37 +1129,24 @@ async function pollServer() {
             }
 
 
+            setLog(
+                logElement.textContent +
+
+`\n
+======================================
+WORKFLOW COMPLETED
+======================================
+
+LAC_SERVER_STATE=OFFLINE`
+            );
+
+
             sessionStorage.removeItem(
-                "lac_workflow_run"
+                "lac_run_id"
             );
 
-            sessionStorage.removeItem(
-                "lac_job_id"
-            );
-
-
-            workflowRunId =
+            runId =
                 null;
-
-            jobId =
-                null;
-
-
-            setStatus(
-                "Server offline"
-            );
-
-
-            startButton.disabled =
-                false;
-
-            stopButton.disabled =
-                true;
-
-
-            await loadFinalLogs(
-                run
-            );
 
 
             return;
@@ -1434,7 +1154,9 @@ async function pollServer() {
 
 
         /*
-         * Workflow is still alive.
+         * =============================================
+         * WORKFLOW IS ACTIVE
+         * =============================================
          */
 
         startButton.disabled =
@@ -1442,106 +1164,208 @@ async function pollServer() {
 
 
         /*
-         * Find server job.
+         * Get the commit status for THIS run.
          */
 
-        const jobs =
-            await github(
-                `/repos/${OWNER}/${REPO}/actions/runs/${workflowRunId}/jobs?per_page=100`
-            );
-
-
-        const serverJob =
-            jobs.jobs?.find(
-                job =>
-                    job.name ===
-                    "server"
-            );
-
-
-        if (!serverJob) {
-
-            setStatus(
-                "Server preparing...",
-                "warning"
-            );
-
-            return;
-        }
-
-
-        jobId =
-            serverJob.id;
-
-
-        sessionStorage.setItem(
-            "lac_job_id",
-            jobId
+        await readServerStatus(
+            run.head_sha
         );
 
 
         /*
-         * Try to get the log.
+         * Get the live job log as a secondary
+         * display. It is NOT used to determine
+         * online/offline state.
          */
 
-        await loadJobLog(
-            jobId
+        await loadLog(
+            run.id
         );
-
-
-        /*
-         * DO NOT overwrite ONLINE here.
-         *
-         * parseReadyInfo() is responsible
-         * for changing serverOnline.
-         */
-
-        if (serverOnline) {
-
-            setStatus(
-                "🟢 Server is ONLINE",
-                "online"
-            );
-
-
-            startButton.disabled =
-                true;
-
-            stopButton.disabled =
-                false;
-
-        } else {
-
-            setStatus(
-                "Server preparing...",
-                "warning"
-            );
-
-
-            startButton.disabled =
-                true;
-
-            stopButton.disabled =
-                true;
-        }
 
     }
 
     catch (error) {
 
         console.error(
-            "Polling error:",
             error
         );
+
+        runInfo.textContent =
+            error.message;
     }
 }
 
 
-/* =========================================================
-   LOAD JOB LOG
-========================================================= */
+/* =====================================================
+   READ SPECIAL SERVER STATUS
+===================================================== */
 
-async function loadJobLog(
+async function readServerStatus(
+    sha
+) {
+
+    const statuses =
+        await github(
+            `/repos/${OWNER}/${REPO}/commits/${sha}/statuses?per_page=100`
+        );
+
+
+    const serverStatus =
+        statuses.find(
+            status =>
+                status.context ===
+                STATUS_CONTEXT
+        );
+
+
+    if (!serverStatus) {
+
+        setStatus(
+            "Server preparing...",
+            "warning"
+        );
+
+        stopButton.disabled =
+            true;
+
+        return;
+    }
+
+
+    const description =
+        serverStatus.description ||
+        "";
+
+
+    /*
+     * =============================================
+     * ONLINE
+     * =============================================
+     */
+
+    if (
+        serverStatus.state ===
+            "success" &&
+        description.includes(
+            "LAC_SERVER_ONLINE"
+        )
+    ) {
+
+        setStatus(
+            "🟢 Server ONLINE",
+            "online"
+        );
+
+
+        stopButton.disabled =
+            false;
+
+
+        /*
+         * Extract endpoint.
+         */
+
+        const endpoint =
+            description.match(
+                /PUBLIC_ENDPOINT=([^|]+)/i
+            );
+
+
+        if (endpoint) {
+
+            addressElement.textContent =
+                endpoint[1].trim();
+
+            serverCard.classList.add(
+                "show"
+            );
+        }
+
+
+        setLog(
+            logElement.textContent +
+
+`\n
+--------------------------------------
+STATUS
+--------------------------------------
+LAC_SERVER_STATE=ONLINE
+SERVER_READY=true
+${endpoint ? "PUBLIC_ENDPOINT=" + endpoint[1].trim() : ""}`
+        );
+
+
+        return;
+    }
+
+
+    /*
+     * =============================================
+     * PREPARING
+     * =============================================
+     */
+
+    if (
+        serverStatus.state ===
+        "pending"
+    ) {
+
+        setStatus(
+            "🟡 Server preparing...",
+            "warning"
+        );
+
+
+        stopButton.disabled =
+            true;
+
+
+        return;
+    }
+
+
+    /*
+     * =============================================
+     * OFFLINE / ERROR
+     * =============================================
+     */
+
+    if (
+        serverStatus.state ===
+            "failure" ||
+        serverStatus.state ===
+            "error"
+    ) {
+
+        setStatus(
+            "🔴 Server offline",
+            "error"
+        );
+
+
+        stopButton.disabled =
+            true;
+
+
+        return;
+    }
+
+
+    setStatus(
+        "Server preparing...",
+        "warning"
+    );
+
+    stopButton.disabled =
+        true;
+}
+
+
+/* =====================================================
+   LOAD LOG
+===================================================== */
+
+async function loadLog(
     id
 ) {
 
@@ -1553,10 +1377,9 @@ async function loadJobLog(
 
         const response =
             await fetch(
-                `${API}/repos/${OWNER}/${REPO}/actions/jobs/${id}/logs`,
+                `${API}/repos/${OWNER}/${REPO}/actions/runs/${id}/logs`,
                 {
                     headers: {
-
                         "Accept":
                             "application/vnd.github+json",
 
@@ -1570,6 +1393,12 @@ async function loadJobLog(
             );
 
 
+        /*
+         * GitHub may return a redirect/temporary
+         * log URL. If that happens, don't let it
+         * break the server-state system.
+         */
+
         if (!response.ok) {
             return;
         }
@@ -1579,137 +1408,36 @@ async function loadJobLog(
             await response.text();
 
 
-        if (!text.trim()) {
-            return;
+        if (
+            text &&
+            text.trim()
+        ) {
+
+            setLog(text);
         }
-
-
-        setLog(
-            text
-        );
-
-
-        parseReadyInfo(
-            text
-        );
 
     }
 
     catch (error) {
 
         console.debug(
-            "Job log not available yet."
+            "Live log unavailable:",
+            error
         );
     }
 }
 
 
-/* =========================================================
-   PARSE SERVER READY
-========================================================= */
-
-function parseReadyInfo(
-    text
-) {
-
-    /*
-     * IMPORTANT:
-     *
-     * We DON'T require the marker
-     * to be at the beginning of a line.
-     *
-     * GitHub can format the log like:
-     *
-     * # SERVER_READY=true
-     *
-     * or:
-     *
-     * SERVER_READY=true
-     *
-     * or even put multiple values
-     * around the same log section.
-     */
-
-    const ready =
-        /SERVER_READY\s*=\s*true/i
-            .test(text);
-
-
-    const endpointMatch =
-        text.match(
-            /PUBLIC_ENDPOINT\s*=\s*([^\s\r\n]+)/i
-        );
-
-
-    /*
-     * Public address found.
-     */
-
-    if (endpointMatch) {
-
-        const endpoint =
-            endpointMatch[1]
-                .trim()
-                .replace(
-                    /["'`#]/g,
-                    ""
-                );
-
-
-        addressElement.textContent =
-            endpoint;
-
-
-        serverCard.classList.add(
-            "show"
-        );
-    }
-
-
-    /*
-     * SERVER_READY=true OR
-     * PUBLIC_ENDPOINT=...
-     *
-     * means the actual game server
-     * is ready.
-     */
-
-    if (
-        ready ||
-        endpointMatch
-    ) {
-
-        serverOnline =
-            true;
-
-
-        setStatus(
-            "🟢 Server is ONLINE",
-            "online"
-        );
-
-
-        startButton.disabled =
-            true;
-
-
-        stopButton.disabled =
-            false;
-    }
-}
-
-
-/* =========================================================
-   STOP SERVER
-========================================================= */
+/* =====================================================
+   STOP
+===================================================== */
 
 async function stopServer() {
 
-    if (!workflowRunId) {
+    if (!runId) {
 
         setStatus(
-            "No active server",
-            "warning"
+            "No active server"
         );
 
         return;
@@ -1745,12 +1473,12 @@ async function stopServer() {
 STOP REQUEST
 ======================================
 
-Cancelling GitHub Actions workflow...`
+Cancelling GitHub workflow...`
         );
 
 
         await github(
-            `/repos/${OWNER}/${REPO}/actions/runs/${workflowRunId}/cancel`,
+            `/repos/${OWNER}/${REPO}/actions/runs/${runId}/cancel`,
             {
                 method:
                     "POST"
@@ -1759,8 +1487,11 @@ Cancelling GitHub Actions workflow...`
 
 
         /*
-         * Keep polling until GitHub
-         * actually reports completed.
+         * Keep polling.
+         *
+         * The workflow will change its special
+         * LAC_SERVER status to OFFLINE when it
+         * finishes its cleanup.
          */
 
         beginPolling();
@@ -1769,13 +1500,8 @@ Cancelling GitHub Actions workflow...`
 
     catch (error) {
 
-        console.error(
-            error
-        );
-
-
         setStatus(
-            "Failed to stop server",
+            "Stop failed",
             "error"
         );
 
@@ -1796,9 +1522,9 @@ ${error.message}`
 }
 
 
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
+/* =====================================================
+   STARTUP
+===================================================== */
 
 window.addEventListener(
     "load",
@@ -1808,15 +1534,7 @@ window.addEventListener(
             tokenInput.value.trim()
         ) {
 
-            /*
-             * This is the important part:
-             *
-             * Refreshing the page searches
-             * GitHub for the currently
-             * running workflow.
-             */
-
-            recoverServer();
+            recover();
 
         } else {
 
@@ -1833,4 +1551,5 @@ window.addEventListener(
 </script>
 
 </body>
-</html>
+
+    </html>
