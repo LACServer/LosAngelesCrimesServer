@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 08:28:16 UTC
+TIME: 2026-08-22 08:28:27 UTC
 
 LOCAL UDP: 7777
 
@@ -1163,46 +1163,66 @@ IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.06 KB | OUT 0.17 KB
+IN 0.06 KB | OUT 0.32 KB
+IN 0.09 KB | OUT 0.46 KB
+IN 0.37 KB | OUT 1.62 KB
+IN 0.58 KB | OUT 2.11 KB
+IN 0.80 KB | OUT 2.49 KB
+IN 1.01 KB | OUT 3.11 KB
+IN 1.30 KB | OUT 3.95 KB
+IN 1.47 KB | OUT 4.31 KB
+IN 1.76 KB | OUT 4.82 KB
+IN 1.95 KB | OUT 5.22 KB
+IN 2.12 KB | OUT 5.70 KB
+IN 2.30 KB | OUT 6.27 KB
+IN 2.32 KB | OUT 6.60 KB
+IN 2.32 KB | OUT 7.15 KB
+IN 2.32 KB | OUT 7.59 KB
+IN 2.32 KB | OUT 8.42 KB
+IN 2.32 KB | OUT 8.94 KB
+IN 2.32 KB | OUT 9.47 KB
+IN 2.74 KB | OUT 9.96 KB
+IN 3.15 KB | OUT 10.39 KB
+IN 3.41 KB | OUT 10.86 KB
+IN 3.41 KB | OUT 11.42 KB
+IN 3.87 KB | OUT 11.85 KB
+IN 4.24 KB | OUT 12.36 KB
+IN 4.46 KB | OUT 12.77 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Legacy Shaders/Bumped Diffuse-Full Shadow shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Legacy Shaders/Bumped Diffuse-Full Shadow' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Legacy Shaders/Transparent/VertexLit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Legacy Shaders/Transparent/Diffuse' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Legacy Shaders/Transparent/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Legacy Shaders/Transparent/Diffuse' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Unlit/CustomUnlit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-ERROR: Shader Legacy Shaders/Particles/Additive shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-ERROR: Shader Hidden/Kino/Motion/FrameBlending shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-ERROR: Shader Hidden/Kino/Motion/Reconstruction shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-ERROR: Shader Mobile/Particles/Multiply shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-ERROR: Shader Mobile/Mobile-Surf-Particle shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Transparent/Cutout/Diffuse' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Transparent/Cutout/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Transparent/Cutout/Diffuse' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Mobile/Specular-FullShadow' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Mobile/Specular-FullShadow shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Mobile/Specular-FullShadow' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Unlit/Color shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-ERROR: Shader Mobile/Particles/Alpha Blended shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse-Full Shadows' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
@@ -1468,6 +1488,41 @@ Mirror.NetworkClient:NetworkLateUpdate()
 <ApplyRot>d__227:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+[NetworkManager] Player Connected: 127.0.0.1
+kcp2k.<>c__DisplayClass20_0:<CreateConnection>g__OnConnectedCallback|3(KcpServerConnection)
+kcp2k.KcpPeer:TickIncoming_Connected(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[CustomNetManager] spawning player.
+CustomNetworkManager:OnCreateCharacter(NetworkConnectionToClient, CustomCharacterMessage)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkServer:UnpackAndInvoke(NetworkConnectionToClient, NetworkReader, Int32)
+Mirror.NetworkServer:OnTransportData(Int32, ArraySegment`1, Int32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[PlayerControl] HerculeEdit Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+PlayerControl:Respawn()
+Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
+Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
+Mirror.NetworkClient:OnRPCMessage(RpcMessage)
+Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
+Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
+Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
+Mirror.LocalConnectionToServer:Update()
+Mirror.NetworkClient:NetworkLateUpdate()
+
 
 ======================================
 SERVER CHECK
@@ -1479,4 +1534,4 @@ Port Buddy PID: 3382
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2850,fd=21))
 
-Last update: 08:28:16 UTC
+Last update: 08:28:27 UTC
