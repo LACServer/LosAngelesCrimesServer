@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 08:27:19 UTC
+TIME: 2026-08-22 08:27:31 UTC
 
 LOCAL UDP: 7777
 
@@ -882,26 +882,67 @@ IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
 IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Standard' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Standard shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Standard' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Transparent-DoubleSided' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Mobile/Specular-Standard-Transparent-DoubleSided shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
-WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Transparent-DoubleSided' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
 ERROR: Shader Shaders 102/Simple Box Blur shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 ERROR: Shader Unlit/Transparent shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 WARNING: Shader Unsupported: 'Legacy Shaders/Bumped Diffuse-Full Shadow' - All subshaders removed
@@ -1187,6 +1228,21 @@ Mirror.NetworkClient:NetworkLateUpdate()
 <ApplyRot>d__227:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+[PlayerControl] Player3 Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+PlayerControl:Respawn()
+Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
+Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
+Mirror.NetworkClient:OnRPCMessage(RpcMessage)
+Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
+Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
+Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
+Mirror.LocalConnectionToServer:Update()
+Mirror.NetworkClient:NetworkLateUpdate()
+
 
 ======================================
 SERVER CHECK
@@ -1198,4 +1254,4 @@ Port Buddy PID: 3382
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2850,fd=21))
 
-Last update: 08:27:19 UTC
+Last update: 08:27:31 UTC
