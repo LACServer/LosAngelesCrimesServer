@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 08:30:20 UTC
+TIME: 2026-08-22 08:30:31 UTC
 
 LOCAL UDP: 7777
 
@@ -1784,15 +1784,67 @@ IN 490.75 KB | OUT 635.09 KB
 IN 491.44 KB | OUT 635.72 KB
 IN 492.31 KB | OUT 636.85 KB
 IN 492.96 KB | OUT 637.68 KB
+IN 493.35 KB | OUT 638.33 KB
+IN 493.94 KB | OUT 639.95 KB
+IN 494.68 KB | OUT 641.44 KB
+IN 495.50 KB | OUT 642.70 KB
+IN 496.26 KB | OUT 643.81 KB
+IN 497.02 KB | OUT 644.62 KB
+IN 498.08 KB | OUT 646.89 KB
+IN 498.49 KB | OUT 647.84 KB
+IN 498.71 KB | OUT 648.50 KB
+IN 498.85 KB | OUT 650.17 KB
+IN 499.46 KB | OUT 651.26 KB
+IN 500.40 KB | OUT 651.95 KB
+IN 501.66 KB | OUT 653.21 KB
+IN 502.16 KB | OUT 653.81 KB
+IN 502.96 KB | OUT 655.38 KB
+IN 503.35 KB | OUT 656.44 KB
+IN 503.87 KB | OUT 657.19 KB
+IN 504.48 KB | OUT 658.16 KB
+IN 505.25 KB | OUT 658.80 KB
+IN 506.67 KB | OUT 660.28 KB
+IN 508.20 KB | OUT 661.85 KB
+IN 508.37 KB | OUT 662.61 KB
+IN 509.18 KB | OUT 664.83 KB
+IN 509.84 KB | OUT 665.61 KB
+IN 510.59 KB | OUT 666.34 KB
+IN 511.32 KB | OUT 666.91 KB
+IN 512.00 KB | OUT 668.44 KB
+IN 512.40 KB | OUT 669.11 KB
+IN 513.03 KB | OUT 669.76 KB
+IN 513.72 KB | OUT 670.53 KB
+IN 514.55 KB | OUT 671.26 KB
+IN 515.60 KB | OUT 672.30 KB
+IN 516.62 KB | OUT 674.60 KB
+IN 516.95 KB | OUT 675.10 KB
+IN 517.57 KB | OUT 675.94 KB
+IN 518.34 KB | OUT 676.68 KB
+IN 519.56 KB | OUT 678.29 KB
+IN 521.02 KB | OUT 679.77 KB
+IN 522.44 KB | OUT 680.89 KB
+IN 523.27 KB | OUT 682.21 KB
+IN 523.86 KB | OUT 682.84 KB
+IN 524.71 KB | OUT 683.58 KB
+IN 525.98 KB | OUT 684.45 KB
+IN 527.15 KB | OUT 686.52 KB
+IN 528.39 KB | OUT 687.46 KB
+IN 528.71 KB | OUT 687.89 KB
+IN 528.84 KB | OUT 688.39 KB
+IN 529.15 KB | OUT 688.87 KB
+IN 529.48 KB | OUT 689.45 KB
+IN 529.76 KB | OUT 690.16 KB
+IN 530.27 KB | OUT 691.07 KB
+IN 530.94 KB | OUT 691.87 KB
+IN 531.45 KB | OUT 692.68 KB
+IN 532.28 KB | OUT 693.95 KB
+IN 533.22 KB | OUT 695.01 KB
+IN 534.78 KB | OUT 696.93 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse-Full Shadows' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Hidden/Image Effects/Cinematic/AmbientOcclusion shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 ERROR: Shader Mobile/Particles/VertexLit Blended shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 ERROR: Shader Mobile/Particles/Additive shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 ERROR: Shader Projector/Multiply-Decal shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
@@ -2089,6 +2141,10 @@ Mirror.NetworkClient:NetworkLateUpdate()
 <ApplyRot>d__227:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+[PlayerControl] Player3 Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -2100,4 +2156,4 @@ Port Buddy PID: 3382
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2850,fd=21))
 
-Last update: 08:30:20 UTC
+Last update: 08:30:31 UTC
