@@ -3,9 +3,6 @@ name: L.A. Crimes Public Server
 on:
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
   server:
     runs-on: ubuntu-latest
@@ -19,8 +16,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
 
       # ==========================================
       # JAVA
@@ -117,7 +112,7 @@ jobs:
           (Basic)
           restart timer=never
           max players=16
-          map name=NewTerrainRamps
+          map name=City
           starting port=7777
 
           (Server List)
@@ -159,9 +154,6 @@ jobs:
           echo "CONFIG INSTALLED"
           echo "======================================"
 
-          sudo cat \
-            "$CONFIG_DIR/ServerConfig.txt"
-
       # ==========================================
       # START L.A. CRIMES
       # ==========================================
@@ -183,7 +175,9 @@ jobs:
           echo "STARTING L.A. CRIMES"
           echo "======================================"
 
-          echo "UDP PORT: 7777"
+          echo "MAP: City"
+          echo "LOCAL UDP PORT: 7777"
+          echo "======================================"
 
           ./LAC_Linux_v1.9.6.x86_64 \
             -batchmode \
@@ -192,7 +186,9 @@ jobs:
 
           echo $! > "$GITHUB_WORKSPACE/lac.pid"
 
-          sleep 30
+          echo "Waiting 10 seconds for L.A. Crimes..."
+
+          sleep 10
 
           echo
           echo "===== PROCESS ====="
@@ -203,20 +199,6 @@ jobs:
           echo "===== UDP 7777 ====="
 
           ss -lunp | grep ':7777' || true
-
-      # ==========================================
-      # SHOW LAC LOG
-      # ==========================================
-
-      - name: Show L.A. Crimes log
-        run: |
-          echo "======================================"
-          echo "L.A. CRIMES LOG"
-          echo "======================================"
-
-          tail -250 \
-            "$GITHUB_WORKSPACE/lac-server.log" \
-            || true
 
       # ==========================================
       # CLONE PORT BUDDY
@@ -239,9 +221,6 @@ jobs:
 
           chmod +x mvnw
 
-          echo
-          echo "===== MODULES ====="
-
           find . \
             -name pom.xml \
             -print
@@ -257,7 +236,7 @@ jobs:
           cd "$GITHUB_WORKSPACE/port-buddy"
 
           echo "======================================"
-          echo "BUILDING PORT BUDDY"
+          echo "BUILDING PORT BUDDY CLI"
           echo "======================================"
 
           ./mvnw \
@@ -267,9 +246,7 @@ jobs:
             clean install
 
           echo
-          echo "======================================"
           echo "PORT BUDDY BUILD SUCCESSFUL"
-          echo "======================================"
 
       # ==========================================
       # PREPARE RUNTIME
@@ -288,19 +265,9 @@ jobs:
           mkdir -p \
             "$GITHUB_WORKSPACE/portbuddy-runtime"
 
-          if [ ! -d "cli/target/classes" ]; then
-            echo "ERROR: cli/target/classes not found."
-            exit 1
-          fi
-
           cp -r \
             cli/target/classes \
             "$GITHUB_WORKSPACE/portbuddy-runtime/cli-classes"
-
-          if [ ! -d "common/target/classes" ]; then
-            echo "ERROR: common/target/classes not found."
-            exit 1
-          fi
 
           cp -r \
             common/target/classes \
@@ -315,8 +282,7 @@ jobs:
           echo
           echo "===== RUNTIME CLASSPATH ====="
 
-          cat \
-            "$GITHUB_WORKSPACE/portbuddy-classpath.txt"
+          cat "$GITHUB_WORKSPACE/portbuddy-classpath.txt"
 
       # ==========================================
       # CREATE LAUNCHER
@@ -346,28 +312,21 @@ jobs:
             "$@"
           EOF
 
-          chmod +x \
-            "$GITHUB_WORKSPACE/portbuddy"
+          chmod +x "$GITHUB_WORKSPACE/portbuddy"
 
           sudo cp \
             "$GITHUB_WORKSPACE/portbuddy" \
             /usr/local/bin/portbuddy
 
-          echo "======================================"
           echo "PORT BUDDY LAUNCHER READY"
-          echo "======================================"
 
       # ==========================================
-      # TEST PORT BUDDY
+      # TEST
       # ==========================================
 
       - name: Test Port Buddy
         run: |
           set -e
-
-          echo "======================================"
-          echo "TESTING PORT BUDDY"
-          echo "======================================"
 
           portbuddy --help
 
@@ -392,7 +351,6 @@ jobs:
 
           portbuddy init "$PORTBUDDY_TOKEN"
 
-          echo
           echo "Port Buddy authentication complete."
 
       # ==========================================
@@ -414,64 +372,76 @@ jobs:
             7777 \
             > "$GITHUB_WORKSPACE/portbuddy.log" 2>&1 &
 
-          echo $! \
-            > "$GITHUB_WORKSPACE/portbuddy.pid"
-
-          sleep 15
+          echo $! > "$GITHUB_WORKSPACE/portbuddy.pid"
 
           echo
-          echo "======================================"
-          echo "PORT BUDDY OUTPUT"
-          echo "======================================"
+          echo "Waiting 10 seconds for Port Buddy..."
+          sleep 10
 
-          cat \
-            "$GITHUB_WORKSPACE/portbuddy.log"
+          echo
+          echo "===== PORT BUDDY OUTPUT ====="
+
+          cat "$GITHUB_WORKSPACE/portbuddy.log"
 
       # ==========================================
-      # CREATE LIVE LOG
+      # FIND PUBLIC ADDRESS
       # ==========================================
 
-      - name: Create initial live log
+      - name: Find public endpoint
         run: |
           set -e
 
-          cd "$GITHUB_WORKSPACE"
+          echo "======================================"
+          echo "SEARCHING FOR PUBLIC ENDPOINT"
+          echo "======================================"
 
-          {
-            echo "======================================"
-            echo "L.A. CRIMES PUBLIC SERVER"
-            echo "======================================"
-            echo
-            echo "STATUS: STARTING"
-            echo
-            echo "LOCAL UDP: 7777"
-            echo
-            echo "======================================"
-            echo "PORT BUDDY"
-            echo "======================================"
-            echo
-            cat portbuddy.log 2>/dev/null || true
-            echo
-            echo "======================================"
-            echo "L.A. CRIMES LOG"
-            echo "======================================"
-            echo
-            tail -300 lac-server.log 2>/dev/null || true
-          } > live-server-log.txt
+          PUBLIC_ADDRESS=""
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for i in $(seq 1 30); do
 
-          git add live-server-log.txt
+            PUBLIC_ADDRESS=$(grep -oE \
+              '[a-zA-Z0-9.-]+:[0-9]{2,5}' \
+              "$GITHUB_WORKSPACE/portbuddy.log" \
+              | grep -vE \
+                'localhost|127\.0\.0\.1' \
+              | tail -1 \
+              || true)
 
-          git commit \
-            -m "Initialize live server log" \
-            || true
+            if [ -n "$PUBLIC_ADDRESS" ]; then
+              break
+            fi
 
-          git push \
-            origin \
-            HEAD:main \
-            || true
+            echo "Endpoint not available yet..."
+            sleep 2
+
+          done
+
+          if [ -z "$PUBLIC_ADDRESS" ]; then
+            echo
+            echo "ERROR: Could not find public Port Buddy endpoint."
+
+            echo
+            echo "===== PORT BUDDY LOG ====="
+
+            cat "$GITHUB_WORKSPACE/portbuddy.log"
+
+            exit 1
+          fi
+
+          echo
+          echo "======================================"
+          echo "SERVER_READY"
+          echo "======================================"
+
+          echo "SERVER_READY=true"
+          echo "SERVER_MAP=City"
+          echo "SERVER_LOCAL_PORT=7777"
+          echo "SERVER_PUBLIC_ADDRESS=$PUBLIC_ADDRESS"
+
+          echo "======================================"
+          echo "PUBLIC SERVER:"
+          echo "$PUBLIC_ADDRESS"
+          echo "======================================"
 
       # ==========================================
       # FINAL CHECK
@@ -491,10 +461,12 @@ jobs:
           echo "L.A. Crimes PID: $LAC_PID"
           echo "Port Buddy PID: $PB_PID"
 
-          echo
-
           if ! kill -0 "$LAC_PID" 2>/dev/null; then
+
             echo "L.A. Crimes stopped."
+
+            echo
+            echo "===== L.A. CRIMES LOG ====="
 
             tail -250 \
               "$GITHUB_WORKSPACE/lac-server.log" \
@@ -504,7 +476,11 @@ jobs:
           fi
 
           if ! kill -0 "$PB_PID" 2>/dev/null; then
+
             echo "Port Buddy stopped."
+
+            echo
+            echo "===== PORT BUDDY LOG ====="
 
             cat \
               "$GITHUB_WORKSPACE/portbuddy.log" \
@@ -517,38 +493,34 @@ jobs:
           echo "Port Buddy: RUNNING"
 
           echo
-          echo "===== UDP 7777 ====="
-
-          ss -lunp | grep ':7777' || true
-
-          echo
-          echo "===== PUBLIC ENDPOINT ====="
-
-          cat "$GITHUB_WORKSPACE/portbuddy.log"
+          echo "SERVER_READY=true"
 
       # ==========================================
-      # KEEP SERVER ALIVE
+      # KEEP ALIVE
       # ==========================================
 
       - name: Keep server alive
         run: |
-          set -e
-
-          cd "$GITHUB_WORKSPACE"
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
           echo "======================================"
-          echo "L.A. CRIMES SERVER IS RUNNING"
+          echo "SERVER ONLINE"
           echo "======================================"
 
-          echo
-          echo "LOCAL UDP: 7777"
-          echo
-          echo "PUBLIC ADDRESS:"
-          echo "See Port Buddy output above."
-          echo
+          echo "SERVER_READY=true"
+          echo "SERVER_MAP=City"
+          echo "SERVER_LOCAL_PORT=7777"
+
+          PUBLIC_ADDRESS=$(grep -oE \
+            '[a-zA-Z0-9.-]+:[0-9]{2,5}' \
+            "$GITHUB_WORKSPACE/portbuddy.log" \
+            | grep -vE \
+              'localhost|127\.0\.0\.1' \
+            | tail -1 \
+            || true)
+
+          echo "SERVER_PUBLIC_ADDRESS=$PUBLIC_ADDRESS"
+
+          echo "======================================"
+          echo "L.A. Crimes + Port Buddy running."
           echo "======================================"
 
           while true; do
@@ -556,20 +528,14 @@ jobs:
             LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
             PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
 
-            # --------------------------------------
-            # CHECK SERVER
-            # --------------------------------------
-
             if ! kill -0 "$LAC_PID" 2>/dev/null; then
+              echo "SERVER_READY=false"
               echo "L.A. Crimes stopped."
               exit 1
             fi
 
-            # --------------------------------------
-            # CHECK PORT BUDDY
-            # --------------------------------------
-
             if ! kill -0 "$PB_PID" 2>/dev/null; then
+              echo "SERVER_READY=false"
               echo "Port Buddy stopped."
 
               echo
@@ -580,68 +546,10 @@ jobs:
               exit 1
             fi
 
-            # --------------------------------------
-            # UPDATE LIVE LOG
-            # --------------------------------------
-
-            {
-              echo "======================================"
-              echo "L.A. CRIMES PUBLIC SERVER"
-              echo "======================================"
-              echo
-              echo "STATUS: RUNNING"
-              echo "TIME: $(date '+%Y-%m-%d %H:%M:%S UTC')"
-              echo
-              echo "LOCAL UDP: 7777"
-              echo
-              echo "======================================"
-              echo "PORT BUDDY"
-              echo "======================================"
-              echo
-              cat "$GITHUB_WORKSPACE/portbuddy.log" 2>/dev/null || true
-              echo
-              echo "======================================"
-              echo "L.A. CRIMES LOG"
-              echo "======================================"
-              echo
-              tail -300 "$GITHUB_WORKSPACE/lac-server.log" 2>/dev/null || true
-              echo
-              echo "======================================"
-              echo "SERVER CHECK"
-              echo "======================================"
-              echo
-              echo "L.A. Crimes PID: $LAC_PID"
-              echo "Port Buddy PID: $PB_PID"
-              echo
-              echo "UDP 7777:"
-              ss -lunp | grep ':7777' || true
-              echo
-              echo "Last update: $(date '+%H:%M:%S UTC')"
-            } > "$GITHUB_WORKSPACE/live-server-log.txt"
-
-            # --------------------------------------
-            # PUSH LOG TO GITHUB
-            # --------------------------------------
-
-            git add live-server-log.txt
-
-            if ! git diff --cached --quiet; then
-
-              git commit \
-                -m "Update live server log" \
-                || true
-
-              git push \
-                origin \
-                HEAD:main \
-                || true
-
-            fi
-
             echo
             echo "[$(date '+%H:%M:%S')]"
+            echo "SERVER_READY=true"
             echo "L.A. Crimes + Port Buddy running."
-            echo "Live log updated."
 
             sleep 10
 
