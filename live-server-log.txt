@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 08:31:28 UTC
+TIME: 2026-08-22 08:31:39 UTC
 
 LOCAL UDP: 7777
 
@@ -2122,15 +2122,67 @@ IN 669.39 KB | OUT 891.23 KB
 IN 669.39 KB | OUT 891.23 KB
 IN 669.39 KB | OUT 891.23 KB
 IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
+IN 669.39 KB | OUT 891.23 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-WARNING: Shader Unsupported: 'Custom/MixColor_Mask' - All subshaders removed
-WARNING: Shader Did you use #pragma only_renderers and omit this platform?
-WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
-ERROR: Shader Custom/MixColor_Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
 WARNING: Shader Unsupported: 'Custom/MixColor_Mask' - All subshaders removed
 WARNING: Shader Did you use #pragma only_renderers and omit this platform?
 WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
@@ -2427,6 +2479,10 @@ kcp2k.KcpServer:TickIncoming()
 Mirror.NetworkServer:NetworkEarlyUpdate()
 Mirror.NetworkLoop:NetworkEarlyUpdate()
 
+[PlayerControl] Player3 Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -2438,4 +2494,4 @@ Port Buddy PID: 3382
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2850,fd=21))
 
-Last update: 08:31:28 UTC
+Last update: 08:31:39 UTC
