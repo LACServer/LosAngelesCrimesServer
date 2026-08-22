@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:25:05 UTC
+TIME: 2026-08-22 09:25:17 UTC
 
 LOCAL UDP: 7777
 
@@ -1773,15 +1773,67 @@ IN 369.88 KB | OUT 535.11 KB
 IN 370.32 KB | OUT 535.70 KB
 IN 370.72 KB | OUT 536.21 KB
 IN 370.99 KB | OUT 536.62 KB
+IN 371.65 KB | OUT 537.51 KB
+IN 371.89 KB | OUT 537.97 KB
+IN 371.98 KB | OUT 538.39 KB
+IN 372.18 KB | OUT 538.75 KB
+IN 372.56 KB | OUT 539.16 KB
+IN 372.87 KB | OUT 539.62 KB
+IN 373.49 KB | OUT 540.66 KB
+IN 373.93 KB | OUT 541.28 KB
+IN 374.22 KB | OUT 541.69 KB
+IN 374.31 KB | OUT 542.11 KB
+IN 374.68 KB | OUT 542.54 KB
+IN 375.11 KB | OUT 543.10 KB
+IN 375.54 KB | OUT 543.87 KB
+IN 376.07 KB | OUT 544.40 KB
+IN 376.40 KB | OUT 544.87 KB
+IN 376.70 KB | OUT 545.40 KB
+IN 377.23 KB | OUT 546.02 KB
+IN 377.60 KB | OUT 546.67 KB
+IN 378.09 KB | OUT 547.29 KB
+IN 378.36 KB | OUT 547.62 KB
+IN 378.57 KB | OUT 548.04 KB
+IN 379.02 KB | OUT 548.48 KB
+IN 379.56 KB | OUT 549.27 KB
+IN 379.82 KB | OUT 549.90 KB
+IN 380.09 KB | OUT 550.22 KB
+IN 380.41 KB | OUT 550.73 KB
+IN 380.66 KB | OUT 551.11 KB
+IN 380.97 KB | OUT 551.59 KB
+IN 381.30 KB | OUT 552.12 KB
+IN 381.75 KB | OUT 552.53 KB
+IN 382.34 KB | OUT 553.46 KB
+IN 382.54 KB | OUT 553.82 KB
+IN 382.68 KB | OUT 554.32 KB
+IN 383.11 KB | OUT 554.74 KB
+IN 383.55 KB | OUT 555.12 KB
+IN 384.18 KB | OUT 556.01 KB
+IN 384.52 KB | OUT 556.62 KB
+IN 384.68 KB | OUT 557.09 KB
+IN 385.40 KB | OUT 557.86 KB
+IN 385.57 KB | OUT 558.22 KB
+IN 385.67 KB | OUT 558.61 KB
+IN 385.99 KB | OUT 559.06 KB
+IN 386.38 KB | OUT 559.74 KB
+IN 387.21 KB | OUT 560.68 KB
+IN 388.46 KB | OUT 562.09 KB
+IN 389.64 KB | OUT 563.38 KB
+IN 390.64 KB | OUT 564.36 KB
+IN 391.32 KB | OUT 564.99 KB
+IN 391.81 KB | OUT 565.45 KB
+IN 392.10 KB | OUT 566.17 KB
+IN 392.68 KB | OUT 567.05 KB
+IN 392.93 KB | OUT 567.60 KB
+IN 393.58 KB | OUT 568.85 KB
+IN 393.75 KB | OUT 569.35 KB
+IN 394.07 KB | OUT 569.85 KB
+IN 394.26 KB | OUT 570.24 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (14)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
 The effective box size has been forced positive and is likely to give unexpected collision geometry.
 If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (9)/Crago crate (13)/Main"
 BoxCollider does not support negative scale or size.
@@ -2078,6 +2130,10 @@ Mirror.NetworkClient:NetworkLateUpdate()
 <ApplyRot>d__227:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+[PlayerControl] HerculeEdit Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
 
 ======================================
 SERVER CHECK
@@ -2087,6 +2143,6 @@ L.A. Crimes PID: 2771
 Port Buddy PID: 3313
 
 UDP 7777:
-UNCONN 1920   0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
+UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:25:05 UTC
+Last update: 09:25:17 UTC
