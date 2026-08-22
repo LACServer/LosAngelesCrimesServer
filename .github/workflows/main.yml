@@ -3,6 +3,11 @@ name: L.A. Crimes Public Server
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  actions: write
+  statuses: write
+
 jobs:
   server:
     runs-on: ubuntu-latest
@@ -10,16 +15,46 @@ jobs:
 
     steps:
 
-      # ==========================================
+      # ==================================================
+      # SERVER STATUS: PREPARING
+      # ==================================================
+
+      - name: Mark server as PREPARING
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
+
+          echo "======================================"
+          echo "LAC_SERVER_STATE=PREPARING"
+          echo "======================================"
+
+          curl -sS \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -d '{
+              "state": "pending",
+              "context": "LAC_SERVER",
+              "description": "LAC_SERVER_PREPARING",
+              "target_url": "https://github.com/'"${GITHUB_REPOSITORY}"'/actions/runs/'"${GITHUB_RUN_ID}"'"
+            }'
+
+          echo
+          echo "LAC_SERVER_PREPARING=true"
+
+      # ==================================================
       # CHECKOUT
-      # ==========================================
+      # ==================================================
 
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ==========================================
+      # ==================================================
       # JAVA
-      # ==========================================
+      # ==================================================
 
       - name: Setup Java
         uses: actions/setup-java@v5
@@ -27,9 +62,9 @@ jobs:
           distribution: temurin
           java-version: "25"
 
-      # ==========================================
+      # ==================================================
       # DEPENDENCIES
-      # ==========================================
+      # ==================================================
 
       - name: Install dependencies
         run: |
@@ -43,9 +78,9 @@ jobs:
             curl \
             git
 
-      # ==========================================
+      # ==================================================
       # DOWNLOAD L.A. CRIMES
-      # ==========================================
+      # ==================================================
 
       - name: Download L.A. Crimes
         run: |
@@ -88,9 +123,9 @@ jobs:
           echo "L.A. Crimes found:"
           echo "$SERVER"
 
-      # ==========================================
+      # ==================================================
       # SERVER CONFIG
-      # ==========================================
+      # ==================================================
 
       - name: Create ServerConfig.txt
         run: |
@@ -131,9 +166,9 @@ jobs:
 
           cat "$GITHUB_WORKSPACE/ServerConfig.txt"
 
-      # ==========================================
+      # ==================================================
       # INSTALL CONFIG
-      # ==========================================
+      # ==================================================
 
       - name: Install ServerConfig.txt
         run: |
@@ -157,9 +192,9 @@ jobs:
           sudo cat \
             "$CONFIG_DIR/ServerConfig.txt"
 
-      # ==========================================
+      # ==================================================
       # START L.A. CRIMES
-      # ==========================================
+      # ==================================================
 
       - name: Start L.A. Crimes
         run: |
@@ -178,10 +213,9 @@ jobs:
           echo "STARTING L.A. CRIMES"
           echo "======================================"
 
-          echo "UDP PORT: 7777"
-          echo "MAP: City"
-
-          echo "SERVER_READY=false"
+          echo "LAC_SERVER_STATE=STARTING"
+          echo "MAP=City"
+          echo "LOCAL_UDP=7777"
 
           echo "======================================"
 
@@ -204,9 +238,9 @@ jobs:
 
           ss -lunp | grep ':7777' || true
 
-      # ==========================================
+      # ==================================================
       # SHOW LAC LOG
-      # ==========================================
+      # ==================================================
 
       - name: Show L.A. Crimes log
         run: |
@@ -218,9 +252,9 @@ jobs:
             "$GITHUB_WORKSPACE/lac-server.log" \
             || true
 
-      # ==========================================
+      # ==================================================
       # CLONE PORT BUDDY
-      # ==========================================
+      # ==================================================
 
       - name: Clone Port Buddy
         run: |
@@ -246,9 +280,9 @@ jobs:
             -name pom.xml \
             -print
 
-      # ==========================================
+      # ==================================================
       # BUILD PORT BUDDY
-      # ==========================================
+      # ==================================================
 
       - name: Build and install Port Buddy CLI
         run: |
@@ -271,9 +305,9 @@ jobs:
           echo "PORT BUDDY BUILD SUCCESSFUL"
           echo "======================================"
 
-      # ==========================================
+      # ==================================================
       # PREPARE RUNTIME
-      # ==========================================
+      # ==================================================
 
       - name: Prepare Port Buddy runtime
         run: |
@@ -318,9 +352,9 @@ jobs:
           cat \
             "$GITHUB_WORKSPACE/portbuddy-classpath.txt"
 
-      # ==========================================
+      # ==================================================
       # CREATE LAUNCHER
-      # ==========================================
+      # ==================================================
 
       - name: Create Port Buddy launcher
         run: |
@@ -357,9 +391,9 @@ jobs:
           echo "PORT BUDDY LAUNCHER READY"
           echo "======================================"
 
-      # ==========================================
+      # ==================================================
       # TEST PORT BUDDY
-      # ==========================================
+      # ==================================================
 
       - name: Test Port Buddy
         run: |
@@ -371,9 +405,9 @@ jobs:
 
           portbuddy --help
 
-      # ==========================================
+      # ==================================================
       # AUTHENTICATE
-      # ==========================================
+      # ==================================================
 
       - name: Authenticate Port Buddy
         env:
@@ -395,9 +429,9 @@ jobs:
           echo
           echo "Port Buddy authentication complete."
 
-      # ==========================================
+      # ==================================================
       # START UDP TUNNEL
-      # ==========================================
+      # ==================================================
 
       - name: Start Port Buddy UDP tunnel
         run: |
@@ -417,76 +451,73 @@ jobs:
           echo $! \
             > "$GITHUB_WORKSPACE/portbuddy.pid"
 
-          echo "Waiting for Port Buddy..."
-
-          READY="false"
-
-          for i in {1..6}; do
-
-            sleep 10
-
-            echo
-            echo "===== PORT BUDDY CHECK $i/6 ====="
-
-            cat \
-              "$GITHUB_WORKSPACE/portbuddy.log" \
-              || true
-
-            if grep -qi "Public:" \
-              "$GITHUB_WORKSPACE/portbuddy.log"; then
-
-              READY="true"
-              break
-
-            fi
-
-          done
-
-          if [ "$READY" != "true" ]; then
-
-            echo
-            echo "ERROR: Port Buddy did not provide a public endpoint."
-
-            echo
-            echo "===== PORT BUDDY LOG ====="
-
-            cat \
-              "$GITHUB_WORKSPACE/portbuddy.log" \
-              || true
-
-            exit 1
-
-          fi
-
-          PUBLIC_ADDRESS=$(
-            grep -i "Public:" \
-              "$GITHUB_WORKSPACE/portbuddy.log" |
-            tail -1 |
-            sed -E 's/.*Public:[[:space:]]*//'
-          )
+          sleep 10
 
           echo
           echo "======================================"
-          echo "PORT BUDDY READY"
+          echo "PORT BUDDY OUTPUT"
           echo "======================================"
 
-          echo "PUBLIC_ENDPOINT=$PUBLIC_ADDRESS"
+          cat \
+            "$GITHUB_WORKSPACE/portbuddy.log"
 
-          echo "SERVER_READY=true"
+      # ==================================================
+      # EXTRACT PUBLIC ENDPOINT
+      # ==================================================
 
-          echo "======================================"
-
-      # ==========================================
-      # FINAL CHECK
-      # ==========================================
-
-      - name: Final server check
+      - name: Detect public endpoint
         run: |
           set -e
 
           echo "======================================"
-          echo "FINAL SERVER CHECK"
+          echo "DETECTING PUBLIC ENDPOINT"
           echo "======================================"
+
+          ENDPOINT=""
+
+          for i in $(seq 1 30); do
+
+            ENDPOINT=$(grep -oE \
+              '[A-Za-z0-9.-]+:[0-9]{2,6}' \
+              "$GITHUB_WORKSPACE/portbuddy.log" \
+              | grep -vE \
+              'localhost:7777|127.0.0.1:7777' \
+              | tail -1 \
+              || true)
+
+            if [ -n "$ENDPOINT" ]; then
+              break
+            fi
+
+            echo "Waiting for public endpoint..."
+            sleep 2
+
+          done
+
+          if [ -z "$ENDPOINT" ]; then
+            echo "ERROR: Public endpoint was not detected."
+
+            cat \
+              "$GITHUB_WORKSPACE/portbuddy.log"
+
+            exit 1
+          fi
+
+          echo "PUBLIC_ENDPOINT=$ENDPOINT"
+
+          echo \
+            "PUBLIC_ENDPOINT=$ENDPOINT" \
+            > "$GITHUB_WORKSPACE/public-endpoint.txt"
+
+      # ==================================================
+      # FINAL CHECK + MARK ONLINE
+      # ==================================================
+
+      - name: Mark server ONLINE
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -e
 
           LAC_PID=$(cat \
             "$GITHUB_WORKSPACE/lac.pid")
@@ -494,90 +525,80 @@ jobs:
           PB_PID=$(cat \
             "$GITHUB_WORKSPACE/portbuddy.pid")
 
-          echo "L.A. Crimes PID: $LAC_PID"
-          echo "Port Buddy PID: $PB_PID"
-
-          echo
-
-          if ! kill -0 "$LAC_PID" 2>/dev/null; then
-
-            echo "L.A. Crimes stopped."
-
-            echo
-            echo "===== L.A. CRIMES LOG ====="
-
-            tail -250 \
-              "$GITHUB_WORKSPACE/lac-server.log" \
-              || true
-
-            exit 1
-
-          fi
-
-          if ! kill -0 "$PB_PID" 2>/dev/null; then
-
-            echo "Port Buddy stopped."
-
-            echo
-            echo "===== PORT BUDDY LOG ====="
-
-            cat \
-              "$GITHUB_WORKSPACE/portbuddy.log" \
-              || true
-
-            exit 1
-
-          fi
-
-          echo "L.A. Crimes: RUNNING"
-          echo "Port Buddy: RUNNING"
-
-          echo
-          echo "===== UDP 7777 ====="
-
-          ss -lunp | grep ':7777' || true
-
-          echo
-          echo "===== PUBLIC ENDPOINT ====="
-
-          PUBLIC_ADDRESS=$(
-            grep -i "Public:" \
-              "$GITHUB_WORKSPACE/portbuddy.log" |
-            tail -1 |
-            sed -E 's/.*Public:[[:space:]]*//'
-          )
-
-          echo "PUBLIC_ENDPOINT=$PUBLIC_ADDRESS"
-          echo "SERVER_READY=true"
-
-          echo
-          cat \
-            "$GITHUB_WORKSPACE/portbuddy.log"
-
-      # ==========================================
-      # KEEP SERVER ALIVE
-      # ==========================================
-
-      - name: Keep server alive
-        run: |
+          ENDPOINT=$(cut -d= -f2- \
+            "$GITHUB_WORKSPACE/public-endpoint.txt")
 
           echo "======================================"
           echo "L.A. CRIMES SERVER IS RUNNING"
           echo "======================================"
 
-          echo
-          echo "MAP: City"
-          echo "LOCAL UDP: 7777"
-
-          PUBLIC_ADDRESS=$(
-            grep -i "Public:" \
-              "$GITHUB_WORKSPACE/portbuddy.log" |
-            tail -1 |
-            sed -E 's/.*Public:[[:space:]]*//'
-          )
+          echo "LAC_SERVER_STATE=ONLINE"
+          echo "MAP=City"
+          echo "LOCAL_UDP=7777"
+          echo "PUBLIC_ENDPOINT=$ENDPOINT"
+          echo "SERVER_READY=true"
 
           echo
-          echo "PUBLIC_ENDPOINT=$PUBLIC_ADDRESS"
+          echo "L.A. Crimes PID: $LAC_PID"
+          echo "Port Buddy PID: $PB_PID"
+
+          if ! kill -0 "$LAC_PID" 2>/dev/null; then
+            echo "ERROR: L.A. Crimes is not running."
+            exit 1
+          fi
+
+          if ! kill -0 "$PB_PID" 2>/dev/null; then
+            echo "ERROR: Port Buddy is not running."
+            exit 1
+          fi
+
+          echo
+          echo "======================================"
+          echo "PUBLISHING SERVER STATUS"
+          echo "======================================"
+
+          DESCRIPTION="LAC_SERVER_ONLINE | SERVER_READY=true | MAP=City | PUBLIC_ENDPOINT=$ENDPOINT"
+
+          curl -sS \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -d "$(jq -n \
+              --arg description "$DESCRIPTION" \
+              --arg target "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+              '{
+                state: "success",
+                context: "LAC_SERVER",
+                description: $description,
+                target_url: $target
+              }')"
+
+          echo
+          echo "======================================"
+          echo "SERVER_READY=true"
+          echo "LAC_SERVER_STATE=ONLINE"
+          echo "======================================"
+
+      # ==================================================
+      # KEEP SERVER ALIVE
+      # ==================================================
+
+      - name: Keep server alive
+        run: |
+          echo "======================================"
+          echo "L.A. CRIMES SERVER IS ONLINE"
+          echo "======================================"
+
+          echo "LAC_SERVER_STATE=ONLINE"
+          echo "MAP=City"
+          echo "LOCAL_UDP=7777"
+
+          ENDPOINT=$(cut -d= -f2- \
+            "$GITHUB_WORKSPACE/public-endpoint.txt")
+
+          echo "PUBLIC_ENDPOINT=$ENDPOINT"
           echo "SERVER_READY=true"
 
           echo
@@ -592,36 +613,75 @@ jobs:
               "$GITHUB_WORKSPACE/portbuddy.pid")
 
             if ! kill -0 "$LAC_PID" 2>/dev/null; then
-
               echo
-              echo "SERVER_READY=false"
+              echo "LAC_SERVER_STATE=OFFLINE"
               echo "L.A. Crimes stopped."
-
               exit 1
-
             fi
 
             if ! kill -0 "$PB_PID" 2>/dev/null; then
-
               echo
-              echo "SERVER_READY=false"
+              echo "LAC_SERVER_STATE=OFFLINE"
               echo "Port Buddy stopped."
-
-              echo
-              echo "===== PORT BUDDY LOG ====="
-
-              cat \
-                "$GITHUB_WORKSPACE/portbuddy.log" \
-                || true
-
               exit 1
-
             fi
 
             echo
             echo "[$(date '+%H:%M:%S')]"
+            echo "LAC_SERVER_STATE=ONLINE"
+            echo "SERVER_READY=true"
+            echo "PUBLIC_ENDPOINT=$ENDPOINT"
             echo "L.A. Crimes + Port Buddy running."
 
             sleep 10
 
           done
+
+      # ==================================================
+      # FINAL STATUS
+      #
+      # Runs when the job ends normally, fails, or is
+      # cancelled. This makes the special status become
+      # OFFLINE instead of remaining ONLINE forever.
+      # ==================================================
+
+      - name: Mark server OFFLINE
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "======================================"
+          echo "LAC_SERVER_STATE=OFFLINE"
+          echo "======================================"
+
+          STATE="failure"
+          DESCRIPTION="LAC_SERVER_OFFLINE"
+
+          if [ "${{ job.status }}" = "cancelled" ]; then
+            DESCRIPTION="LAC_SERVER_OFFLINE | STOPPED"
+          elif [ "${{ job.status }}" = "failure" ]; then
+            DESCRIPTION="LAC_SERVER_OFFLINE | ERROR"
+          else
+            DESCRIPTION="LAC_SERVER_OFFLINE | STOPPED"
+          fi
+
+          curl -sS \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -d "$(jq -n \
+              --arg description "$DESCRIPTION" \
+              --arg target "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+              '{
+                state: "failure",
+                context: "LAC_SERVER",
+                description: $description,
+                target_url: $target
+              }')" \
+            || true
+
+          echo
+          echo "LAC_SERVER_STATE=OFFLINE"
+          echo "SERVER_READY=false"
