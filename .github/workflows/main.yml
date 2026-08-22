@@ -3,6 +3,9 @@ name: L.A. Crimes Public Server
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   server:
     runs-on: ubuntu-latest
@@ -16,6 +19,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       # ==========================================
       # JAVA
@@ -180,8 +185,6 @@ jobs:
 
           echo "UDP PORT: 7777"
 
-          echo "======================================"
-
           ./LAC_Linux_v1.9.6.x86_64 \
             -batchmode \
             -nographics \
@@ -246,16 +249,6 @@ jobs:
       # ==========================================
       # BUILD PORT BUDDY
       # ==========================================
-      #
-      # IMPORTANT:
-      # Build ONLY the CLI reactor.
-      # The web module is deliberately excluded.
-      #
-      # First install the modules into the local
-      # Maven repository. This makes common:jar
-      # available to cli.
-      #
-      # ==========================================
 
       - name: Build and install Port Buddy CLI
         run: |
@@ -295,10 +288,6 @@ jobs:
           mkdir -p \
             "$GITHUB_WORKSPACE/portbuddy-runtime"
 
-          # --------------------------------------
-          # CLI CLASSES
-          # --------------------------------------
-
           if [ ! -d "cli/target/classes" ]; then
             echo "ERROR: cli/target/classes not found."
             exit 1
@@ -308,10 +297,6 @@ jobs:
             cli/target/classes \
             "$GITHUB_WORKSPACE/portbuddy-runtime/cli-classes"
 
-          # --------------------------------------
-          # COMMON CLASSES
-          # --------------------------------------
-
           if [ ! -d "common/target/classes" ]; then
             echo "ERROR: common/target/classes not found."
             exit 1
@@ -320,10 +305,6 @@ jobs:
           cp -r \
             common/target/classes \
             "$GITHUB_WORKSPACE/portbuddy-runtime/common-classes"
-
-          # --------------------------------------
-          # BUILD RUNTIME CLASSPATH
-          # --------------------------------------
 
           ./mvnw \
             -pl cli \
@@ -447,6 +428,52 @@ jobs:
             "$GITHUB_WORKSPACE/portbuddy.log"
 
       # ==========================================
+      # CREATE LIVE LOG
+      # ==========================================
+
+      - name: Create initial live log
+        run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE"
+
+          {
+            echo "======================================"
+            echo "L.A. CRIMES PUBLIC SERVER"
+            echo "======================================"
+            echo
+            echo "STATUS: STARTING"
+            echo
+            echo "LOCAL UDP: 7777"
+            echo
+            echo "======================================"
+            echo "PORT BUDDY"
+            echo "======================================"
+            echo
+            cat portbuddy.log 2>/dev/null || true
+            echo
+            echo "======================================"
+            echo "L.A. CRIMES LOG"
+            echo "======================================"
+            echo
+            tail -300 lac-server.log 2>/dev/null || true
+          } > live-server-log.txt
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add live-server-log.txt
+
+          git commit \
+            -m "Initialize live server log" \
+            || true
+
+          git push \
+            origin \
+            HEAD:main \
+            || true
+
+      # ==========================================
       # FINAL CHECK
       # ==========================================
 
@@ -458,11 +485,8 @@ jobs:
           echo "FINAL SERVER CHECK"
           echo "======================================"
 
-          LAC_PID=$(cat \
-            "$GITHUB_WORKSPACE/lac.pid")
-
-          PB_PID=$(cat \
-            "$GITHUB_WORKSPACE/portbuddy.pid")
+          LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
+          PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
 
           echo "L.A. Crimes PID: $LAC_PID"
           echo "Port Buddy PID: $PB_PID"
@@ -471,9 +495,6 @@ jobs:
 
           if ! kill -0 "$LAC_PID" 2>/dev/null; then
             echo "L.A. Crimes stopped."
-
-            echo
-            echo "===== L.A. CRIMES LOG ====="
 
             tail -250 \
               "$GITHUB_WORKSPACE/lac-server.log" \
@@ -484,9 +505,6 @@ jobs:
 
           if ! kill -0 "$PB_PID" 2>/dev/null; then
             echo "Port Buddy stopped."
-
-            echo
-            echo "===== PORT BUDDY LOG ====="
 
             cat \
               "$GITHUB_WORKSPACE/portbuddy.log" \
@@ -506,15 +524,21 @@ jobs:
           echo
           echo "===== PUBLIC ENDPOINT ====="
 
-          cat \
-            "$GITHUB_WORKSPACE/portbuddy.log"
+          cat "$GITHUB_WORKSPACE/portbuddy.log"
 
       # ==========================================
-      # KEEP ALIVE
+      # KEEP SERVER ALIVE
       # ==========================================
 
       - name: Keep server alive
         run: |
+          set -e
+
+          cd "$GITHUB_WORKSPACE"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           echo "======================================"
           echo "L.A. CRIMES SERVER IS RUNNING"
           echo "======================================"
@@ -529,35 +553,96 @@ jobs:
 
           while true; do
 
-            LAC_PID=$(cat \
-              "$GITHUB_WORKSPACE/lac.pid")
+            LAC_PID=$(cat "$GITHUB_WORKSPACE/lac.pid")
+            PB_PID=$(cat "$GITHUB_WORKSPACE/portbuddy.pid")
 
-            PB_PID=$(cat \
-              "$GITHUB_WORKSPACE/portbuddy.pid")
+            # --------------------------------------
+            # CHECK SERVER
+            # --------------------------------------
 
             if ! kill -0 "$LAC_PID" 2>/dev/null; then
               echo "L.A. Crimes stopped."
               exit 1
             fi
 
-            if ! kill -0 "$PB_PID" 2>/dev/null; then
+            # --------------------------------------
+            # CHECK PORT BUDDY
+            # --------------------------------------
 
+            if ! kill -0 "$PB_PID" 2>/dev/null; then
               echo "Port Buddy stopped."
 
               echo
               echo "===== PORT BUDDY LOG ====="
 
-              cat \
-                "$GITHUB_WORKSPACE/portbuddy.log" \
-                || true
+              cat "$GITHUB_WORKSPACE/portbuddy.log" || true
 
               exit 1
+            fi
+
+            # --------------------------------------
+            # UPDATE LIVE LOG
+            # --------------------------------------
+
+            {
+              echo "======================================"
+              echo "L.A. CRIMES PUBLIC SERVER"
+              echo "======================================"
+              echo
+              echo "STATUS: RUNNING"
+              echo "TIME: $(date '+%Y-%m-%d %H:%M:%S UTC')"
+              echo
+              echo "LOCAL UDP: 7777"
+              echo
+              echo "======================================"
+              echo "PORT BUDDY"
+              echo "======================================"
+              echo
+              cat "$GITHUB_WORKSPACE/portbuddy.log" 2>/dev/null || true
+              echo
+              echo "======================================"
+              echo "L.A. CRIMES LOG"
+              echo "======================================"
+              echo
+              tail -300 "$GITHUB_WORKSPACE/lac-server.log" 2>/dev/null || true
+              echo
+              echo "======================================"
+              echo "SERVER CHECK"
+              echo "======================================"
+              echo
+              echo "L.A. Crimes PID: $LAC_PID"
+              echo "Port Buddy PID: $PB_PID"
+              echo
+              echo "UDP 7777:"
+              ss -lunp | grep ':7777' || true
+              echo
+              echo "Last update: $(date '+%H:%M:%S UTC')"
+            } > "$GITHUB_WORKSPACE/live-server-log.txt"
+
+            # --------------------------------------
+            # PUSH LOG TO GITHUB
+            # --------------------------------------
+
+            git add live-server-log.txt
+
+            if ! git diff --cached --quiet; then
+
+              git commit \
+                -m "Update live server log" \
+                || true
+
+              git push \
+                origin \
+                HEAD:main \
+                || true
+
             fi
 
             echo
             echo "[$(date '+%H:%M:%S')]"
             echo "L.A. Crimes + Port Buddy running."
+            echo "Live log updated."
 
-            sleep 30
+            sleep 10
 
           done
