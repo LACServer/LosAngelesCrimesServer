@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:39:28 UTC
+TIME: 2026-08-22 09:39:39 UTC
 
 LOCAL UDP: 7777
 
@@ -6082,39 +6082,66 @@ IN 4679.59 KB | OUT 7740.54 KB
 IN 4681.54 KB | OUT 7746.45 KB
 IN 4682.80 KB | OUT 7751.71 KB
 IN 4683.80 KB | OUT 7757.61 KB
+IN 4684.97 KB | OUT 7762.94 KB
+IN 4685.78 KB | OUT 7766.62 KB
+IN 4686.38 KB | OUT 7769.97 KB
+IN 4686.86 KB | OUT 7774.54 KB
+IN 4687.39 KB | OUT 7779.33 KB
+IN 4687.98 KB | OUT 7783.51 KB
+IN 4688.40 KB | OUT 7787.53 KB
+IN 4688.83 KB | OUT 7791.43 KB
+IN 4689.27 KB | OUT 7795.26 KB
+IN 4689.72 KB | OUT 7799.67 KB
+IN 4690.28 KB | OUT 7803.39 KB
+IN 4690.75 KB | OUT 7806.61 KB
+IN 4691.19 KB | OUT 7809.80 KB
+IN 4691.68 KB | OUT 7813.19 KB
+IN 4692.07 KB | OUT 7816.27 KB
+IN 4692.53 KB | OUT 7819.38 KB
+IN 4693.12 KB | OUT 7822.56 KB
+IN 4693.74 KB | OUT 7826.54 KB
+IN 4694.21 KB | OUT 7830.29 KB
+IN 4694.66 KB | OUT 7833.78 KB
+IN 4695.10 KB | OUT 7834.55 KB
+IN 4695.53 KB | OUT 7835.08 KB
+IN 4695.92 KB | OUT 7835.84 KB
+IN 4696.61 KB | OUT 7836.71 KB
+IN 4697.36 KB | OUT 7837.42 KB
+IN 4697.94 KB | OUT 7838.03 KB
+IN 4699.10 KB | OUT 7839.38 KB
+IN 4700.63 KB | OUT 7841.14 KB
+IN 4702.05 KB | OUT 7842.54 KB
+IN 4703.38 KB | OUT 7843.79 KB
+IN 4704.89 KB | OUT 7844.70 KB
+IN 4706.41 KB | OUT 7845.48 KB
+IN 4707.18 KB | OUT 7847.73 KB
+IN 4709.03 KB | OUT 7849.31 KB
+IN 4710.39 KB | OUT 7850.79 KB
+IN 4711.79 KB | OUT 7852.35 KB
+IN 4713.56 KB | OUT 7854.46 KB
+IN 4715.14 KB | OUT 7855.87 KB
+IN 4716.72 KB | OUT 7857.35 KB
+IN 4717.82 KB | OUT 7858.68 KB
+IN 4719.29 KB | OUT 7859.77 KB
+IN 4719.80 KB | OUT 7860.40 KB
+IN 4720.26 KB | OUT 7861.00 KB
+IN 4720.72 KB | OUT 7861.70 KB
+IN 4721.38 KB | OUT 7862.33 KB
+IN 4721.89 KB | OUT 7863.14 KB
+IN 4722.27 KB | OUT 7863.74 KB
+IN 4722.72 KB | OUT 7864.34 KB
+IN 4723.34 KB | OUT 7864.87 KB
+IN 4723.91 KB | OUT 7865.55 KB
+IN 4724.33 KB | OUT 7866.11 KB
+IN 4724.75 KB | OUT 7866.64 KB
+IN 4725.30 KB | OUT 7867.14 KB
+IN 4725.73 KB | OUT 7867.77 KB
+IN 4726.20 KB | OUT 7868.34 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[KCP] Server: RawSend invalid connectionId=1883339072
-kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
-kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
-kcp2k.KcpPeer:Disconnect()
-kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
-kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
-kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[KCP] Server: RawSend invalid connectionId=1883339072
-kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
-kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
-kcp2k.KcpPeer:Disconnect()
-kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
-kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
-kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
-kcp2k.KcpServer:TickIncoming()
-Mirror.NetworkServer:NetworkEarlyUpdate()
-Mirror.NetworkLoop:NetworkEarlyUpdate()
-
-[KCP] Server: RawSend invalid connectionId=1883339072
-kcp2k.KcpServer:RawSend(Int32, ArraySegment`1)
-kcp2k.KcpPeer:SendUnreliable(KcpHeaderUnreliable, ArraySegment`1)
-kcp2k.KcpPeer:Disconnect()
 kcp2k.KcpPeer:OnRawInputUnreliable(ArraySegment`1)
 kcp2k.KcpServerConnection:RawInput(ArraySegment`1)
 kcp2k.KcpServer:ProcessMessage(ArraySegment`1, Int32)
@@ -6387,6 +6414,34 @@ UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 <ApplyRot>d__227:MoveNext()
 UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
 
+Server Transport Error for connId=1883314221: Timeout: kcp2k.KcpServerConnection: Connection timed out after not receiving any message for 10000ms. Disconnecting.. This is fine.
+Mirror.NetworkServer:OnTransportError(Int32, TransportError, String)
+kcp2k.KcpPeer:HandleTimeout(UInt32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[NetworkManager] Server error: kcp2k.KcpServerConnection: Connection timed out after not receiving any message for 10000ms. Disconnecting.
+Mirror.NetworkServer:OnTransportError(Int32, TransportError, String)
+kcp2k.KcpPeer:HandleTimeout(UInt32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[NetworkManager] Server disconnected: 127.0.0.1
+Mirror.NetworkServer:OnTransportDisconnected(Int32)
+kcp2k.<>c__DisplayClass20_0:<CreateConnection>g__OnDisconnectedCallback|4()
+kcp2k.KcpPeer:HandleTimeout(UInt32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
 
 ======================================
 SERVER CHECK
@@ -6398,4 +6453,4 @@ Port Buddy PID: 3313
 UDP 7777:
 UNCONN 960    0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:39:28 UTC
+Last update: 09:39:39 UTC
