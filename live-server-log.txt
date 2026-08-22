@@ -1,0 +1,395 @@
+======================================
+L.A. CRIMES PUBLIC SERVER
+======================================
+
+STATUS: STARTING
+
+LOCAL UDP: 7777
+
+======================================
+PORT BUDDY
+======================================
+
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.jline.nativ.JLineNativeLoader in an unnamed module (file:/home/runner/.m2/repository/org/jline/jline/3.26.3/jline-3.26.3.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Port Buddy - Mode: udp
+
+Local:  udp localhost:7777
+Public: nl.portbuddy.tech:40083
+
+Press Ctrl+C to exit
+----------------------------------------------
+
+UDP traffic:
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+IN 0.00 KB | OUT 0.00 KB
+
+======================================
+L.A. CRIMES LOG
+======================================
+
+ERROR: Shader TextMeshPro/Mobile/Distance Field shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Custom/Sky-Simple shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Legacy Shaders/VertexLit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Specular' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Specular shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Specular' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader BlendedDecal shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Transparent' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Specular-Standard-Transparent shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Transparent' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Unlit (Supports Lightmap) shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader GUI/3D Text Shader - Cull Back shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/MobileSurfaceEmission' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/MobileSurfaceEmission shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/MobileSurfaceEmission' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Transparent/Cutout/VertexLit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Projector/Light shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Mobile/Particles/Additive-Tint shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Specular-Standard shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Mobile/Bumped Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Bumped Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Bumped Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Standard' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Standard shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Transparent-DoubleSided' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Specular-Standard-Transparent-DoubleSided shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Transparent-DoubleSided' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Shaders 102/Simple Box Blur shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Unlit/Transparent shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Bumped Diffuse-Full Shadow' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Bumped Diffuse-Full Shadow shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Bumped Diffuse-Full Shadow' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Transparent/VertexLit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Transparent/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Transparent/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Transparent/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Unlit/CustomUnlit shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Legacy Shaders/Particles/Additive shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Hidden/Kino/Motion/FrameBlending shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Hidden/Kino/Motion/Reconstruction shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Mobile/Particles/Multiply shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Mobile/Mobile-Surf-Particle shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Transparent/Cutout/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Transparent/Cutout/Diffuse shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Transparent/Cutout/Diffuse' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Mobile/Specular-FullShadow' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Specular-FullShadow shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Specular-FullShadow' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Unlit/Color shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Mobile/Particles/Alpha Blended shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse-Full Shadows' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Legacy Shaders/Diffuse-Full Shadows shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Legacy Shaders/Diffuse-Full Shadows' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Hidden/Image Effects/Cinematic/AmbientOcclusion shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Mobile/Particles/VertexLit Blended shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Mobile/Particles/Additive shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Projector/Multiply-Decal shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Bumped Specular' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Bumped Specular shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Bumped Specular' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Custom/MixColor_Mask' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Custom/MixColor_Mask shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Custom/MixColor_Mask' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Emission' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Mobile/Specular-Standard-Emission shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Mobile/Specular-Standard-Emission' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Hidden/Image Effects/Cinematic/Bloom shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Hidden/Grayscale Effect shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+ERROR: Shader Hidden/TonemappingColorGrading shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+[PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+UnloadTime: 1.281329 ms
+[NetworkManager] Started..
+CustomNetworkManager:Start()
+
+[Yodo1Mas] skipped Ads SDK.
+[MenuControl] No Mic Avaiable.
+GtaMenuControl:CheckGameSettings()
+GtaMenuControl:Start()
+
+[auto-run server] traffic & npcs disabled.
+AutoRunLinuxServer:Start()
+
+Server listening on port 7777
+[auto-run server] Starting game (192.168.43.1:7777 | ZombieSurvival)
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 25131.
+Total: 7.851426 ms (FindLiveObjects: 0.897854 ms CreateObjectMapping: 0.448516 ms MarkObjects: 6.454782 ms  DeleteObjects: 0.050063 ms)
+
+There is no texture data available to upload.
+There is no texture data available to upload.
+There is no texture data available to upload.
+ERROR: Shader Mobile/Skybox shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard (Specular setup)' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+ERROR: Shader Standard (Specular setup) shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+WARNING: Shader Unsupported: 'Standard (Specular setup)' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Unloading 10 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 4 workers.
+UnloadTime: 4.023211 ms
+[RadioPlayerUI] 0 tracks found.
+RadioPlayerUI:LoadTracks()
+
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/Stick"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance (1)"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance (1)"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance (1)"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance (1)"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance (1)"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance"
+BoxCollider does not support negative scale or size.
+The effective box size has been forced positive and is likely to give unexpected collision geometry.
+If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_MAP/WoodenFance"
+[NetworkManager] Server Started.
+CustomNetworkManager:OnStartServer()
+Mirror.NetworkManager:FinishStartHost()
+Mirror.NetworkManager:FinishLoadSceneHost()
+Mirror.NetworkManager:UpdateScene()
+
+[ServerUser] no banned users to load.
+ServerUserManager:LoadUsers()
+Mirror.NetworkServer:SpawnObjects()
+Mirror.NetworkManager:FinishStartHost()
+Mirror.NetworkManager:FinishLoadSceneHost()
+Mirror.NetworkManager:UpdateScene()
+
+[NetworkManager] Player Connected: localhost
+Mirror.HostMode:InvokeOnConnected()
+Mirror.NetworkManager:FinishStartHost()
+Mirror.NetworkManager:FinishLoadSceneHost()
+Mirror.NetworkManager:UpdateScene()
+
+[NetworkManager] Server scene changed: ZombieSurvival
+Mirror.NetworkManager:UpdateScene()
+
+[NetworkManager] Client Connected.
+CustomNetworkManager:OnClientConnect()
+Mirror.LocalConnectionToServer:Update()
+Mirror.NetworkClient:NetworkLateUpdate()
+
+Unloading 332 unused Assets to reduce memory usage. Loaded Objects now: 22453.
+Total: 8.095494 ms (FindLiveObjects: 0.802997 ms CreateObjectMapping: 0.429370 ms MarkObjects: 6.684984 ms  DeleteObjects: 0.177842 ms)
+
+[CustomNetManager] spawning player.
+CustomNetworkManager:OnCreateCharacter(NetworkConnectionToClient, CustomCharacterMessage)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkServer:UnpackAndInvoke(NetworkConnectionToClient, NetworkReader, Int32)
+Mirror.NetworkServer:OnTransportData(Int32, ArraySegment`1, Int32)
+Mirror.LocalConnectionToClient:Update()
+Mirror.NetworkServer:Broadcast()
+Mirror.NetworkServer:NetworkLateUpdate()
+Mirror.NetworkLoop:NetworkLateUpdate()
+
+[ShareServer] sharing server..
+<ShareServer>d__52:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+PlayerKillFeed:Start()
+
+ERROR: Shader TextMeshPro/Mobile/Bitmap shader is not supported on this GPU (none of subshaders/fallbacks are suitable)
+[ShareServer] auto submitted..
+<ShareServer>d__52:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[ShareServer] uploading share server data..
+<ShareServer>d__52:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[ShareServer] waiting for approve..
+<ShareServer>d__52:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[ShareServer] server is now public!
+<UpdateSharedServer>d__53:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[ShareServer] server is now public!!
+<UpdateSharedServer>d__53:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[ShareServer] server is now public!!!
+<UpdateSharedServer>d__53:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[ServerGameManager] Waiting to spawn..
+<SpawnFreePlayer>d__112:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+
+[PlayerControl] Player3 Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+PlayerControl:Respawn()
+Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
+Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
+Mirror.NetworkClient:OnRPCMessage(RpcMessage)
+Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
+Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
+Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
+Mirror.LocalConnectionToServer:Update()
+Mirror.NetworkClient:NetworkLateUpdate()
+
+[GameManager][Ad] played long enough to show ads.
+ServerGameManager:SlowUpdate()
+ServerGameManager:Update()
+
