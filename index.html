@@ -4,35 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>L.A. Crimes Server</title>
+<title>L.A. Crimes — Server Control</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
-:root {
-    --glass: rgba(255,255,255,.075);
-    --glass-strong: rgba(255,255,255,.12);
-    --border: rgba(255,255,255,.16);
-
-    --green: #65ff9b;
-    --red: #ff6262;
-    --blue: #71a7ff;
-    --purple: #b678ff;
-}
-
-html,
-body {
-    margin: 0;
+html {
     min-height: 100%;
 }
 
 body {
+    margin: 0;
     min-height: 100vh;
-
-    overflow-x: hidden;
 
     font-family:
         Inter,
@@ -43,84 +33,183 @@ body {
         Arial,
         sans-serif;
 
-    color: white;
+    color: #fff;
+
+    overflow-x: hidden;
 
     background:
         radial-gradient(
-            circle at 10% 10%,
-            rgba(80,130,255,.30),
-            transparent 32%
+            circle at 15% 15%,
+            rgba(80,130,255,.28),
+            transparent 30%
         ),
         radial-gradient(
-            circle at 90% 20%,
-            rgba(190,80,255,.22),
+            circle at 85% 20%,
+            rgba(180,70,255,.24),
             transparent 30%
         ),
         radial-gradient(
             circle at 50% 100%,
-            rgba(50,255,170,.12),
-            transparent 35%
+            rgba(50,255,150,.12),
+            transparent 38%
         ),
-        #050711;
+        #04050b;
 
-    background-attachment: fixed;
+    perspective: 1400px;
 }
 
 
-/* ==================================================
-   BACKGROUND 3D ORBS
-================================================== */
+/* =========================================================
+   3D BACKGROUND
+========================================================= */
 
-body::before,
-body::after {
-    content: "";
-
+.scene {
     position: fixed;
 
-    width: 300px;
-    height: 300px;
+    inset: 0;
 
-    border-radius: 50%;
+    overflow: hidden;
 
     pointer-events: none;
 
-    filter: blur(55px);
+    z-index: -5;
+}
 
-    opacity: .35;
 
-    z-index: -1;
+/* Floating glass cubes */
+
+.cube {
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.10);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.015)
+        );
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        0 25px 60px rgba(0,0,0,.25);
+
+    transform-style: preserve-3d;
 
     animation:
-        floatOrb 12s ease-in-out infinite alternate;
+        cubeFloat
+        var(--speed)
+        ease-in-out
+        infinite
+        alternate;
 }
 
-body::before {
-    left: -100px;
-    top: 35%;
+.cube:nth-child(1) {
+    left: 5%;
+    top: 15%;
+
+    --speed: 8s;
+
+    transform:
+        rotateX(35deg)
+        rotateY(40deg)
+        rotateZ(15deg);
+}
+
+.cube:nth-child(2) {
+    right: 8%;
+    top: 45%;
+
+    width: 130px;
+    height: 130px;
+
+    --speed: 11s;
+
+    transform:
+        rotateX(50deg)
+        rotateY(25deg)
+        rotateZ(25deg);
+}
+
+.cube:nth-child(3) {
+    left: 35%;
+    bottom: -20px;
+
+    width: 75px;
+    height: 75px;
+
+    --speed: 9s;
+
+    transform:
+        rotateX(25deg)
+        rotateY(55deg)
+        rotateZ(10deg);
+}
+
+@keyframes cubeFloat {
+
+    from {
+        translate: 0 0;
+    }
+
+    to {
+        translate: 0 -45px;
+    }
+}
+
+
+/* =========================================================
+   GLOWING ORBS
+========================================================= */
+
+.orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    opacity: .3;
+
+    animation:
+        orbFloat 12s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.orb.one {
+    width: 350px;
+    height: 350px;
+
+    left: -150px;
+    top: 25%;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(70,130,255,.8),
-            transparent 70%
-        );
+        #2864ff;
 }
 
-body::after {
+.orb.two {
+    width: 300px;
+    height: 300px;
+
     right: -100px;
-    bottom: 5%;
+    bottom: 10%;
 
     background:
-        radial-gradient(
-            circle,
-            rgba(180,70,255,.8),
-            transparent 70%
-        );
+        #a62cff;
 
-    animation-delay: -5s;
+    animation-delay: -4s;
 }
 
-@keyframes floatOrb {
+@keyframes orbFloat {
 
     from {
         transform:
@@ -130,33 +219,38 @@ body::after {
 
     to {
         transform:
-            translate3d(0,-50px,0)
+            translate3d(30px,-50px,0)
             scale(1.18);
     }
 }
 
 
-/* ==================================================
-   CONTAINER
-================================================== */
+/* =========================================================
+   MAIN
+========================================================= */
 
 .container {
-    width: min(
-        1100px,
-        calc(100% - 28px)
-    );
+
+    width:
+        min(
+            1100px,
+            calc(100% - 30px)
+        );
 
     margin:
         35px auto
-        60px;
+        70px;
+
+    transform-style: preserve-3d;
 }
 
 
-/* ==================================================
-   GLASS
-================================================== */
+/* =========================================================
+   GLASS CARD
+========================================================= */
 
 .glass {
+
     position: relative;
 
     background:
@@ -168,71 +262,78 @@ body::after {
 
     border:
         1px solid
-        var(--border);
+        rgba(255,255,255,.15);
 
-    border-radius: 26px;
-
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.42),
-        0 10px 25px rgba(0,0,0,.22),
-        inset 0 1px 0 rgba(255,255,255,.13),
-        inset 0 -1px 0 rgba(255,255,255,.025);
+    border-radius:
+        28px;
 
     backdrop-filter:
-        blur(24px)
-        saturate(140%);
+        blur(25px)
+        saturate(145%);
 
     -webkit-backdrop-filter:
-        blur(24px)
-        saturate(140%);
+        blur(25px)
+        saturate(145%);
+
+    box-shadow:
+        0 35px 80px
+        rgba(0,0,0,.42),
+
+        0 10px 25px
+        rgba(0,0,0,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.14),
+
+        inset 0 -1px 0
+        rgba(255,255,255,.025);
 
     overflow: hidden;
 
-    transform:
-        perspective(1200px)
-        translateZ(0);
+    transform-style:
+        preserve-3d;
 
     transition:
-        transform .25s ease,
-        box-shadow .25s ease;
+        transform .3s ease,
+        box-shadow .3s ease;
 }
 
 
-/*
-    Glass reflection.
-*/
+/* Glass reflection */
 
 .glass::before {
+
     content: "";
 
     position: absolute;
 
-    left: -20%;
-    top: -60%;
+    top: -80%;
 
-    width: 140%;
-    height: 100%;
+    left: -30%;
+
+    width: 160%;
+    height: 120%;
 
     background:
         linear-gradient(
-            120deg,
+            115deg,
             transparent 35%,
-            rgba(255,255,255,.08),
+            rgba(255,255,255,.08) 50%,
             transparent 65%
         );
 
     transform:
-        rotate(-8deg);
+        rotate(-8deg)
+        translateZ(20px);
 
     pointer-events: none;
 }
 
 
-/*
-    Tiny glass edge.
-*/
+/* Edge highlight */
 
 .glass::after {
+
     content: "";
 
     position: absolute;
@@ -241,517 +342,1019 @@ body::after {
 
     border-radius: inherit;
 
-    pointer-events: none;
-
     box-shadow:
         inset 0 0 35px
         rgba(255,255,255,.018);
+
+    pointer-events: none;
 }
 
 
-/* ==================================================
+/* =========================================================
    HEADER
-================================================== */
+========================================================= */
 
 .header {
-    padding: 34px;
 
-    margin-bottom: 18px;
+    padding:
+        38px;
+
+    margin-bottom:
+        20px;
 
     transform:
-        perspective(1000px)
-        rotateX(1deg);
+        perspective(1200px)
+        rotateX(2deg)
+        translateZ(10px);
 }
 
 .header:hover {
+
     transform:
-        perspective(1000px)
+        perspective(1200px)
         rotateX(0deg)
-        translateY(-2px);
+        translateY(-4px)
+        translateZ(20px);
 
     box-shadow:
-        0 35px 80px rgba(0,0,0,.5),
-        inset 0 1px 0 rgba(255,255,255,.16);
+        0 45px 100px
+        rgba(0,0,0,.5),
+
+        inset 0 1px 0
+        rgba(255,255,255,.18);
+}
+
+.logo {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin-bottom: 18px;
+
+    border-radius: 19px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.17),
+            rgba(255,255,255,.04)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 12px 0 rgba(0,0,0,.18),
+        0 20px 30px rgba(0,0,0,.28),
+        inset 0 2px 0 rgba(255,255,255,.14);
+
+    transform:
+        perspective(500px)
+        rotateX(8deg)
+        rotateY(-8deg)
+        translateZ(20px);
+
+    font-size: 28px;
 }
 
 .header h1 {
+
     position: relative;
 
-    margin: 0 0 9px;
+    margin:
+        0 0 10px;
 
     font-size:
-        clamp(26px, 5vw, 36px);
+        clamp(
+            28px,
+            6vw,
+            42px
+        );
+
+    line-height: 1;
 
     letter-spacing:
-        -.7px;
+        -1.5px;
+
+    text-shadow:
+        0 5px 25px
+        rgba(0,0,0,.3);
 }
 
 .header p {
+
     position: relative;
 
     margin: 0;
 
     color:
         rgba(255,255,255,.55);
+
+    font-size: 15px;
 }
 
 
-/* ==================================================
-   CONTROLS
-================================================== */
+/* =========================================================
+   CONTROL PANEL
+========================================================= */
 
 .controls {
-    padding: 24px;
 
-    margin-bottom: 18px;
+    padding:
+        26px;
+
+    margin-bottom:
+        20px;
+
+    transform:
+        perspective(1200px)
+        rotateX(1deg)
+        translateZ(5px);
+}
+
+.controls:hover {
+
+    transform:
+        perspective(1200px)
+        rotateX(0deg)
+        translateY(-2px)
+        translateZ(12px);
 }
 
 label {
+
     position: relative;
 
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 
     font-size: 13px;
+
+    font-weight: 700;
 
     color:
         rgba(255,255,255,.65);
 }
 
 input {
+
     position: relative;
 
     width: 100%;
 
-    padding: 15px 16px;
+    height: 54px;
+
+    padding:
+        0 17px;
 
     border:
         1px solid
         rgba(255,255,255,.13);
 
-    border-radius: 16px;
+    border-radius:
+        17px;
 
     outline: none;
 
     color: white;
 
     background:
-        rgba(0,0,0,.30);
+        linear-gradient(
+            145deg,
+            rgba(0,0,0,.35),
+            rgba(255,255,255,.025)
+        );
 
     box-shadow:
-        inset 0 4px 15px
-        rgba(0,0,0,.15);
+        inset 0 6px 20px
+        rgba(0,0,0,.22),
+
+        inset 0 1px 0
+        rgba(255,255,255,.05);
 
     transition:
         .2s ease;
 }
 
 input:focus {
-    border-color:
-        rgba(110,160,255,.7);
 
-    background:
-        rgba(0,0,0,.38);
+    border-color:
+        rgba(100,160,255,.65);
 
     box-shadow:
         0 0 0 4px
-        rgba(100,145,255,.08),
-        inset 0 4px 15px
-        rgba(0,0,0,.15);
+        rgba(90,140,255,.08),
+
+        inset 0 6px 20px
+        rgba(0,0,0,.25);
 }
 
 .small {
-    margin-top: 7px;
 
-    font-size: 12px;
+    margin-top:
+        7px;
 
     color:
-        rgba(255,255,255,.42);
+        rgba(255,255,255,.40);
+
+    font-size:
+        12px;
 }
 
 
-/* ==================================================
-   BUTTONS
-================================================== */
+/* =========================================================
+   BUTTON AREA
+========================================================= */
 
 .buttons {
+
     display: flex;
 
-    gap: 12px;
+    gap: 18px;
 
-    margin-top: 18px;
+    margin-top:
+        22px;
 
     flex-wrap: wrap;
+
+    perspective:
+        1000px;
 }
 
+
+/* =========================================================
+   FULL 3D BUTTON
+========================================================= */
+
 button {
+
     position: relative;
 
+    min-width:
+        175px;
+
+    min-height:
+        62px;
+
     padding:
-        14px 22px;
+        16px 27px;
 
     border:
         1px solid
-        rgba(255,255,255,.14);
+        rgba(255,255,255,.20);
 
-    border-radius: 16px;
+    border-radius:
+        19px;
 
     color: white;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    font-weight: 700;
+    font-weight:
+        850;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    overflow: hidden;
+    overflow:
+        visible;
+
+    transform-style:
+        preserve-3d;
+
+    transform:
+        perspective(800px)
+        rotateX(7deg)
+        translateZ(0);
 
     background:
         linear-gradient(
-            135deg,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.055)
+            145deg,
+            rgba(255,255,255,.17),
+            rgba(255,255,255,.045)
         );
 
-    box-shadow:
-        0 8px 20px
-        rgba(0,0,0,.25),
-        inset 0 1px 0
-        rgba(255,255,255,.12);
+    backdrop-filter:
+        blur(18px);
 
-    transform:
-        translateY(0)
-        translateZ(0);
+    -webkit-backdrop-filter:
+        blur(18px);
+
+    box-shadow:
+
+        /* bottom extrusion */
+        0 13px 0
+        rgba(0,0,0,.32),
+
+        /* large shadow */
+        0 24px 35px
+        rgba(0,0,0,.38),
+
+        /* top edge */
+        inset 0 2px 0
+        rgba(255,255,255,.14),
+
+        /* lower edge */
+        inset 0 -4px 0
+        rgba(0,0,0,.12);
 
     transition:
-        transform .15s ease,
-        box-shadow .15s ease,
-        background .15s ease,
-        opacity .15s ease;
+        transform .16s ease,
+        box-shadow .16s ease,
+        filter .16s ease;
 }
 
-button::before {
+
+/* 3D lower extrusion */
+
+button::after {
+
     content: "";
 
     position: absolute;
 
-    top: 0;
-    left: -100%;
+    left: 2px;
+    right: 2px;
 
-    width: 70%;
-    height: 100%;
+    bottom:
+        -13px;
+
+    height:
+        16px;
+
+    border-radius:
+        0 0 16px 16px;
 
     background:
         linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.16),
-            transparent
+            to bottom,
+            rgba(0,0,0,.30),
+            rgba(0,0,0,.58)
         );
 
+    border:
+        1px solid
+        rgba(255,255,255,.06);
+
     transform:
-        skewX(-20deg);
+        translateZ(-2px);
 
-    transition:
-        left .5s ease;
-}
-
-button:hover:not(:disabled)::before {
-    left: 140%;
-}
-
-button:hover:not(:disabled) {
-    transform:
-        translateY(-3px)
-        translateZ(8px);
-
-    box-shadow:
-        0 14px 30px
-        rgba(0,0,0,.35),
-        inset 0 1px 0
-        rgba(255,255,255,.18);
-}
-
-button:active:not(:disabled) {
-    transform:
-        translateY(1px)
-        scale(.98);
-}
-
-button:disabled {
-    opacity: .35;
-
-    cursor: not-allowed;
-
-    box-shadow:
+    pointer-events:
         none;
 }
 
-.start {
+
+/* Button glass reflection */
+
+button::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: 7%;
+
+    top: 4px;
+
+    width: 86%;
+
+    height: 43%;
+
+    border-radius:
+        14px;
+
     background:
         linear-gradient(
-            135deg,
-            rgba(55,210,110,.28),
-            rgba(30,120,70,.12)
+            180deg,
+            rgba(255,255,255,.19),
+            rgba(255,255,255,.015)
         );
+
+    transform:
+        translateZ(15px);
+
+    pointer-events:
+        none;
+}
+
+
+/* Text gets actual 3D depth */
+
+button span {
+
+    position: relative;
+
+    z-index: 3;
+
+    display: inline-block;
+
+    transform:
+        translateZ(20px);
+
+    text-shadow:
+        0 2px 5px
+        rgba(0,0,0,.35);
+}
+
+
+/* Hover */
+
+button:hover:not(:disabled) {
+
+    transform:
+        perspective(800px)
+        rotateX(2deg)
+        translateY(-6px)
+        translateZ(18px)
+        scale(1.025);
+
+    box-shadow:
+
+        0 18px 0
+        rgba(0,0,0,.32),
+
+        0 32px 50px
+        rgba(0,0,0,.46),
+
+        inset 0 2px 0
+        rgba(255,255,255,.18),
+
+        inset 0 -4px 0
+        rgba(0,0,0,.10);
+
+    filter:
+        brightness(1.12);
+}
+
+
+/* Physical press */
+
+button:active:not(:disabled) {
+
+    transform:
+        perspective(800px)
+        rotateX(-4deg)
+        translateY(9px)
+        translateZ(0)
+        scale(.985);
+
+    box-shadow:
+
+        0 3px 0
+        rgba(0,0,0,.35),
+
+        0 8px 14px
+        rgba(0,0,0,.25),
+
+        inset 0 2px 0
+        rgba(255,255,255,.08);
+}
+
+
+/* Disabled */
+
+button:disabled {
+
+    opacity:
+        .32;
+
+    cursor:
+        not-allowed;
+
+    transform:
+        perspective(800px)
+        rotateX(5deg);
+
+    box-shadow:
+
+        0 5px 0
+        rgba(0,0,0,.20),
+
+        0 10px 18px
+        rgba(0,0,0,.18);
+}
+
+
+/* =========================================================
+   START BUTTON
+========================================================= */
+
+.start {
+
+    border-color:
+        rgba(70,255,145,.32);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(65,255,135,.30),
+            rgba(15,115,60,.09)
+        );
+
+    box-shadow:
+
+        0 13px 0
+        rgba(8,75,38,.58),
+
+        0 24px 35px
+        rgba(0,0,0,.38),
+
+        inset 0 2px 0
+        rgba(255,255,255,.13),
+
+        0 -4px 0
+        rgba(0,0,0,.10);
 }
 
 .start:hover:not(:disabled) {
+
     background:
         linear-gradient(
-            135deg,
-            rgba(55,230,120,.38),
-            rgba(30,140,75,.18)
+            145deg,
+            rgba(75,255,150,.42),
+            rgba(20,140,70,.15)
         );
+
+    box-shadow:
+
+        0 18px 0
+        rgba(8,75,38,.58),
+
+        0 32px 50px
+        rgba(0,0,0,.46),
+
+        inset 0 2px 0
+        rgba(255,255,255,.18);
 }
 
+
+/* =========================================================
+   STOP BUTTON
+========================================================= */
+
 .stop {
+
+    border-color:
+        rgba(255,80,80,.32);
+
     background:
         linear-gradient(
-            135deg,
-            rgba(240,70,70,.28),
-            rgba(130,30,30,.12)
+            145deg,
+            rgba(255,70,70,.30),
+            rgba(120,20,20,.09)
         );
+
+    box-shadow:
+
+        0 13px 0
+        rgba(80,12,12,.60),
+
+        0 24px 35px
+        rgba(0,0,0,.38),
+
+        inset 0 2px 0
+        rgba(255,255,255,.13),
+
+        0 -4px 0
+        rgba(0,0,0,.10);
 }
 
 .stop:hover:not(:disabled) {
+
     background:
         linear-gradient(
-            135deg,
-            rgba(255,80,80,.40),
-            rgba(150,30,30,.18)
+            145deg,
+            rgba(255,80,80,.43),
+            rgba(145,25,25,.16)
         );
+
+    box-shadow:
+
+        0 18px 0
+        rgba(80,12,12,.60),
+
+        0 32px 50px
+        rgba(0,0,0,.46),
+
+        inset 0 2px 0
+        rgba(255,255,255,.18);
 }
 
 
-/* ==================================================
+/* =========================================================
    STATUS
-================================================== */
+========================================================= */
 
 .status {
-    padding: 20px 24px;
 
-    margin-bottom: 18px;
+    display:
+        flex;
 
-    display: flex;
+    align-items:
+        center;
 
-    align-items: center;
+    gap:
+        15px;
 
-    gap: 14px;
+    padding:
+        21px 25px;
+
+    margin-bottom:
+        20px;
+
+    transform:
+        perspective(1200px)
+        translateZ(8px);
+}
+
+.status:hover {
+
+    transform:
+        perspective(1200px)
+        translateY(-3px)
+        translateZ(18px);
 }
 
 .dot {
-    width: 13px;
-    height: 13px;
 
-    flex-shrink: 0;
+    width:
+        14px;
 
-    border-radius: 50%;
+    height:
+        14px;
+
+    flex-shrink:
+        0;
+
+    border-radius:
+        50%;
 
     background:
-        #777;
+        #666;
 
     box-shadow:
-        0 0 0 transparent;
+        none;
 
     transition:
-        .25s ease;
+        .3s ease;
 }
 
 .status-text {
-    font-weight: 750;
+
+    font-weight:
+        850;
+
+    font-size:
+        15px;
+}
+
+.online {
+    color:
+        #67ff9c;
+}
+
+.error {
+    color:
+        #ff6666;
+}
+
+.warning {
+    color:
+        #ffd66b;
 }
 
 
-/* ==================================================
+/* =========================================================
    SERVER CARD
-================================================== */
+========================================================= */
 
 .server-card {
-    display: none;
 
-    padding: 24px;
+    display:
+        none;
 
-    margin-bottom: 18px;
+    padding:
+        27px;
+
+    margin-bottom:
+        20px;
 
     transform:
-        perspective(1000px)
-        rotateX(-1deg);
+        perspective(1200px)
+        rotateX(-2deg)
+        translateZ(15px);
 }
 
 .server-card.show {
-    display: block;
+
+    display:
+        block;
 
     animation:
-        serverAppear .4s ease;
+        cardAppear .5s ease;
 }
 
-@keyframes serverAppear {
+@keyframes cardAppear {
 
     from {
         opacity: 0;
 
         transform:
-            perspective(1000px)
-            translateY(15px)
-            rotateX(-5deg);
+            perspective(1200px)
+            rotateX(-12deg)
+            translateY(20px)
+            translateZ(0);
     }
 
     to {
         opacity: 1;
 
         transform:
-            perspective(1000px)
+            perspective(1200px)
+            rotateX(-2deg)
             translateY(0)
-            rotateX(-1deg);
+            translateZ(15px);
     }
 }
 
+.server-card:hover {
+
+    transform:
+        perspective(1200px)
+        rotateX(0deg)
+        translateY(-4px)
+        translateZ(25px);
+}
+
 .server-address {
-    margin-top: 8px;
+
+    margin-top:
+        9px;
 
     font-size:
-        clamp(20px, 4vw, 28px);
+        clamp(
+            21px,
+            5vw,
+            31px
+        );
 
-    font-weight: 800;
+    font-weight:
+        900;
 
     letter-spacing:
-        -.5px;
+        -.7px;
 
-    word-break: break-all;
+    word-break:
+        break-all;
+
+    color:
+        #7dffa9;
 
     text-shadow:
         0 0 25px
-        rgba(110,255,160,.2);
+        rgba(80,255,150,.25);
 }
 
 
-/* ==================================================
+/* =========================================================
    LOG
-================================================== */
+========================================================= */
 
 .log-card {
-    padding: 24px;
+
+    padding:
+        26px;
+
+    transform:
+        perspective(1200px)
+        rotateX(1deg)
+        translateZ(5px);
 }
 
-.log {
-    margin-top: 15px;
+.log-card:hover {
 
-    height: 500px;
+    transform:
+        perspective(1200px)
+        rotateX(0deg)
+        translateY(-3px)
+        translateZ(15px);
+}
 
-    overflow-y: auto;
+.log-title {
 
-    padding: 18px;
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    gap:
+        10px;
+}
+
+.log-title strong {
+
+    font-size:
+        15px;
+}
+
+.live-badge {
+
+    padding:
+        6px 10px;
+
+    border-radius:
+        999px;
+
+    font-size:
+        10px;
+
+    font-weight:
+        800;
+
+    color:
+        #7dffa9;
+
+    background:
+        rgba(70,255,145,.08);
 
     border:
         1px solid
-        rgba(255,255,255,.07);
+        rgba(70,255,145,.18);
+}
 
-    border-radius: 18px;
+.log {
+
+    height:
+        500px;
+
+    margin-top:
+        16px;
+
+    padding:
+        18px;
+
+    overflow-y:
+        auto;
+
+    border:
+        1px solid
+        rgba(255,255,255,.075);
+
+    border-radius:
+        20px;
 
     background:
         linear-gradient(
-            135deg,
+            145deg,
             rgba(0,0,0,.48),
-            rgba(0,0,0,.30)
+            rgba(255,255,255,.018)
         );
 
     box-shadow:
-        inset 0 8px 25px
-        rgba(0,0,0,.18);
+
+        inset 0 8px 30px
+        rgba(0,0,0,.22),
+
+        inset 0 1px 0
+        rgba(255,255,255,.035);
 
     font-family:
+        "Cascadia Code",
         Consolas,
         "Courier New",
         monospace;
 
-    font-size: 13px;
+    font-size:
+        12px;
 
-    line-height: 1.55;
-
-    white-space: pre-wrap;
-
-    word-break: break-word;
+    line-height:
+        1.6;
 
     color:
-        rgba(255,255,255,.82);
+        rgba(255,255,255,.80);
+
+    white-space:
+        pre-wrap;
+
+    word-break:
+        break-word;
 }
 
 .log::-webkit-scrollbar {
-    width: 8px;
+    width:
+        8px;
 }
 
 .log::-webkit-scrollbar-track {
-    background: transparent;
+    background:
+        transparent;
 }
 
 .log::-webkit-scrollbar-thumb {
+
+    border-radius:
+        20px;
+
     background:
         rgba(255,255,255,.13);
-
-    border-radius: 20px;
 }
 
 
-/* ==================================================
-   COLORS
-================================================== */
+/* =========================================================
+   FOOTER
+========================================================= */
 
-.online {
+.footer {
+
+    text-align:
+        center;
+
+    margin-top:
+        20px;
+
     color:
-        var(--green);
-}
+        rgba(255,255,255,.30);
 
-.error {
-    color:
-        var(--red);
-}
-
-.warning {
-    color:
-        #ffd36b;
+    font-size:
+        11px;
 }
 
 
-/* ==================================================
+/* =========================================================
    MOBILE
-================================================== */
+========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 650px) {
 
     .container {
+
         width:
             calc(100% - 18px);
 
         margin:
-            12px auto 30px;
+            12px auto 35px;
     }
 
     .header {
-        padding: 25px;
+
+        padding:
+            28px 23px;
     }
 
     .controls,
     .log-card,
     .server-card {
-        padding: 19px;
+
+        padding:
+            20px;
     }
 
-    .status {
-        padding: 17px 19px;
-    }
+    .buttons {
 
-    .log {
-        height: 420px;
-
-        padding: 13px;
-
-        font-size: 11px;
+        gap:
+            15px;
     }
 
     button {
-        flex: 1;
+
+        min-width:
+            0;
+
+        flex:
+            1;
+    }
+
+    .log {
+
+        height:
+            420px;
+
+        padding:
+            13px;
+
+        font-size:
+            11px;
+    }
+
+    .cube {
+
+        opacity:
+            .35;
     }
 }
 
@@ -761,27 +1364,54 @@ button:disabled {
 
 <body>
 
+
+<!-- =====================================================
+     3D BACKGROUND
+===================================================== -->
+
+<div class="scene">
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+
+</div>
+
+
+
 <div class="container">
 
 
-    <!-- HEADER -->
+    <!-- =================================================
+         HEADER
+    ================================================== -->
 
-    <div class="glass header">
+    <section class="glass header">
+
+        <div class="logo">
+            🎮
+        </div>
 
         <h1>
-            🎮 L.A. Crimes Server
+            L.A. Crimes Server
         </h1>
 
         <p>
-            GitHub Actions powered public server
+            GitHub Actions powered multiplayer server
         </p>
 
-    </div>
+    </section>
 
 
-    <!-- CONTROLS -->
 
-    <div class="glass controls">
+    <!-- =================================================
+         CONTROL PANEL
+    ================================================== -->
+
+    <section class="glass controls">
 
         <label for="token">
             GitHub Personal Access Token
@@ -795,7 +1425,7 @@ button:disabled {
         >
 
         <div class="small">
-            Your token stays in this browser tab.
+            Your token is only kept in this browser tab.
         </div>
 
 
@@ -806,7 +1436,9 @@ button:disabled {
                 class="start"
                 onclick="startServer()"
             >
-                ▶ Start Server
+                <span>
+                    ▶ Start Server
+                </span>
             </button>
 
 
@@ -816,17 +1448,22 @@ button:disabled {
                 onclick="stopServer()"
                 disabled
             >
-                ■ Stop Server
+                <span>
+                    ■ Stop Server
+                </span>
             </button>
 
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- STATUS -->
 
-    <div class="glass status">
+    <!-- =================================================
+         STATUS
+    ================================================== -->
+
+    <section class="glass status">
 
         <div
             id="dot"
@@ -853,18 +1490,21 @@ button:disabled {
 
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- SERVER ADDRESS -->
 
-    <div
+    <!-- =================================================
+         SERVER ADDRESS
+    ================================================== -->
+
+    <section
         id="serverCard"
         class="glass server-card"
     >
 
         <div class="small">
-            PUBLIC SERVER
+            PUBLIC SERVER ADDRESS
         </div>
 
 
@@ -880,16 +1520,27 @@ button:disabled {
             L.A. Crimes · City · UDP
         </div>
 
-    </div>
+    </section>
 
 
-    <!-- LOG -->
 
-    <div class="glass log-card">
+    <!-- =================================================
+         LOG
+    ================================================== -->
 
-        <strong>
-            Live Server Log
-        </strong>
+    <section class="glass log-card">
+
+        <div class="log-title">
+
+            <strong>
+                Live Server Log
+            </strong>
+
+            <div class="live-badge">
+                LIVE
+            </div>
+
+        </div>
 
 
         <div
@@ -897,16 +1548,22 @@ button:disabled {
             class="log"
         >Waiting for server...</div>
 
+    </section>
+
+
+    <div class="footer">
+        L.A. Crimes Server Control · GitHub Actions
     </div>
 
 </div>
 
 
+
 <script>
 
-/* ==================================================
-   CONFIG
-================================================== */
+/* =========================================================
+   GITHUB CONFIG
+========================================================= */
 
 const OWNER =
     "LACServer";
@@ -924,9 +1581,9 @@ const API_VERSION =
     "2022-11-28";
 
 
-/* ==================================================
-   STATE
-================================================== */
+/* =========================================================
+   SERVER STATE
+========================================================= */
 
 let workflowRunId =
     null;
@@ -941,9 +1598,9 @@ let serverOnline =
     false;
 
 
-/* ==================================================
+/* =========================================================
    TOKEN
-================================================== */
+========================================================= */
 
 function getToken() {
 
@@ -966,9 +1623,9 @@ function getToken() {
 }
 
 
-/* ==================================================
+/* =========================================================
    GITHUB API
-================================================== */
+========================================================= */
 
 async function github(
     path,
@@ -1058,9 +1715,9 @@ async function github(
 }
 
 
-/* ==================================================
+/* =========================================================
    STATUS
-================================================== */
+========================================================= */
 
 function setStatus(
     text,
@@ -1079,46 +1736,44 @@ function setStatus(
     status.textContent =
         text;
 
-
     status.className =
-        "status-text " +
-        type;
+        "status-text " + type;
 
 
     if (type === "online") {
 
         dot.style.background =
-            "var(--green)";
+            "#67ff9c";
 
         dot.style.boxShadow =
-            "0 0 18px var(--green)";
+            "0 0 20px #67ff9c";
 
     }
 
     else if (type === "error") {
 
         dot.style.background =
-            "var(--red)";
+            "#ff6666";
 
         dot.style.boxShadow =
-            "0 0 18px var(--red)";
+            "0 0 20px #ff6666";
 
     }
 
     else if (type === "warning") {
 
         dot.style.background =
-            "#ffd36b";
+            "#ffd66b";
 
         dot.style.boxShadow =
-            "0 0 18px #ffd36b";
+            "0 0 20px #ffd66b";
 
     }
 
     else {
 
         dot.style.background =
-            "#777";
+            "#666";
 
         dot.style.boxShadow =
             "none";
@@ -1126,9 +1781,9 @@ function setStatus(
 }
 
 
-/* ==================================================
+/* =========================================================
    LOG
-================================================== */
+========================================================= */
 
 function setLog(text) {
 
@@ -1138,7 +1793,8 @@ function setLog(text) {
 
 
     log.textContent =
-        text || "Waiting for log...";
+        text ||
+        "Waiting for log...";
 
 
     log.scrollTop =
@@ -1146,9 +1802,9 @@ function setLog(text) {
 }
 
 
-/* ==================================================
+/* =========================================================
    SLEEP
-================================================== */
+========================================================= */
 
 function sleep(ms) {
 
@@ -1162,9 +1818,9 @@ function sleep(ms) {
 }
 
 
-/* ==================================================
-   START
-================================================== */
+/* =========================================================
+   START SERVER
+========================================================= */
 
 async function startServer() {
 
@@ -1196,10 +1852,11 @@ async function startServer() {
 
 
         setLog(
-            "======================================\n" +
-            "STARTING L.A. CRIMES SERVER\n" +
-            "======================================\n\n" +
-            "Sending workflow request..."
+`======================================
+STARTING L.A. CRIMES SERVER
+======================================
+
+Sending workflow request...`
         );
 
 
@@ -1207,31 +1864,29 @@ async function startServer() {
             Date.now();
 
 
-        /*
-            Directly start:
-
-            .github/workflows/main.yml
-        */
-
         await github(
             `/repos/${OWNER}/${REPO}/actions/workflows/${WORKFLOW_FILE}/dispatches`,
             {
-                method: "POST",
+                method:
+                    "POST",
 
                 body:
                     JSON.stringify({
-                        ref: "main"
+                        ref:
+                            "main"
                     })
             }
         );
 
 
         setLog(
-            "======================================\n" +
-            "WORKFLOW STARTED\n" +
-            "======================================\n\n" +
-            "GitHub accepted the request.\n" +
-            "Finding the new workflow run..."
+`======================================
+WORKFLOW STARTED
+======================================
+
+GitHub accepted the request.
+
+Finding the new workflow run...`
         );
 
 
@@ -1263,13 +1918,13 @@ async function startServer() {
 
 
         setLog(
-            "======================================\n" +
-            "WORKFLOW RUN FOUND\n" +
-            "======================================\n\n" +
-            "Run ID: " +
-            workflowRunId +
-            "\n\n" +
-            "Waiting for server job..."
+`======================================
+WORKFLOW RUN FOUND
+======================================
+
+Run ID: ${workflowRunId}
+
+Waiting for server job...`
         );
 
 
@@ -1291,10 +1946,11 @@ async function startServer() {
 
 
         setLog(
-            "======================================\n" +
-            "ERROR\n" +
-            "======================================\n\n" +
-            error.message
+`======================================
+ERROR
+======================================
+
+${error.message}`
         );
 
 
@@ -1310,9 +1966,9 @@ async function startServer() {
 }
 
 
-/* ==================================================
-   FIND NEW RUN
-================================================== */
+/* =========================================================
+   FIND NEW WORKFLOW RUN
+========================================================= */
 
 async function findNewRun(
     startTime
@@ -1331,7 +1987,8 @@ async function findNewRun(
 
 
         const runs =
-            data.workflow_runs || [];
+            data.workflow_runs ||
+            [];
 
 
         const run =
@@ -1358,7 +2015,9 @@ async function findNewRun(
         }
 
 
-        await sleep(2000);
+        await sleep(
+            2000
+        );
     }
 
 
@@ -1366,9 +2025,9 @@ async function findNewRun(
 }
 
 
-/* ==================================================
+/* =========================================================
    POLLING
-================================================== */
+========================================================= */
 
 function startPolling() {
 
@@ -1384,7 +2043,7 @@ function startPolling() {
 
 
     /*
-        10 seconds.
+        Check every 10 seconds.
     */
 
     polling =
@@ -1395,9 +2054,9 @@ function startPolling() {
 }
 
 
-/* ==================================================
-   POLL
-================================================== */
+/* =========================================================
+   POLL SERVER
+========================================================= */
 
 async function pollServer() {
 
@@ -1422,8 +2081,7 @@ async function pollServer() {
 
 
         /*
-            If the workflow has completed,
-            it is safe to disable Stop.
+            Workflow finished.
         */
 
         if (
@@ -1452,23 +2110,11 @@ async function pollServer() {
 
             }
 
-            else if (
-                run.conclusion ===
-                "cancelled"
-            ) {
+            else {
 
                 setStatus(
                     "Server stopped",
                     ""
-                );
-
-            }
-
-            else {
-
-                setStatus(
-                    "Server failed",
-                    "error"
                 );
             }
 
@@ -1488,7 +2134,7 @@ async function pollServer() {
 
 
         /*
-            Get jobs.
+            Get workflow jobs.
         */
 
         const jobs =
@@ -1498,7 +2144,8 @@ async function pollServer() {
 
 
         const list =
-            jobs.jobs || [];
+            jobs.jobs ||
+            [];
 
 
         const serverJob =
@@ -1511,15 +2158,13 @@ async function pollServer() {
                 job =>
                     job.name
                         .toLowerCase()
-                        .includes("server")
+                        .includes(
+                            "server"
+                        )
             );
 
 
         if (!serverJob) {
-
-            /*
-                Don't touch the Stop button here.
-            */
 
             if (!serverOnline) {
 
@@ -1529,7 +2174,6 @@ async function pollServer() {
                 );
             }
 
-
             return;
         }
 
@@ -1538,23 +2182,16 @@ async function pollServer() {
             serverJob.id;
 
 
-        /*
-            Get the latest log.
-        */
-
         await getJobLog(
             jobId
         );
 
 
         /*
-            IMPORTANT:
-
-            If SERVER_READY was already detected,
-            force Stop to remain enabled.
-
-            This prevents another polling cycle
-            from accidentally disabling it.
+            NEVER disable Stop while
+            the workflow is still running
+            if the server has already been
+            detected.
         */
 
         if (serverOnline) {
@@ -1562,6 +2199,10 @@ async function pollServer() {
             document
                 .getElementById("stop")
                 .disabled = false;
+
+            document
+                .getElementById("start")
+                .disabled = true;
 
             setStatus(
                 "🟢 Server is ONLINE",
@@ -1581,9 +2222,9 @@ async function pollServer() {
 }
 
 
-/* ==================================================
-   JOB LOG
-================================================== */
+/* =========================================================
+   GET JOB LOG
+========================================================= */
 
 async function getJobLog(
     id
@@ -1624,10 +2265,6 @@ async function getJobLog(
     }
 
 
-    /*
-        Log isn't available yet.
-    */
-
     if (!response.ok) {
 
         return;
@@ -1655,19 +2292,18 @@ async function getJobLog(
 }
 
 
-/* ==================================================
-   PARSE LOG
-================================================== */
+/* =========================================================
+   DETECT SERVER READY
+========================================================= */
 
 function parseServerLog(
     text
 ) {
 
     /*
-        SERVER_READY=true
+        Expected YAML marker:
 
-        This is the important marker
-        emitted by the YAML.
+        SERVER_READY=true
     */
 
     if (
@@ -1685,11 +2321,10 @@ function parseServerLog(
         );
 
 
-        /*
-            FORCE ENABLE.
+        document
+            .getElementById("start")
+            .disabled = true;
 
-            This is the fix for your bug.
-        */
 
         document
             .getElementById("stop")
@@ -1698,6 +2333,8 @@ function parseServerLog(
 
 
     /*
+        Expected YAML marker:
+
         PUBLIC_ENDPOINT=nl.portbuddy.tech:40083
     */
 
@@ -1709,24 +2346,30 @@ function parseServerLog(
 
     if (endpoint) {
 
-        document
-            .getElementById("address")
-            .textContent =
+        const address =
             endpoint[1];
 
 
         document
+            .getElementById("address")
+            .textContent =
+            address;
+
+
+        document
             .getElementById("serverCard")
-            .classList.add("show");
+            .classList.add(
+                "show"
+            );
 
-
-        /*
-            If we have an endpoint,
-            the server is definitely running.
-        */
 
         serverOnline =
             true;
+
+
+        document
+            .getElementById("start")
+            .disabled = true;
 
 
         document
@@ -1742,9 +2385,9 @@ function parseServerLog(
 }
 
 
-/* ==================================================
-   STOP
-================================================== */
+/* =========================================================
+   STOP SERVER
+========================================================= */
 
 async function stopServer() {
 
@@ -1787,25 +2430,26 @@ async function stopServer() {
                 .getElementById("log")
                 .textContent +
 
-            "\n\n======================================\n" +
-            "STOP REQUEST SENT\n" +
-            "======================================\n\n" +
+`\n
+======================================
+STOP REQUEST SENT
+======================================
 
-            "GitHub is stopping the workflow..."
+GitHub is stopping the workflow...`
         );
 
 
         await github(
             `/repos/${OWNER}/${REPO}/actions/runs/${workflowRunId}/cancel`,
             {
-                method: "POST"
+                method:
+                    "POST"
             }
         );
 
 
         serverOnline =
             false;
-
 
     }
 
@@ -1827,16 +2471,12 @@ async function stopServer() {
                 .getElementById("log")
                 .textContent +
 
-            "\n\nSTOP ERROR:\n" +
+`\n\n
+STOP ERROR:
 
-            error.message
+${error.message}`
         );
 
-
-        /*
-            Re-enable because the stop
-            request failed.
-        */
 
         document
             .getElementById("stop")
@@ -1845,9 +2485,9 @@ async function stopServer() {
 }
 
 
-/* ==================================================
-   ENTER KEY
-================================================== */
+/* =========================================================
+   ENTER TO START
+========================================================= */
 
 document
     .getElementById("token")
@@ -1868,4 +2508,4 @@ document
 </script>
 
 </body>
-</html>
+    </html>
