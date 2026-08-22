@@ -3,7 +3,7 @@ L.A. CRIMES PUBLIC SERVER
 ======================================
 
 STATUS: RUNNING
-TIME: 2026-08-22 09:22:18 UTC
+TIME: 2026-08-22 09:22:29 UTC
 
 LOCAL UDP: 7777
 
@@ -935,37 +935,66 @@ IN 0.88 KB | OUT 2.18 KB
 IN 0.88 KB | OUT 2.25 KB
 IN 0.88 KB | OUT 2.40 KB
 IN 0.88 KB | OUT 2.46 KB
+IN 0.88 KB | OUT 2.53 KB
+IN 2.21 KB | OUT 2.78 KB
+IN 3.14 KB | OUT 3.15 KB
+IN 3.41 KB | OUT 3.28 KB
+IN 4.70 KB | OUT 4.55 KB
+IN 4.90 KB | OUT 4.96 KB
+IN 5.08 KB | OUT 5.32 KB
+IN 5.71 KB | OUT 6.70 KB
+IN 6.04 KB | OUT 7.28 KB
+IN 6.14 KB | OUT 7.73 KB
+IN 6.43 KB | OUT 8.14 KB
+IN 6.79 KB | OUT 8.58 KB
+IN 7.07 KB | OUT 8.99 KB
+IN 7.07 KB | OUT 9.35 KB
+IN 7.07 KB | OUT 9.77 KB
+IN 7.07 KB | OUT 10.10 KB
+IN 7.07 KB | OUT 10.43 KB
+IN 7.07 KB | OUT 10.76 KB
+IN 7.23 KB | OUT 11.14 KB
+IN 7.60 KB | OUT 11.67 KB
+IN 7.99 KB | OUT 12.06 KB
+IN 8.38 KB | OUT 12.47 KB
+IN 8.56 KB | OUT 12.85 KB
+IN 8.58 KB | OUT 13.21 KB
+IN 8.82 KB | OUT 13.68 KB
+IN 9.05 KB | OUT 14.04 KB
+IN 9.36 KB | OUT 14.48 KB
+IN 9.55 KB | OUT 14.86 KB
+IN 10.07 KB | OUT 16.05 KB
+IN 10.07 KB | OUT 16.48 KB
+IN 10.10 KB | OUT 16.83 KB
+IN 10.10 KB | OUT 17.16 KB
+IN 10.10 KB | OUT 17.68 KB
+IN 10.17 KB | OUT 18.32 KB
+IN 11.59 KB | OUT 19.21 KB
+IN 12.00 KB | OUT 19.66 KB
+IN 13.55 KB | OUT 20.68 KB
+IN 13.73 KB | OUT 21.06 KB
+IN 14.26 KB | OUT 21.61 KB
+IN 15.72 KB | OUT 23.28 KB
+IN 17.60 KB | OUT 24.77 KB
+IN 18.09 KB | OUT 25.29 KB
+IN 20.11 KB | OUT 27.59 KB
+IN 21.88 KB | OUT 29.13 KB
+IN 22.50 KB | OUT 30.08 KB
+IN 22.66 KB | OUT 30.46 KB
+IN 22.69 KB | OUT 30.82 KB
+IN 22.73 KB | OUT 31.14 KB
+IN 23.90 KB | OUT 31.90 KB
+IN 24.45 KB | OUT 33.23 KB
+IN 24.45 KB | OUT 33.56 KB
+IN 24.45 KB | OUT 33.89 KB
+IN 24.66 KB | OUT 34.27 KB
+IN 24.73 KB | OUT 34.75 KB
+IN 24.83 KB | OUT 35.08 KB
 
 ======================================
 L.A. CRIMES LOG
 ======================================
 
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (3)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (3)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (4)/Crago crate (12)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (4)/Crago crate (12)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (4)/Crago crate (12)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (4)/Main"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (4)/DoorR"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
-If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/Crago crate (4)/DoorL"
-BoxCollider does not support negative scale or size.
-The effective box size has been forced positive and is likely to give unexpected collision geometry.
 If you absolutely need to use negative scaling you can use the convex MeshCollider. Scene hierarchy path "_Map/Parkour/WallRide/DoubleCargo (14)/Crago crate (12)/Main"
 BoxCollider does not support negative scale or size.
 The effective box size has been forced positive and is likely to give unexpected collision geometry.
@@ -1240,6 +1269,32 @@ kcp2k.KcpServer:TickIncoming()
 Mirror.NetworkServer:NetworkEarlyUpdate()
 Mirror.NetworkLoop:NetworkEarlyUpdate()
 
+[CustomNetManager] spawning player.
+CustomNetworkManager:OnCreateCharacter(NetworkConnectionToClient, CustomCharacterMessage)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkServer:UnpackAndInvoke(NetworkConnectionToClient, NetworkReader, Int32)
+Mirror.NetworkServer:OnTransportData(Int32, ArraySegment`1, Int32)
+kcp2k.KcpPeer:TickIncoming_Authenticated(UInt32)
+kcp2k.KcpPeer:TickIncoming()
+kcp2k.KcpServer:TickIncoming()
+Mirror.NetworkServer:NetworkEarlyUpdate()
+Mirror.NetworkLoop:NetworkEarlyUpdate()
+
+[PlayerControl] HerculeEdit Respawned.
+<ApplyRot>d__227:MoveNext()
+UnityEngine.SetupCoroutine:InvokeMoveNext(IEnumerator, IntPtr)
+PlayerControl:Respawn()
+Mirror.RemoteCalls.RemoteProcedureCalls:Invoke(UInt16, RemoteCallType, NetworkReader, NetworkBehaviour, NetworkConnectionToClient)
+Mirror.NetworkIdentity:HandleRemoteCall(Byte, UInt16, RemoteCallType, NetworkReader, NetworkConnectionToClient)
+Mirror.NetworkClient:OnRPCMessage(RpcMessage)
+Mirror.<>c__DisplayClass61_0`1:<RegisterHandler>g__HandlerWrapped|0(NetworkConnection, T)
+Mirror.<>c__DisplayClass9_0`2:<WrapHandler>g__Wrapped|0(C, T, Int32)
+Mirror.<>c__DisplayClass8_0`2:<WrapHandler>b__0(NetworkConnection, NetworkReader, Int32)
+Mirror.NetworkClient:UnpackAndInvoke(NetworkReader, Int32)
+Mirror.NetworkClient:OnTransportData(ArraySegment`1, Int32)
+Mirror.LocalConnectionToServer:Update()
+Mirror.NetworkClient:NetworkLateUpdate()
+
 
 ======================================
 SERVER CHECK
@@ -1251,4 +1306,4 @@ Port Buddy PID: 3313
 UDP 7777:
 UNCONN 0      0                    *:7777             *:*    users:(("LAC_Linux_v1.9.",pid=2771,fd=21))
 
-Last update: 09:22:18 UTC
+Last update: 09:22:29 UTC
