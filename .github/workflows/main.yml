@@ -147,7 +147,7 @@ jobs:
           (Basic)
           restart timer=never
           max players=16
-          map name=City
+          map name=NewTerrainRamps
           starting port=7777
 
           (Server List)
