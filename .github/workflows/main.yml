@@ -141,13 +141,13 @@ jobs:
           #lock down will avoids changes in: server option, editor obj sync
 
           (Moderator)
-          admin code=YOUR-NUM-CODE
+          admin code=adminadmin
           lock down=true
 
           (Basic)
           restart timer=never
           max players=16
-          map name=NewTerrainRamps
+          map name=Island
           starting port=7777
 
           (Server List)
